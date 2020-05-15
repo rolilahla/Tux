@@ -11,6 +11,7 @@ from vtbgln import VbagKur
 import mesajlar as mes
 import os
 import webbrowser
+import tslmt
 
 
 class Ui_Dialog(object):
@@ -1044,7 +1045,6 @@ class Ui_Settings(object):
             mico.bilgilendir(mesaj, baslik)
 
 
-
 class Ui_MainWindow(object):
     def lisans_gui(self):
         Dialog = QtWidgets.QDialog()
@@ -1338,6 +1338,10 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAyarlar.menuAction())
         self.menubar.addAction(self.menuTeslimat.menuAction())
 
+        #tetikleme
+        self.hazirlik()
+        self.triggerfinger()
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.actionYeni_M_teri_Ekle.triggered.connect(self.Folustur)
@@ -1404,11 +1408,84 @@ class Ui_MainWindow(object):
         self.actionYard_m.setText(_translate("MainWindow", "Tux Yardım"))
         self.actionHakk_nda.setText(_translate("MainWindow", "Tux Hakkında"))
 
+    def hazirlik(self):
+        """ Teslimatçıları listele  """
+        self.comboBox_10.addItems(tslmt.personel_hazirla("0"))
+
+        """ Bölgeleri veritabanından çek """
+        self.comboBox_30.addItems(tslmt.bolge_hazirla())
+
+        """ Ürünleri veritabanından çek """
+        self.comboBox_4.addItems(tslmt.urun_hazirla())
+
+        """ Gemi çalışanlarını Hazırla  """
+        self.comboBox_16.addItems(tslmt.personel_hazirla("1"))
+
+    def tgemi(self):
+        self.comboBox_2.clear()
+        self.comboBox_2.addItems(tslmt.gemi_listele(self.lineEdit.text()))
+
+    def vcf_hesapla(self):
+        sonuc = tslmt.v_c_f(self.lineEdit_2.text(),
+                            self.lineEdit_3.text(),
+                            self.lineEdit_8.text())
+
+        self.lineEdit_5.setText(sonuc[0])
+        self.lineEdit_6.setText(sonuc[1])
+        self.lineEdit_7.setText(sonuc[2])
+
+    def olustur(self):
+        """ Artık Veritabanına bilgileri eklemek için değişkenleri almaya başlamamız lazım  """
+
+        musteri_kodu = self.lineEdit.text()
+        gemi = self.comboBox_2.currentText()
+        yakit_turu = self.comboBox_4.currentText()
+        yogunluk = self.lineEdit_2.text()
+        brut_litre = self.lineEdit_3.text()
+        sicaklik = self.lineEdit_8.text()
+        net_litre = self.lineEdit_6.text()
+        volum_correction = self.lineEdit_5.text()
+        kilogram = self.lineEdit_7.text()
+        teslimatci = self.comboBox_10.currentText()
+        yakit_alan_kisi = self.lineEdit_16.text()
+        gemici = self.comboBox_16.currentText()
+        bolge = self.comboBox_30.currentText()
+        baslama_saati = self.lineEdit_34.text()
+        bitis_saati = self.lineEdit_33.text()
+        barge_numune_muhur = self.lineEdit_35.text()
+        gemi_numune_muhur = self.lineEdit_37.text()
+
+
+        mesaj = gemi + " gemisine ait " + net_litre + \
+                " litrelik teslimat bilgisi veritabanına eklendi. Teslimat dosyaları oluşturuluyor"
+        mes.uyari(mesaj, "Bilgilendirme")
+
+        tslmt.teslimat_hazirliği_yap(musteri_kodu, gemi, yakit_turu, yogunluk,
+                                     brut_litre, sicaklik, volum_correction, net_litre, kilogram,
+                                     teslimatci, yakit_alan_kisi, gemici,
+                                     bolge, baslama_saati, bitis_saati, barge_numune_muhur, gemi_numune_muhur)
+
+        self.lineEdit.clear()
+        self.comboBox_2.clear()
+        self.comboBox_4.clear()
+        self.lineEdit_2.clear()
+        self.lineEdit_3.clear()
+        self.lineEdit_5.clear()
+        self.lineEdit_6.clear()
+        self.lineEdit_7.clear()
+        self.lineEdit_8.clear()
+
+
     def help(self):
         yol = os.getcwd()
         tam_yol = yol + "\lib\help\index.html"
         chromedir = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
         webbrowser.get(chromedir).open(tam_yol)
+
+    def triggerfinger(self):
+        self.lineEdit.returnPressed.connect(self.tgemi)
+        self.lineEdit_8.returnPressed.connect(self.vcf_hesapla)
+        self.pushButton.clicked.connect(self.olustur)
 
 import ic_rc
 
