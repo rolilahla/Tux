@@ -117,23 +117,9 @@ class VbagKur(object):
                 dizi.append(a[im])
         return dizi
 
-    def dolum_ekle(self, tarih, tur, lt, kg, kesafet, beyan):
-        self.im.execute("""INSERT INTO densitys VALUES(null,
-         '{}',
-          '{}',
-           '{}',
-            '{}',
-            '{}', 0, 0,{})""".format(tarih, tur, lt, kg, kesafet, beyan))
-        self.vt.commit()
+    
 
-    def yogunluk_gun(self, tarih, tur, lt, kg, yog, id_no, beyanno):
-        self.im.execute("""UPDATE densitys SET tarih = '{}',
-        tur = '{}',
-        litre = '{}',
-        kg = '{}',
-         kesafet = '{}',
-          beyanno = '{}' WHERE id = '{}'""".format(tarih, tur, lt, kg, yog, beyanno, id_no))
-        self.vt.commit()
+    
 
     """
     Personel Ekle
@@ -154,9 +140,6 @@ class VbagKur(object):
         self.vt.commit()
 
 
-    def yer_ekle(self, ad, kod):
-        self.im.execute("INSERT INTO yer VALUES(null,'{}', '{}')".format(ad, kod))
-        self.vt.commit()
 
     def coklu_tup_temizle(self, liste):
         bos_liste = []
@@ -194,6 +177,10 @@ class VbagKur(object):
     def komut(self, sql):
         self.im.execute(sql)
         return self.im.fetchone()
+
+    def coklu_komut(self, sql):
+        self.im.execute(sql)
+        return self.im.fetchall()
 
     def isle(self, sql):
         self.im.execute(sql)
