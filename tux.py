@@ -129,7 +129,7 @@ class Ui_Firmaolustur(VbagKur):
         self.lineEdit_4.clear()
         self.lineEdit_5.clear()
         self.textEdit.clear()
-        self.yaz.veritabanini_kapat()
+
 
 
 
@@ -147,211 +147,259 @@ class Ui_Firmaolustur(VbagKur):
 
 class Ui_Firmaguncelle(VbagKur):
     def __init__(self):
-        self.yaz = VbagKur()
+        self.yaz = VbagKur
         self.change_no = 0
         self.eski_kod = 0
         self.yeni_kod = 0
 
     def setupUi(self, Firmaguncelle):
+        self.yaz = VbagKur()
         Firmaguncelle.setObjectName("Firmaguncelle")
-        Firmaguncelle.resize(398, 300)
-        self.label_2 = QtWidgets.QLabel(Firmaguncelle)
-        self.label_2.setGeometry(QtCore.QRect(10, 40, 68, 20))
-        self.label_2.setObjectName("label_2")
-        self.label_4 = QtWidgets.QLabel(Firmaguncelle)
-        self.label_4.setGeometry(QtCore.QRect(10, 100, 68, 20))
-        self.label_4.setObjectName("label_4")
-        self.label = QtWidgets.QLabel(Firmaguncelle)
-        self.label.setGeometry(QtCore.QRect(10, 10, 68, 20))
+        Firmaguncelle.resize(683, 457)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Firmaguncelle)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_7 = QtWidgets.QLabel(Firmaguncelle)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout_2.addWidget(self.label_7, 0, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(Firmaguncelle)
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.gridLayout_2.addWidget(self.lineEdit_6, 0, 1, 1, 2)
+        self.listWidget = QtWidgets.QListWidget(Firmaguncelle)
+        self.listWidget.setObjectName("listWidget")
+        self.gridLayout_2.addWidget(self.listWidget, 1, 0, 1, 2)
+        self.frame = QtWidgets.QFrame(Firmaguncelle)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
-        self.label_3 = QtWidgets.QLabel(Firmaguncelle)
-        self.label_3.setGeometry(QtCore.QRect(10, 70, 68, 20))
-        self.label_3.setObjectName("label_3")
-        self.label_5 = QtWidgets.QLabel(Firmaguncelle)
-        self.label_5.setGeometry(QtCore.QRect(10, 160, 68, 20))
-        self.label_5.setObjectName("label_5")
-        self.lineEdit = QtWidgets.QLineEdit(Firmaguncelle)
-        self.lineEdit.setGeometry(QtCore.QRect(90, 10, 291, 21))
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Firmaguncelle)
-        self.lineEdit_2.setGeometry(QtCore.QRect(90, 40, 291, 21))
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 2)
+        self.label_2 = QtWidgets.QLabel(self.frame)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_2.setText("")
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.lineEdit_3 = QtWidgets.QLineEdit(Firmaguncelle)
-        self.lineEdit_3.setGeometry(QtCore.QRect(90, 70, 291, 21))
+        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 2)
+        self.label_3 = QtWidgets.QLabel(self.frame)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_3.setObjectName("lineEdit_3")
-        self.lineEdit_4 = QtWidgets.QLineEdit(Firmaguncelle)
-        self.lineEdit_4.setGeometry(QtCore.QRect(90, 100, 291, 21))
+        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 2)
+        self.label_4 = QtWidgets.QLabel(self.frame)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_4.setObjectName("lineEdit_4")
-        self.lineEdit_5 = QtWidgets.QLineEdit(Firmaguncelle)
-        self.lineEdit_5.setGeometry(QtCore.QRect(90, 130, 291, 21))
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.label_6 = QtWidgets.QLabel(Firmaguncelle)
-        self.label_6.setGeometry(QtCore.QRect(10, 130, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_4, 3, 1, 1, 2)
+        self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setObjectName("label_6")
-        self.textEdit = QtWidgets.QTextEdit(Firmaguncelle)
-        self.textEdit.setGeometry(QtCore.QRect(90, 160, 291, 101))
+        self.gridLayout.addWidget(self.label_6, 4, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 2)
+        self.label_5 = QtWidgets.QLabel(self.frame)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout.addWidget(self.label_5, 5, 0, 1, 1)
+        self.textEdit = QtWidgets.QTextEdit(self.frame)
         self.textEdit.setObjectName("textEdit")
-        self.pushButton = QtWidgets.QPushButton(Firmaguncelle)
-        self.pushButton.setGeometry(QtCore.QRect(310, 270, 75, 23))
-        self.pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.gridLayout.addWidget(self.textEdit, 5, 1, 2, 2)
+        spacerItem = QtWidgets.QSpacerItem(20, 212, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem, 6, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(264, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 7, 0, 1, 2)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setFocusPolicy(QtCore.Qt.TabFocus)
         self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 7, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
 
         self.retranslateUi(Firmaguncelle)
-        self.lineEdit.returnPressed.connect(self.bilgibul)
+        self.lineEdit_6.textChanged['QString'].connect(self.bul)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
         self.pushButton.clicked.connect(self.guncelle)
         QtCore.QMetaObject.connectSlotsByName(Firmaguncelle)
+
+    def retranslateUi(self, Firmaguncelle):
+        _translate = QtCore.QCoreApplication.translate
+        Firmaguncelle.setWindowTitle(_translate("Firmaguncelle", "Müşteri Bilgisi Güncelle"))
+        self.label_7.setText(_translate("Firmaguncelle", "Firma Ara"))
+        self.label.setText(_translate("Firmaguncelle", "Müşteri Kodu"))
+        self.label_2.setText(_translate("Firmaguncelle", "Müşteri Adı"))
+        self.label_3.setText(_translate("Firmaguncelle", "Vergi Dairesi"))
+        self.label_4.setText(_translate("Firmaguncelle", "Vergi No"))
+        self.label_6.setText(_translate("Firmaguncelle", "Telefon"))
+        self.label_5.setText(_translate("Firmaguncelle", "Adres"))
+        self.pushButton.setText(_translate("Firmaguncelle", "GÜNCELLE"))
 
     def guncelle(self):
         kod = self.lineEdit.text()
         self.yeni_kod = kod
-        if self.eski_kod != self.yeni_kod:
-            sor = mes.soru("Müşteri Kodu Değiştirme Uyarısı",
-                           "Müşteri kodunu değiştirdiniz! Bu değişiklik müşteriye bağlı gemilerin listelenmesini"
-                           " etkileyecektir.\n\n"
-                     "Müşteriye bağlı gemilerin firma kodunuda değiştirmek istiyor musunuz ?",
-                     "Gemilerin kodları, müşterinin yeni koduna göre düzenleniyor",
-                     "Gemilerin kod değişimi iptal edildi")
-            if sor == True:
-                liste = self.yaz.hepsini_oku("id", "gemiler", "kod", self.eski_kod)
-                for i in range(len(liste)):
-                    self.yaz.gemi_kod_guncelle(self.yeni_kod, liste[i][0])
-            else:
-                pass
-        else:
-            pass
         ad = self.lineEdit_2.text()
         vergidairesi = self.lineEdit_3.text()
         vergino = self.lineEdit_4.text()
         telefon = self.lineEdit_5.text()
         adres = self.textEdit.toPlainText()
-        self.yaz.firma_guncelle(kod, ad, vergidairesi, vergino, telefon, adres, self.change_no)
-        mesaj = ad + " Firmasının veritabanı kaydı başarıyla güncellendi"
-        mes.uyari(mesaj, "Bilgilendirme")
-
-        self.lineEdit.clear()
-        self.lineEdit_2.clear()
-        self.lineEdit_3.clear()
-        self.lineEdit_4.clear()
-        self.lineEdit_5.clear()
-        self.textEdit.clear()
-        self.yaz.veritabanini_kapat()
-
-    def bilgibul(self):
-        if self.lineEdit.text() == "":
-            pass
+        if kod == " ":
+            mesaj = ad + "Lütfen Müşteri Ad bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif ad ==" ":
+            mesaj = ad + "Lütfen Müşteri Ad bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif vergidairesi == " ":
+            mesaj = ad + "Lütfen Müşteri Vergi Dairesi bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif vergino == " ":
+            mesaj = ad + "Lütfen Müşteri Vergi No bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif adres == " ":
+            mesaj = ad + "Lütfen Müşteri Adres bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
         else:
-            try:
-                veri = self.yaz.tek_oku("firmalar", "kod", self.lineEdit.text())
-                self.lineEdit_2.setText(veri[0][2])
-                self.eski_kod = veri[0][1]
-                self.lineEdit_3.setText(veri[0][3])
-                self.lineEdit_4.setText(veri[0][4])
-                self.lineEdit_5.setText(veri[0][5])
-                self.textEdit.setPlainText(veri[0][6])
-                self.change_no = veri[0][0]
-            except (IndexError):
-                mes.uyari("Veritabanında böyle bir müşteri yok","Kayıt Bulunamadı")
-            return
+            self.yaz.firma_guncelle(kod, ad, vergidairesi, vergino, telefon, adres, self.change_no)
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_4.clear()
+            self.lineEdit_5.clear()
+            self.textEdit.clear()
+            mesaj = ad + "Müşteri Bilgileri Güncellenmiştir"
+            mes.uyari(mesaj, "Bilgilendirme")
+            if self.eski_kod != self.yeni_kod:
+                liste = self.yaz.hepsini_oku("id", "gemiler", "kod", self.eski_kod)
+                if len(liste) == 0:
+                    pass
+                else:
+                    mesaj = """Veritabanında bu Müşteri için çalışan {} adet gemi bulundu.
+                    Bu değişiklik müşteriye bağlı gemilerin listelenmesini engeller.\n
+                    Müşteriye bağlı gemilerin firma kodunuda değiştirmek istiyor musunuz ?
+                    Eğer değiştirmek istemezseniz gemilerin firma bağlantı kodu etkisiz hale getirilecek ve
+                    yeniden düzenlenene kadar teslimat dosyasında listelenmeyecekler.\n
+                    (Gemi düzenleme sayfasından yeni bir müşteri kodu ile aktif hale getirebilirsiniz.)
+                        """.format(len(liste))
+                    sor = mes.soru("Müşteri Kodunu Değiştirdiniz !!", mesaj,
+                                   "Gemilerin kodları, müşterinin yeni koduna göre düzenleniyor",
+                                   "Gemilerin kod değişimi iptal edildi")
+                    if sor == True:
+                        for i in range(len(liste)):
+                            self.yaz.gemi_kod_guncelle(self.yeni_kod, liste[i][0])
+                    else:
+                        for i in range(len(liste)):
+                            self.yaz.gemi_kod_guncelle("000000", liste[i][0])
+            else:
+                pass
+            self.bul()
 
+    def bul(self):
+        self.listWidget.clear()
+        sonuc = self.yaz.coklu_komut("SELECT ad FROM firmalar WHERE ad LIKE '{}'".format(self.lineEdit_6.text()+"%"))
+        if len(sonuc) == 0:
+            self.listWidget.addItem("Sonuç Bulunamadı")
+        else:
+            for i in range(len(sonuc)):
+                self.listWidget.addItem(sonuc[i][0])
 
-
-    def retranslateUi(self, Firmaguncelle):
-        _translate = QtCore.QCoreApplication.translate
-        Firmaguncelle.setWindowTitle(_translate("Firmaguncelle", "Müşteri Bilgisi Güncelle"))
-        self.label_2.setText(_translate("Firmaguncelle", "Müşteri Adı"))
-        self.label_4.setText(_translate("Firmaguncelle", "Vergi No"))
-        self.label.setText(_translate("Firmaguncelle", "Müşteri Kodu"))
-        self.label_3.setText(_translate("Firmaguncelle", "Vergi Dairesi"))
-        self.label_5.setText(_translate("Firmaguncelle", "Adres"))
-        self.label_6.setText(_translate("Firmaguncelle", "Telefon"))
-        self.pushButton.setText(_translate("Firmaguncelle", "GÜNCELLE"))
+    def doldur(self):
+        veri = self.yaz.komut("SELECT * FROM firmalar WHERE ad='{}'".format(self.listWidget.currentItem().text()))
+        self.eski_kod =veri[1]
+        self.lineEdit.setText(str(veri[1]))
+        self.lineEdit_2.setText(veri[2])
+        self.lineEdit_3.setText(veri[3])
+        self.lineEdit_4.setText(str(veri[4]))
+        self.lineEdit_5.setText(str(veri[5]))
+        self.textEdit.setPlainText(veri[6])
+        self.change_no = veri[0]
 
 
 class Ui_Firmasil(VbagKur):
     def __init__(self):
         self.yaz = VbagKur()
+        self.firma_id = 0
+        self.firma_kod = 0
+        self.firma_ad = ""
 
     def setupUi(self, Firmasil):
         Firmasil.setObjectName("Firmasil")
-        Firmasil.resize(400, 300)
-        self.label = QtWidgets.QLabel(Firmasil)
-        self.label.setGeometry(QtCore.QRect(10, 10, 68, 20))
+        Firmasil.resize(639, 419)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Firmasil)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_7 = QtWidgets.QLabel(Firmasil)
+        self.label_7.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout_2.addWidget(self.label_7, 0, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(Firmasil)
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.gridLayout_2.addWidget(self.lineEdit_6, 0, 1, 1, 2)
+        self.listWidget = QtWidgets.QListWidget(Firmasil)
+        self.listWidget.setObjectName("listWidget")
+        self.gridLayout_2.addWidget(self.listWidget, 1, 0, 1, 2)
+        self.frame = QtWidgets.QFrame(Firmasil)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
-        self.lineEdit = QtWidgets.QLineEdit(Firmasil)
-        self.lineEdit.setGeometry(QtCore.QRect(90, 10, 291, 21))
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Firmasil)
-        self.lineEdit_2.setGeometry(QtCore.QRect(90, 40, 291, 21))
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.label_2 = QtWidgets.QLabel(Firmasil)
-        self.label_2.setGeometry(QtCore.QRect(10, 40, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 2)
+        self.label_2 = QtWidgets.QLabel(self.frame)
         self.label_2.setObjectName("label_2")
-        self.lineEdit_3 = QtWidgets.QLineEdit(Firmasil)
-        self.lineEdit_3.setGeometry(QtCore.QRect(90, 70, 291, 21))
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.label_3 = QtWidgets.QLabel(Firmasil)
-        self.label_3.setGeometry(QtCore.QRect(10, 70, 68, 20))
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 2)
+        self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setObjectName("label_3")
-        self.lineEdit_4 = QtWidgets.QLineEdit(Firmasil)
-        self.lineEdit_4.setGeometry(QtCore.QRect(90, 100, 291, 21))
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.label_4 = QtWidgets.QLabel(Firmasil)
-        self.label_4.setGeometry(QtCore.QRect(10, 100, 68, 20))
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 2)
+        self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(Firmasil)
-        self.label_5.setGeometry(QtCore.QRect(10, 130, 68, 20))
+        self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout.addWidget(self.lineEdit_4, 3, 1, 1, 2)
+        self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setObjectName("label_5")
-        self.lineEdit_5 = QtWidgets.QLineEdit(Firmasil)
-        self.lineEdit_5.setGeometry(QtCore.QRect(90, 130, 291, 21))
+        self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_5.setObjectName("lineEdit_5")
-        self.label_6 = QtWidgets.QLabel(Firmasil)
-        self.label_6.setGeometry(QtCore.QRect(10, 160, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 2)
+        self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setObjectName("label_6")
-        self.textEdit = QtWidgets.QTextEdit(Firmasil)
-        self.textEdit.setGeometry(QtCore.QRect(90, 170, 291, 81))
+        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
+        self.textEdit = QtWidgets.QTextEdit(self.frame)
         self.textEdit.setObjectName("textEdit")
-        self.pushButton = QtWidgets.QPushButton(Firmasil)
-        self.pushButton.setGeometry(QtCore.QRect(310, 270, 75, 23))
-        self.pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.gridLayout.addWidget(self.textEdit, 5, 1, 2, 2)
+        spacerItem = QtWidgets.QSpacerItem(20, 174, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem, 6, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(198, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 7, 0, 1, 2)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
         self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 7, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
 
         self.retranslateUi(Firmasil)
+        self.lineEdit_6.textChanged['QString'].connect(self.bul)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
         self.pushButton.clicked.connect(self.sil)
-        self.lineEdit.returnPressed.connect(self.bilgibul)
         QtCore.QMetaObject.connectSlotsByName(Firmasil)
-
-    def sil(self):
-        kod = self.lineEdit.text()
-        ad = self.lineEdit_2.text()
-
-        self.yaz.kayit_sil("firmalar", "kod", kod)
-        mesaj = ad + " Firmasının veritabanı kaydı başarıyla silindi"
-        mes.uyari(mesaj, "Bilgilendirme")
-
-        self.lineEdit.clear()
-        self.lineEdit_2.clear()
-        self.lineEdit_3.clear()
-        self.lineEdit_4.clear()
-        self.lineEdit_5.clear()
-        self.textEdit.clear()
-
-
-    def bilgibul(self):
-        if self.lineEdit.text() == "":
-            pass
-        else:
-            veri = self.yaz.tek_oku("firmalar", "kod", self.lineEdit.text())
-            self.lineEdit_2.setText(veri[0][2])
-            self.lineEdit_3.setText(veri[0][3])
-            self.lineEdit_4.setText(veri[0][4])
-            self.lineEdit_5.setText(veri[0][5])
-            self.textEdit.setPlainText(veri[0][6])
-
-
 
     def retranslateUi(self, Firmasil):
         _translate = QtCore.QCoreApplication.translate
         Firmasil.setWindowTitle(_translate("Firmasil", "Müşteri Sil"))
+        self.label_7.setText(_translate("Firmasil", "Firma Bul"))
         self.label.setText(_translate("Firmasil", "Müşteri Kodu"))
         self.label_2.setText(_translate("Firmasil", "Müşteri Adı"))
         self.label_3.setText(_translate("Firmasil", "Vergi Dairesi"))
@@ -360,86 +408,218 @@ class Ui_Firmasil(VbagKur):
         self.label_6.setText(_translate("Firmasil", "Adres"))
         self.pushButton.setText(_translate("Firmasil", "Sil"))
 
+    def bul(self):
+        self.listWidget.clear()
+        sonuc = self.yaz.coklu_komut("SELECT ad FROM firmalar WHERE ad LIKE '{}'".format(self.lineEdit_6.text()+"%"))
+        if len(sonuc) == 0:
+            self.listWidget.addItem("Sonuç Bulunamadı")
+        else:
+            for i in range(len(sonuc)):
+                self.listWidget.addItem(sonuc[i][0])
+
+    def doldur(self):
+        veri = self.yaz.komut("SELECT * FROM firmalar WHERE ad='{}'".format(self.listWidget.currentItem().text()))
+        self.eski_kod =veri[1]
+        self.lineEdit.setText(str(veri[1]))
+        self.lineEdit_2.setText(veri[2])
+        self.lineEdit_3.setText(veri[3])
+        self.lineEdit_4.setText(str(veri[4]))
+        self.lineEdit_5.setText(str(veri[5]))
+        self.textEdit.setPlainText(veri[6])
+        self.firma_id = veri[0]
+        self.firma_kod = veri[1]
+        self.firma_ad = veri[2]
+
+    def sil(self):
+        mesaj = """{} firmasının bilgilerini silmek istediğinizden emin misiniz ? """.format(self.lineEdit_2.text())
+        sor = mes.soru("Firma Bilgilerini Silmek Üzeresiniz !!", mesaj,
+                       "Firma Bilgileri Siliniyor",
+                       "İşlem  iptal edildi")
+        if sor == True:
+            id = self.firma_id
+            self.yaz.kayit_sil("firmalar", "id", id)
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_4.clear()
+            self.lineEdit_5.clear()
+            self.textEdit.clear()
+            liste = self.yaz.hepsini_oku("id", "gemiler", "kod", self.firma_kod)
+            mesaj = """Veritabanında {} firmasına ait {} adet gemi kaydı bulundu.
+             Firma ile birlikte firmaya ait gemi kayıtlarınıda silmek ister misiniz?\n
+              (Eğer gemi kayıtlarını silmezseniz, gemiler otomatik olarak pasif furuma getirilecektir.
+              Gemi bilgisi düzenleme kısmından yeni bir müşteri ile ilişkilendirebilirsiniz)""".format(self.lineEdit_2.text(),
+                                                                                                len(liste))
+            sor = mes.soru("Firma Bağlantılı Gemiler !!", mesaj,
+                           "Firma bağlantılı gemi kayıtları siliniyor",
+                           "İşlem  iptal edildi")
+            if sor == True:
+                for i in range(len(liste)):
+                    self.yaz.kayit_sil("gemiler", "id", liste[i][0])
+            else:
+                for i in range(len(liste)):
+                    self.yaz.gemi_kod_guncelle("000000", liste[i][0])
+        else:
+            pass
+        self.bul()
+
 
 class Ui_GemiEkle(VbagKur):
     def __init__(self):
         self.yaz = VbagKur()
+        self.firma_ad = ""
+        self.firma_kod = 0
 
     def setupUi(self, GemiEkle):
         GemiEkle.setObjectName("GemiEkle")
-        GemiEkle.resize(358, 363)
-        self.label = QtWidgets.QLabel(GemiEkle)
-        self.label.setGeometry(QtCore.QRect(10, 10, 68, 20))
+        GemiEkle.resize(617, 369)
+        self.gridLayout_2 = QtWidgets.QGridLayout(GemiEkle)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_11 = QtWidgets.QLabel(GemiEkle)
+        self.label_11.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_11.setObjectName("label_11")
+        self.gridLayout_2.addWidget(self.label_11, 0, 0, 1, 1)
+        self.listWidget = QtWidgets.QListWidget(GemiEkle)
+        self.listWidget.setObjectName("listWidget")
+        self.gridLayout_2.addWidget(self.listWidget, 1, 0, 1, 2)
+        self.frame = QtWidgets.QFrame(GemiEkle)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
-        self.lineEdit = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit.setGeometry(QtCore.QRect(140, 10, 200, 21))
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setObjectName("lineEdit")
-        self.label_2 = QtWidgets.QLabel(GemiEkle)
-        self.label_2.setGeometry(QtCore.QRect(10, 40, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 2)
+        self.label_2 = QtWidgets.QLabel(self.frame)
         self.label_2.setObjectName("label_2")
-        self.lineEdit_2 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_2.setGeometry(QtCore.QRect(140, 40, 200, 21))
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.label_3 = QtWidgets.QLabel(GemiEkle)
-        self.label_3.setGeometry(QtCore.QRect(10, 70, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 2)
+        self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setObjectName("label_3")
-        self.lineEdit_3 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_3.setGeometry(QtCore.QRect(140, 70, 200, 21))
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_3.setObjectName("lineEdit_3")
-        self.lineEdit_4 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_4.setGeometry(QtCore.QRect(140, 100, 200, 21))
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.label_4 = QtWidgets.QLabel(GemiEkle)
-        self.label_4.setGeometry(QtCore.QRect(10, 100, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 2)
+        self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setObjectName("label_4")
-        self.lineEdit_5 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_5.setGeometry(QtCore.QRect(140, 130, 200, 21))
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.label_5 = QtWidgets.QLabel(GemiEkle)
-        self.label_5.setGeometry(QtCore.QRect(10, 130, 68, 20))
+        self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout.addWidget(self.lineEdit_4, 3, 1, 1, 2)
+        self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setObjectName("label_5")
-        self.label_6 = QtWidgets.QLabel(GemiEkle)
-        self.label_6.setGeometry(QtCore.QRect(10, 160, 68, 20))
+        self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 2)
+        self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setObjectName("label_6")
-        self.lineEdit_6 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_6.setGeometry(QtCore.QRect(140, 160, 200, 21))
+        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_6.setObjectName("lineEdit_6")
-        self.lineEdit_7 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_7.setGeometry(QtCore.QRect(140, 190, 200, 21))
-        self.lineEdit_7.setObjectName("lineEdit_7")
-        self.label_7 = QtWidgets.QLabel(GemiEkle)
-        self.label_7.setGeometry(QtCore.QRect(10, 190, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_6, 5, 1, 1, 2)
+        self.label_7 = QtWidgets.QLabel(self.frame)
         self.label_7.setObjectName("label_7")
-        self.label_8 = QtWidgets.QLabel(GemiEkle)
-        self.label_8.setGeometry(QtCore.QRect(10, 220, 91, 20))
+        self.gridLayout.addWidget(self.label_7, 6, 0, 1, 1)
+        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        self.gridLayout.addWidget(self.lineEdit_7, 6, 1, 1, 2)
+        self.label_8 = QtWidgets.QLabel(self.frame)
         self.label_8.setObjectName("label_8")
-        self.lineEdit_8 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_8.setGeometry(QtCore.QRect(140, 220, 200, 21))
+        self.gridLayout.addWidget(self.label_8, 7, 0, 1, 1)
+        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_8.setObjectName("lineEdit_8")
-        self.label_9 = QtWidgets.QLabel(GemiEkle)
-        self.label_9.setGeometry(QtCore.QRect(10, 250, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_8, 7, 1, 1, 2)
+        self.label_9 = QtWidgets.QLabel(self.frame)
         self.label_9.setObjectName("label_9")
-        self.lineEdit_9 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_9.setGeometry(QtCore.QRect(140, 250, 200, 21))
+        self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
+        self.lineEdit_9 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_9.setObjectName("lineEdit_9")
-        self.lineEdit_10 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_10.setGeometry(QtCore.QRect(140, 280, 200, 21))
-        self.lineEdit_10.setObjectName("lineEdit_10")
-        self.label_10 = QtWidgets.QLabel(GemiEkle)
-        self.label_10.setGeometry(QtCore.QRect(10, 280, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_9, 8, 1, 1, 2)
+        self.label_10 = QtWidgets.QLabel(self.frame)
         self.label_10.setObjectName("label_10")
-        self.pushButton = QtWidgets.QPushButton(GemiEkle)
-        self.pushButton.setGeometry(QtCore.QRect(270, 320, 75, 23))
+        self.gridLayout.addWidget(self.label_10, 9, 0, 1, 1)
+        self.lineEdit_10 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_10.setObjectName("lineEdit_10")
+        self.gridLayout.addWidget(self.lineEdit_10, 9, 1, 1, 2)
+        spacerItem = QtWidgets.QSpacerItem(178, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 10, 0, 1, 2)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
         self.pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 10, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
+        self.lineEdit_11 = QtWidgets.QLineEdit(GemiEkle)
+        self.lineEdit_11.setObjectName("lineEdit_11")
+        self.gridLayout_2.addWidget(self.lineEdit_11, 0, 1, 1, 1)
 
         self.retranslateUi(GemiEkle)
-        self.pushButton.clicked.connect(self.gekle)
         QtCore.QMetaObject.connectSlotsByName(GemiEkle)
+        self.lineEdit_11.textChanged['QString'].connect(self.bul)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
+        self.pushButton.clicked.connect(self.ekle)
 
-    def gekle(self):
-        if self.lineEdit.text() == "" and self.lineEdit_2.text() == "":
-            pass
+    def retranslateUi(self, GemiEkle):
+        _translate = QtCore.QCoreApplication.translate
+        GemiEkle.setWindowTitle(_translate("GemiEkle", "Gemi Ekle"))
+        self.label_11.setText(_translate("GemiEkle", "Firma Bul"))
+        self.label.setText(_translate("GemiEkle", "Müşteri Kodu"))
+        self.label_2.setText(_translate("GemiEkle", "Gemi Adı"))
+        self.label_3.setText(_translate("GemiEkle", "Gemi Kodu"))
+        self.label_4.setText(_translate("GemiEkle", "Gemi Cinsi"))
+        self.label_5.setText(_translate("GemiEkle", "Defter No"))
+        self.label_6.setText(_translate("GemiEkle", "Belge No"))
+        self.label_7.setText(_translate("GemiEkle", "Sicil No"))
+        self.label_8.setText(_translate("GemiEkle", "İmo / Çağrı İşareti"))
+        self.label_9.setText(_translate("GemiEkle", "Acenta"))
+        self.label_10.setText(_translate("GemiEkle", "Acenta Tel"))
+        self.pushButton.setText(_translate("GemiEkle", "Gemi Ekle"))
+
+    def bul(self):
+        self.listWidget.clear()
+        sonuc = self.yaz.coklu_komut("SELECT ad, kod FROM firmalar WHERE ad LIKE '{}'".format(self.lineEdit_11.text()+"%"))
+        if len(sonuc) == 0:
+            self.listWidget.addItem("Sonuç Bulunamadı")
+        else:
+            for i in range(len(sonuc)):
+                self.listWidget.addItem(sonuc[i][0])
+                self.firma_ad = sonuc[i][0]
+                self.firma_kod = sonuc[i][1]
+
+    def doldur(self):
+        self.lineEdit.setText(self.firma_kod)
+
+    def ekle(self):
+        if self.lineEdit.text() == "":
+            mesaj = "Lütfen Müşteri kod bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_2.text() == "":
+            mesaj = "Lütfen gemi ad bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_3.text() == "":
+            mesaj = "Lütfen gemi kod bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_4.text() == "":
+            mesaj = "Lütfen gemi cins bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_5.text() == "":
+            mesaj = "Lütfen gemi defter no bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_6.text() == "":
+            mesaj = "Lütfen gemi defter belge no bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_7.text() == "":
+            mesaj = "Lütfen gemi sicil no bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
+        elif self.lineEdit_8.text() == "":
+            mesaj = "Lütfen gemi İmo/Çağrı işareti bilgisini doldurun"
+            mes.uyari(mesaj, "Uyarı")
         else:
             liste = []
             liste.append(self.lineEdit.text())
@@ -454,11 +634,8 @@ class Ui_GemiEkle(VbagKur):
             liste.append(self.lineEdit_10.text())
 
             self.yaz.gemi_ekle(liste)
-
             mesaj = self.lineEdit_2.text() + " gemisinin veritabanı kaydı başarıyla yapıldı"
             mes.uyari(mesaj, "Bilgilendirme")
-
-            self.lineEdit.clear()
             self.lineEdit_2.clear()
             self.lineEdit_3.clear()
             self.lineEdit_4.clear()
@@ -469,129 +646,133 @@ class Ui_GemiEkle(VbagKur):
             self.lineEdit_9.clear()
             self.lineEdit_10.clear()
 
-            self.yaz.veritabanini_kapat()
 
-
-
-
-    def retranslateUi(self, GemiEkle):
-        _translate = QtCore.QCoreApplication.translate
-        GemiEkle.setWindowTitle(_translate("GemiEkle", "Gemi Ekle"))
-        self.label.setText(_translate("GemiEkle", "Müşteri Kodu"))
-        self.label_2.setText(_translate("GemiEkle", "Gemi Adı"))
-        self.label_3.setText(_translate("GemiEkle", "Gemi Kodu"))
-        self.label_4.setText(_translate("GemiEkle", "Gemi Cinsi"))
-        self.label_5.setText(_translate("GemiEkle", "Defter No"))
-        self.label_6.setText(_translate("GemiEkle", "Belge No"))
-        self.label_7.setText(_translate("GemiEkle", "Sicil No"))
-        self.label_8.setText(_translate("GemiEkle", "İmo / Çağrı İşareti"))
-        self.label_9.setText(_translate("GemiEkle", "Acenta"))
-        self.label_10.setText(_translate("GemiEkle", "Acenta Tel"))
-        self.pushButton.setText(_translate("GemiEkle", "Gemi Ekle"))
-
-
-class Ui_Fg(object):
+class Ui_Fg(VbagKur):
     def __init__(self):
         self.yaz = VbagKur()
-        self.change_id = 0
+        self.gemi_id = 0
+        self.firma_ad = ""
+        self.firma_kod = 0
 
     def setupUi(self, Fg):
         Fg.setObjectName("Fg")
-        Fg.resize(518, 406)
+        Fg.resize(455, 399)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Fg)
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.label = QtWidgets.QLabel(Fg)
-        self.label.setGeometry(QtCore.QRect(10, 10, 100, 20))
         self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(Fg)
-        self.lineEdit.setGeometry(QtCore.QRect(90, 10, 200, 20))
         self.lineEdit.setObjectName("lineEdit")
-        self.pushButton = QtWidgets.QPushButton(Fg)
-        self.pushButton.setGeometry(QtCore.QRect(320, 10, 75, 23))
-        self.pushButton.setObjectName("pushButton")
-        self.label_3 = QtWidgets.QLabel(Fg)
-        self.label_3.setGeometry(QtCore.QRect(210, 50, 68, 20))
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(Fg)
-        self.label_4.setGeometry(QtCore.QRect(210, 80, 68, 20))
-        self.label_4.setObjectName("label_4")
-        self.label_7 = QtWidgets.QLabel(Fg)
-        self.label_7.setGeometry(QtCore.QRect(210, 170, 68, 20))
-        self.label_7.setObjectName("label_7")
-        self.label_8 = QtWidgets.QLabel(Fg)
-        self.label_8.setGeometry(QtCore.QRect(210, 200, 91, 20))
-        self.label_8.setObjectName("label_8")
-        self.label_5 = QtWidgets.QLabel(Fg)
-        self.label_5.setGeometry(QtCore.QRect(210, 110, 68, 20))
-        self.label_5.setObjectName("label_5")
-        self.label_10 = QtWidgets.QLabel(Fg)
-        self.label_10.setGeometry(QtCore.QRect(210, 260, 68, 20))
-        self.label_10.setObjectName("label_10")
-        self.label_6 = QtWidgets.QLabel(Fg)
-        self.label_6.setGeometry(QtCore.QRect(210, 140, 68, 20))
-        self.label_6.setObjectName("label_6")
-        self.label_9 = QtWidgets.QLabel(Fg)
-        self.label_9.setGeometry(QtCore.QRect(210, 230, 68, 20))
-        self.label_9.setObjectName("label_9")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_2.setGeometry(QtCore.QRect(310, 50, 181, 20))
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.lineEdit_3 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_3.setGeometry(QtCore.QRect(310, 80, 181, 20))
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.lineEdit_4 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_4.setGeometry(QtCore.QRect(310, 110, 181, 20))
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.lineEdit_5 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_5.setGeometry(QtCore.QRect(310, 140, 181, 20))
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.lineEdit_6 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_6.setGeometry(QtCore.QRect(310, 170, 181, 20))
-        self.lineEdit_6.setObjectName("lineEdit_6")
-        self.lineEdit_7 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_7.setGeometry(QtCore.QRect(310, 200, 181, 20))
-        self.lineEdit_7.setObjectName("lineEdit_7")
-        self.lineEdit_8 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_8.setGeometry(QtCore.QRect(310, 230, 181, 20))
-        self.lineEdit_8.setObjectName("lineEdit_8")
-        self.lineEdit_9 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_9.setGeometry(QtCore.QRect(310, 260, 181, 20))
-        self.lineEdit_9.setObjectName("lineEdit_9")
-        self.pushButton_2 = QtWidgets.QPushButton(Fg)
-        self.pushButton_2.setGeometry(QtCore.QRect(420, 350, 75, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(Fg)
-        self.pushButton_3.setGeometry(QtCore.QRect(150, 160, 41, 41))
-        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout_2.addWidget(self.lineEdit, 0, 1, 1, 2)
         self.listWidget = QtWidgets.QListWidget(Fg)
-        self.listWidget.setGeometry(QtCore.QRect(10, 40, 131, 351))
         self.listWidget.setObjectName("listWidget")
-        self.label_12 = QtWidgets.QLabel(Fg)
-        self.label_12.setGeometry(QtCore.QRect(210, 290, 68, 20))
+        self.gridLayout_2.addWidget(self.listWidget, 1, 0, 1, 2)
+        self.frame = QtWidgets.QFrame(Fg)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_3 = QtWidgets.QLabel(self.frame)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout.addWidget(self.lineEdit_2, 0, 1, 1, 1)
+        self.label_4 = QtWidgets.QLabel(self.frame)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout.addWidget(self.label_4, 1, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.gridLayout.addWidget(self.lineEdit_3, 1, 1, 1, 1)
+        self.label_5 = QtWidgets.QLabel(self.frame)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout.addWidget(self.lineEdit_4, 2, 1, 1, 1)
+        self.label_6 = QtWidgets.QLabel(self.frame)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout.addWidget(self.label_6, 3, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.gridLayout.addWidget(self.lineEdit_5, 3, 1, 1, 1)
+        self.label_7 = QtWidgets.QLabel(self.frame)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 4, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.gridLayout.addWidget(self.lineEdit_6, 4, 1, 1, 1)
+        self.label_8 = QtWidgets.QLabel(self.frame)
+        self.label_8.setObjectName("label_8")
+        self.gridLayout.addWidget(self.label_8, 5, 0, 1, 1)
+        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        self.gridLayout.addWidget(self.lineEdit_7, 5, 1, 1, 1)
+        self.label_9 = QtWidgets.QLabel(self.frame)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout.addWidget(self.label_9, 6, 0, 1, 1)
+        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_8.setObjectName("lineEdit_8")
+        self.gridLayout.addWidget(self.lineEdit_8, 6, 1, 1, 1)
+        self.label_10 = QtWidgets.QLabel(self.frame)
+        self.label_10.setObjectName("label_10")
+        self.gridLayout.addWidget(self.label_10, 7, 0, 1, 1)
+        self.lineEdit_9 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_9.setObjectName("lineEdit_9")
+        self.gridLayout.addWidget(self.lineEdit_9, 7, 1, 1, 1)
+        self.label_12 = QtWidgets.QLabel(self.frame)
         self.label_12.setObjectName("label_12")
-        self.lineEdit_10 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_10.setGeometry(QtCore.QRect(310, 290, 181, 20))
+        self.gridLayout.addWidget(self.label_12, 8, 0, 1, 1)
+        self.lineEdit_10 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_10.setObjectName("lineEdit_10")
-        self.label_13 = QtWidgets.QLabel(Fg)
-        self.label_13.setGeometry(QtCore.QRect(210, 320, 68, 20))
+        self.gridLayout.addWidget(self.lineEdit_10, 8, 1, 1, 1)
+        self.label_13 = QtWidgets.QLabel(self.frame)
         self.label_13.setObjectName("label_13")
-        self.lineEdit_11 = QtWidgets.QLineEdit(Fg)
-        self.lineEdit_11.setGeometry(QtCore.QRect(310, 320, 181, 20))
+        self.gridLayout.addWidget(self.label_13, 9, 0, 1, 1)
+        self.lineEdit_11 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_11.setObjectName("lineEdit_11")
+        self.gridLayout.addWidget(self.lineEdit_11, 9, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(53, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 10, 0, 1, 1)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.gridLayout.addWidget(self.pushButton_2, 10, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
 
         self.retranslateUi(Fg)
-        self.pushButton.clicked.connect(self.gemi_bul)
-        self.pushButton_3.clicked.connect(self.gemi_sec)
+        self.lineEdit.textChanged['QString'].connect(self.bul)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
         self.pushButton_2.clicked.connect(self.guncelle)
-        self.listWidget.itemDoubleClicked.connect(self.gemi_sec)
         QtCore.QMetaObject.connectSlotsByName(Fg)
 
-    def gemi_bul(self):
-        sor = self.yaz.hepsini_oku("gad", "gemiler", "kod", self.lineEdit.text())
-        liste = []
-        self.listWidget.clear()
-        for i in range(len(sor)):
-            self.listWidget.addItem(sor[i][0])
+    def retranslateUi(self, Fg):
+        _translate = QtCore.QCoreApplication.translate
+        Fg.setWindowTitle(_translate("Fg", "Gemi Bilgisi Düzenle"))
+        self.label.setText(_translate("Fg", "Gemi Adı"))
+        self.label_3.setText(_translate("Fg", "Müşteri Kod"))
+        self.label_4.setText(_translate("Fg", "Gemi Adı"))
+        self.label_5.setText(_translate("Fg", "Gemi No"))
+        self.label_6.setText(_translate("Fg", "Gemi Cinsi"))
+        self.label_7.setText(_translate("Fg", "Defter No"))
+        self.label_8.setText(_translate("Fg", "Belge No"))
+        self.label_9.setText(_translate("Fg", "Sicil No"))
+        self.label_10.setText(_translate("Fg", "İmo / Çağrı"))
+        self.label_12.setText(_translate("Fg", "Acenta "))
+        self.label_13.setText(_translate("Fg", "Acenta Tel"))
+        self.pushButton_2.setText(_translate("Fg", "Güncelle"))
 
-    def gemi_sec(self):
+    def bul(self):
+        self.listWidget.clear()
+        sonuc = self.yaz.coklu_komut("SELECT gad FROM gemiler WHERE gad LIKE '{}'".format(self.lineEdit.text() + "%"))
+        if len(sonuc) == 0:
+            self.listWidget.addItem("Sonuç Bulunamadı")
+        else:
+            for i in range(len(sonuc)):
+                self.listWidget.addItem(sonuc[i][0])
+
+    def doldur(self):
         soru = self.yaz.tek_oku("gemiler", "gad", self.listWidget.currentItem().text())
         self.lineEdit_2.setText(str(soru[0][1]))
         self.lineEdit_3.setText(soru[0][2])
@@ -603,102 +784,241 @@ class Ui_Fg(object):
         self.lineEdit_9.setText(soru[0][8])
         self.lineEdit_10.setText(soru[0][9])
         self.lineEdit_11.setText(soru[0][10])
-        self.change_id = soru[0][0]
+        self.gemi_id = soru[0][0]
+
+        self.firma_kod =soru[0][1]
+        fad = self.yaz.komut("select ad from firmalar where kod='{}'".format(self.firma_kod))
+        self.firma_ad = fad[0]
+
 
     def guncelle(self):
-        self.yaz.gemi_guncelle(self.lineEdit_2.text(),
-                               self.lineEdit_3.text(),
-                               self.lineEdit_4.text(),
-                               self.lineEdit_5.text(),
-                               self.lineEdit_6.text(),
-                               self.lineEdit_7.text(),
-                               self.lineEdit_8.text(),
-                               self.lineEdit_9.text(),
-                               self.lineEdit_10.text(),
-                               self.lineEdit_11.text(),
-                               self.change_id
-                               )
-        mesaj = self.lineEdit_3.text() + " Gemisinin Kaydı Başarıyla Değiştirildi"
-        mes.uyari(mesaj, "Bilgilendirme")
-        self.lineEdit_2.clear()
-        self.lineEdit_3.clear()
-        self.lineEdit_4.clear()
-        self.lineEdit_5.clear()
-        self.lineEdit_6.clear()
-        self.lineEdit_7.clear()
-        self.lineEdit_8.clear()
-        self.lineEdit_9.clear()
-        self.lineEdit_10.clear()
-        self.lineEdit_11.clear()
-        self.listWidget.clear()
-        self.gemi_bul()
+        if self.firma_kod != int(self.lineEdit_2.text()):
+            mesaj = """Geminin müşteri kodunu değiştirdiniz.
+            Devam ederseniz geminin {} ile olan bağlantısı kesilip yeni müşteri koduna göre ilişkilendirilecektir""".format(self.firma_ad)
+            sor = mes.soru("Müşteri Kodunu Değiştirdiniz !!", mesaj,
+                           "Gemi yeni müşterinin  koduna ilişkilendiriliyor",
+                           "Müşteri kod değişimi iptal edildi")
+            if sor == True:
+                kontrol = self.yaz.komut("select kod from firmalar where kod='{}'".format(self.lineEdit_2.text()))
+                if kontrol == None:
+                    mesaj = "Yazdığınız koda sahip bir müşteri bulunamadı.Gemiyi bir müşteriyle ilişkilendirebilmek için" \
+                            "öncelikle müşteri eklemesi yapmanız gerekir.Müşteri kodunu kontrol de edebilirsiniz "
+                    mes.uyari(mesaj, "Bilgilendirme")
+                    return
+                else:
+                    self.yaz.gemi_guncelle(self.lineEdit_2.text(),
+                                           self.lineEdit_3.text(),
+                                           self.lineEdit_4.text(),
+                                           self.lineEdit_5.text(),
+                                           self.lineEdit_6.text(),
+                                           self.lineEdit_7.text(),
+                                           self.lineEdit_8.text(),
+                                           self.lineEdit_9.text(),
+                                           self.lineEdit_10.text(),
+                                           self.lineEdit_11.text(),
+                                           self.gemi_id
+                                           )
+                    mesaj = self.lineEdit_3.text() + " Gemisinin Kaydı Başarıyla Değiştirildi"
+                    mes.uyari(mesaj, "Bilgilendirme")
+                    self.lineEdit_2.clear()
+                    self.lineEdit_3.clear()
+                    self.lineEdit_4.clear()
+                    self.lineEdit_5.clear()
+                    self.lineEdit_6.clear()
+                    self.lineEdit_7.clear()
+                    self.lineEdit_8.clear()
+                    self.lineEdit_9.clear()
+                    self.lineEdit_10.clear()
+                    self.lineEdit_11.clear()
+                    self.bul()
+            else:
+                pass
+        else:
+            self.yaz.gemi_guncelle(self.lineEdit_2.text(),
+                                   self.lineEdit_3.text(),
+                                   self.lineEdit_4.text(),
+                                   self.lineEdit_5.text(),
+                                   self.lineEdit_6.text(),
+                                   self.lineEdit_7.text(),
+                                   self.lineEdit_8.text(),
+                                   self.lineEdit_9.text(),
+                                   self.lineEdit_10.text(),
+                                   self.lineEdit_11.text(),
+                                   self.gemi_id
+                                   )
+            mesaj = self.lineEdit_3.text() + " Gemisinin Kaydı Başarıyla Değiştirildi"
+            mes.uyari(mesaj, "Bilgilendirme")
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_4.clear()
+            self.lineEdit_5.clear()
+            self.lineEdit_6.clear()
+            self.lineEdit_7.clear()
+            self.lineEdit_8.clear()
+            self.lineEdit_9.clear()
+            self.lineEdit_10.clear()
+            self.lineEdit_11.clear()
 
 
-
-    def retranslateUi(self, Fg):
-        _translate = QtCore.QCoreApplication.translate
-        Fg.setWindowTitle(_translate("Fg", "Gemi Bilgisi Düzenle"))
-        self.label.setText(_translate("Fg", "Firma Kodu"))
-        self.pushButton.setText(_translate("Fg", "Listele"))
-        self.label_3.setText(_translate("Fg", "Müşteri"))
-        self.label_4.setText(_translate("Fg", "Gemi Adı"))
-        self.label_7.setText(_translate("Fg", "Defter No"))
-        self.label_8.setText(_translate("Fg", "Belge No"))
-        self.label_5.setText(_translate("Fg", "Gemi No"))
-        self.label_10.setText(_translate("Fg", "İmo / Çağrı"))
-        self.label_6.setText(_translate("Fg", "Gemi Cinsi"))
-        self.label_9.setText(_translate("Fg", "Sicil No"))
-        self.pushButton_2.setText(_translate("Fg", "Güncelle"))
-        self.pushButton_3.setText(_translate("Fg", "Seç"))
-        self.label_12.setText(_translate("Fg", "Acenta "))
-        self.label_13.setText(_translate("Fg", "Acenta Tel"))
-
-
-class Ui_GemiSil(object):
+class Ui_GemiSil(VbagKur):
     def __init__(self):
         self.yaz = VbagKur()
+        self.gemi_id = 0
 
     def setupUi(self, GemiSil):
         GemiSil.setObjectName("GemiSil")
-        GemiSil.resize(306, 349)
+        GemiSil.resize(456, 399)
+        self.gridLayout_2 = QtWidgets.QGridLayout(GemiSil)
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.label = QtWidgets.QLabel(GemiSil)
-        self.label.setGeometry(QtCore.QRect(10, 10, 100, 20))
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(GemiSil)
-        self.lineEdit.setGeometry(QtCore.QRect(90, 10, 111, 20))
         self.lineEdit.setObjectName("lineEdit")
-        self.pushButton = QtWidgets.QPushButton(GemiSil)
-        self.pushButton.setGeometry(QtCore.QRect(210, 10, 72, 23))
-        self.pushButton.setObjectName("pushButton")
+        self.gridLayout_2.addWidget(self.lineEdit, 0, 1, 1, 2)
         self.listWidget = QtWidgets.QListWidget(GemiSil)
-        self.listWidget.setGeometry(QtCore.QRect(10, 40, 271, 291))
         self.listWidget.setObjectName("listWidget")
+        self.gridLayout_2.addWidget(self.listWidget, 1, 0, 1, 2)
+        self.frame = QtWidgets.QFrame(GemiSil)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_3 = QtWidgets.QLabel(self.frame)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout.addWidget(self.lineEdit_2, 0, 1, 1, 1)
+        self.label_4 = QtWidgets.QLabel(self.frame)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout.addWidget(self.label_4, 1, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.gridLayout.addWidget(self.lineEdit_3, 1, 1, 1, 1)
+        self.label_5 = QtWidgets.QLabel(self.frame)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout.addWidget(self.lineEdit_4, 2, 1, 1, 1)
+        self.label_6 = QtWidgets.QLabel(self.frame)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout.addWidget(self.label_6, 3, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.gridLayout.addWidget(self.lineEdit_5, 3, 1, 1, 1)
+        self.label_7 = QtWidgets.QLabel(self.frame)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 4, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.gridLayout.addWidget(self.lineEdit_6, 4, 1, 1, 1)
+        self.label_8 = QtWidgets.QLabel(self.frame)
+        self.label_8.setObjectName("label_8")
+        self.gridLayout.addWidget(self.label_8, 5, 0, 1, 1)
+        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        self.gridLayout.addWidget(self.lineEdit_7, 5, 1, 1, 1)
+        self.label_9 = QtWidgets.QLabel(self.frame)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout.addWidget(self.label_9, 6, 0, 1, 1)
+        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_8.setObjectName("lineEdit_8")
+        self.gridLayout.addWidget(self.lineEdit_8, 6, 1, 1, 1)
+        self.label_10 = QtWidgets.QLabel(self.frame)
+        self.label_10.setObjectName("label_10")
+        self.gridLayout.addWidget(self.label_10, 7, 0, 1, 1)
+        self.lineEdit_9 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_9.setObjectName("lineEdit_9")
+        self.gridLayout.addWidget(self.lineEdit_9, 7, 1, 1, 1)
+        self.label_12 = QtWidgets.QLabel(self.frame)
+        self.label_12.setObjectName("label_12")
+        self.gridLayout.addWidget(self.label_12, 8, 0, 1, 1)
+        self.lineEdit_10 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_10.setObjectName("lineEdit_10")
+        self.gridLayout.addWidget(self.lineEdit_10, 8, 1, 1, 1)
+        self.label_13 = QtWidgets.QLabel(self.frame)
+        self.label_13.setObjectName("label_13")
+        self.gridLayout.addWidget(self.label_13, 9, 0, 1, 1)
+        self.lineEdit_11 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_11.setObjectName("lineEdit_11")
+        self.gridLayout.addWidget(self.lineEdit_11, 9, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(53, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 10, 0, 1, 1)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.gridLayout.addWidget(self.pushButton_2, 10, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
 
         self.retranslateUi(GemiSil)
-        self.pushButton.clicked.connect(self.gemi_bul)
-        self.listWidget.itemDoubleClicked.connect(self.sil)
         QtCore.QMetaObject.connectSlotsByName(GemiSil)
-
-    def gemi_bul(self):
-        self.listWidget.clear()
-        sor = self.yaz.hepsini_oku("gad", "gemiler", "kod", self.lineEdit.text())
-        for i in range(len(sor)):
-            self.listWidget.addItem(sor[i][0])
-
-    def sil(self):
-        if mes.soru(self.listWidget.currentItem().text()) == True:
-            self.yaz.kayit_sil("gemiler", "gad", self.listWidget.currentItem().text())
-            self.listWidget.clear()
-            self.gemi_bul()
-        else:
-            pass
-
+        self.lineEdit.textChanged['QString'].connect(self.bul)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
+        self.pushButton_2.clicked.connect(self.sil)
 
     def retranslateUi(self, GemiSil):
         _translate = QtCore.QCoreApplication.translate
         GemiSil.setWindowTitle(_translate("GemiSil", "Gemi Kaydı Sil"))
-        self.label.setText(_translate("GemiSil", "Müşteri Kodu"))
-        self.pushButton.setText(_translate("GemiSil", "Listele"))
+        self.label.setText(_translate("GemiSil", "Gemi Adı"))
+        self.label_3.setText(_translate("GemiSil", "Müşteri Kod"))
+        self.label_4.setText(_translate("GemiSil", "Gemi Adı"))
+        self.label_5.setText(_translate("GemiSil", "Gemi No"))
+        self.label_6.setText(_translate("GemiSil", "Gemi Cinsi"))
+        self.label_7.setText(_translate("GemiSil", "Defter No"))
+        self.label_8.setText(_translate("GemiSil", "Belge No"))
+        self.label_9.setText(_translate("GemiSil", "Sicil No"))
+        self.label_10.setText(_translate("GemiSil", "İmo / Çağrı"))
+        self.label_12.setText(_translate("GemiSil", "Acenta "))
+        self.label_13.setText(_translate("GemiSil", "Acenta Tel"))
+        self.pushButton_2.setText(_translate("GemiSil", "Sil"))
+
+    def bul(self):
+        self.listWidget.clear()
+        sonuc = self.yaz.coklu_komut("SELECT gad FROM gemiler WHERE gad LIKE '{}'".format(self.lineEdit.text() + "%"))
+        if len(sonuc) == 0:
+            self.listWidget.addItem("Sonuç Bulunamadı")
+        else:
+            for i in range(len(sonuc)):
+                self.listWidget.addItem(sonuc[i][0])
+
+    def doldur(self):
+        soru = self.yaz.tek_oku("gemiler", "gad", self.listWidget.currentItem().text())
+        self.lineEdit_2.setText(str(soru[0][1]))
+        self.lineEdit_3.setText(soru[0][2])
+        self.lineEdit_4.setText(soru[0][3])
+        self.lineEdit_5.setText(soru[0][4])
+        self.lineEdit_6.setText(soru[0][5])
+        self.lineEdit_7.setText(soru[0][6])
+        self.lineEdit_8.setText(soru[0][7])
+        self.lineEdit_9.setText(soru[0][8])
+        self.lineEdit_10.setText(soru[0][9])
+        self.lineEdit_11.setText(soru[0][10])
+        self.gemi_id = soru[0][0]
+
+    def sil(self):
+        mesaj = """{} gemisinin bilgilerini silmek istediğinizden emin misiniz ? """.format(self.lineEdit_3.text())
+        sor = mes.soru("Gemi Bilgilerini Silmek Üzeresiniz !!", mesaj,
+                       "Gemi Bilgileri Siliniyor",
+                       "İşlem  iptal edildi")
+        if sor == True:
+            self.yaz.kayit_sil("gemiler", "id", self.gemi_id)
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_4.clear()
+            self.lineEdit_5.clear()
+            self.lineEdit_6.clear()
+            self.lineEdit_7.clear()
+            self.lineEdit_8.clear()
+            self.lineEdit_9.clear()
+            self.lineEdit_10.clear()
+            self.lineEdit_11.clear()
+            self.bul()
+        else:
+            pass
 
 
 class Ui_BolgeEkle(QtWidgets.QDialog):

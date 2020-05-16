@@ -30,6 +30,7 @@ class VbagKur(object):
             tel='{}',
             adres='{}' WHERE id='{}'""".format(a1,a2,a3,a4,a5,a6,a7))
         self.vt.commit()
+        return True
 
     """
     Kayıt Sil

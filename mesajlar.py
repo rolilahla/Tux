@@ -71,21 +71,3 @@ def yerbolsil(gemi):
         uyari(mesaj, "Bilgilendirme")
         return False
 
-def kart_kullanim_soru():
-    dens_box = QMessageBox()
-    dens_box.setIcon(QMessageBox.Question)
-    dens_box.setWindowTitle('Kredi Kartı Ödeme Seçeneği !!!')
-    yazi = 'Kredi Kartı ile ödeme seçeneği seçildi.Eğer yakıt alan firma , ' \
-           ' Kart sahibi ve yakıt alan kişi aynı değilse Tutanak hazırlanmalı.' \
-           'Ödeme durumu için Kredi Kartı Tutanağı hazırlansın mı ?'
-    dens_box.setText(yazi)
-    dens_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-    buttonY = dens_box.button(QMessageBox.Yes)
-    buttonY.setText('EVET')
-    buttonN = dens_box.button(QMessageBox.No)
-    buttonN.setText('HAYIR')
-    dens_box.exec_()
-    if dens_box.clickedButton() == buttonY:
-        return True
-    else:
-        return False
