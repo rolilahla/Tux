@@ -64,6 +64,10 @@ class VbagKur(object):
            (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11))
         self.vt.commit()
 
+    def gemi_kod_guncelle(self, kod, id):
+        self.im.execute("""UPDATE gemiler SET kod='{}' WHERE id = '{}'""".format(kod, id))
+        self.vt.commit()
+
     #Tüm verileri çekme
     """
                 Belli bir kritere göre toplam sonuç ve kritersiz gönderimde tüm sonuçları döker

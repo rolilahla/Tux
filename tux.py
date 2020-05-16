@@ -149,6 +149,8 @@ class Ui_Firmaguncelle(VbagKur):
     def __init__(self):
         self.yaz = VbagKur()
         self.change_no = 0
+        self.eski_kod = 0
+        self.yeni_kod = 0
 
     def setupUi(self, Firmaguncelle):
         Firmaguncelle.setObjectName("Firmaguncelle")
@@ -201,6 +203,22 @@ class Ui_Firmaguncelle(VbagKur):
 
     def guncelle(self):
         kod = self.lineEdit.text()
+        self.yeni_kod = kod
+        if self.eski_kod != self.yeni_kod:
+            sor = mes.soru("Müşteri Kodu Değiştirme Uyarısı",
+                           "Müşteri kodunu değiştirdiniz! Bu değişiklik müşteriye bağlı gemilerin listelenmesini"
+                           " etkileyecektir.\n\n"
+                     "Müşteriye bağlı gemilerin firma kodunuda değiştirmek istiyor musunuz ?",
+                     "Gemilerin kodları, müşterinin yeni koduna göre düzenleniyor",
+                     "Gemilerin kod değişimi iptal edildi")
+            if sor == True:
+                liste = self.yaz.hepsini_oku("id", "gemiler", "kod", self.eski_kod)
+                for i in range(len(liste)):
+                    self.yaz.gemi_kod_guncelle(self.yeni_kod, liste[i][0])
+            else:
+                pass
+        else:
+            pass
         ad = self.lineEdit_2.text()
         vergidairesi = self.lineEdit_3.text()
         vergino = self.lineEdit_4.text()
@@ -216,20 +234,24 @@ class Ui_Firmaguncelle(VbagKur):
         self.lineEdit_4.clear()
         self.lineEdit_5.clear()
         self.textEdit.clear()
-
         self.yaz.veritabanini_kapat()
 
     def bilgibul(self):
         if self.lineEdit.text() == "":
             pass
         else:
-            veri = self.yaz.tek_oku("firmalar", "kod", self.lineEdit.text())
-            self.lineEdit_2.setText(veri[0][2])
-            self.lineEdit_3.setText(veri[0][3])
-            self.lineEdit_4.setText(veri[0][4])
-            self.lineEdit_5.setText(veri[0][5])
-            self.textEdit.setPlainText(veri[0][6])
-            self.change_no = veri[0][0]
+            try:
+                veri = self.yaz.tek_oku("firmalar", "kod", self.lineEdit.text())
+                self.lineEdit_2.setText(veri[0][2])
+                self.eski_kod = veri[0][1]
+                self.lineEdit_3.setText(veri[0][3])
+                self.lineEdit_4.setText(veri[0][4])
+                self.lineEdit_5.setText(veri[0][5])
+                self.textEdit.setPlainText(veri[0][6])
+                self.change_no = veri[0][0]
+            except (IndexError):
+                mes.uyari("Veritabanında böyle bir müşteri yok","Kayıt Bulunamadı")
+            return
 
 
 
@@ -1467,13 +1489,18 @@ class Ui_MainWindow(object):
 
         self.lineEdit.clear()
         self.comboBox_2.clear()
-        self.comboBox_4.clear()
+        self.comboBox_4.setCurrentIndex(0)
         self.lineEdit_2.clear()
         self.lineEdit_3.clear()
         self.lineEdit_5.clear()
         self.lineEdit_6.clear()
         self.lineEdit_7.clear()
         self.lineEdit_8.clear()
+        self.lineEdit_33.clear()
+        self.lineEdit_34.clear()
+        self.lineEdit_35.clear()
+        self.lineEdit_37.clear()
+        self.lineEdit_16.clear()
 
 
     def help(self):

@@ -11,12 +11,11 @@ def uyari(mesaj, baslik):
     inf.setStandardButtons(QMessageBox.Ok)
     inf.exec_()
 
-def soru(gemi):
+def soru(baslik, mesaj, ymesaj, nmesaj):
     dens_box = QMessageBox()
     dens_box.setIcon(QMessageBox.Question)
-    dens_box.setWindowTitle('Kayıt Silme Uyarısı !!!')
-    yazi = gemi + 'Bilgilerini veritabanından silmek istediğinize emin misiniz ?'
-    dens_box.setText(yazi)
+    dens_box.setWindowTitle(baslik)
+    dens_box.setText(mesaj)
     dens_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
     buttonY = dens_box.button(QMessageBox.Yes)
     buttonY.setText('EVET')
@@ -24,12 +23,10 @@ def soru(gemi):
     buttonN.setText('HAYIR')
     dens_box.exec_()
     if dens_box.clickedButton() == buttonY:
-        mesaj = gemi + "Kaydı Başarı ile silindi"
-        uyari(mesaj, "Bilgilendirme")
+        uyari(ymesaj, "Bilgilendirme")
         return True
     else:
-        mesaj = gemi + "Kaydını silme işlemi iptal edildi"
-        uyari(mesaj, "Bilgilendirme")
+        uyari(nmesaj, "Bilgilendirme")
         return False
 
 def per_sil(ad):

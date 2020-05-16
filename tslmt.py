@@ -8,8 +8,21 @@ import xlwings as xw
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 
+yaz = VbagKur()
+t = time.strftime("%d %m %Y")
+tar = t.replace(" ", ".")
+settings = yaz.hepsini_oku(None,"settings")
+"""
+file_path = settings[0][2]
+op_place = settings[1][2]
+s_rate = settings[2][2]
+m_rate = settings[3][2]
+f_rate = settings[4][2]
+or_vhc = settings[5][2]
+oz_vhc = settings[6][2]
+op_lisans = settings[7][2]"""
 
-def selenyum(defter_no):
+def selenyum(defter_no, yol):
     opts = Options()
     opts.headless = True
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
@@ -21,14 +34,10 @@ def selenyum(defter_no):
     driver.find_element_by_id('number').send_keys(no_listesi[3])
     tetikle = driver.find_element_by_name('Submit')
     tetikle.click()
-    driver.save_screenshot("C:\\viçe\\evraklar\\sorgu.png")
+    path = settings[0][2] + yol + "\\sorgu.png"
+    print(path)
+    driver.save_screenshot(path)
     driver.quit()
-
-
-t = time.strftime("%d %m %Y")
-tar = t.replace(" ", ".")
-
-yaz = VbagKur()
 
 def gemi_listele(arg):
     return yaz.veri_duzenle(yaz.hepsini_oku("gad", "gemiler", "kod", arg))
@@ -130,12 +139,9 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     urun_info = yaz.tek_oku("urun", "ad", yakit_turu)
     urun_kod = urun_info[0][0]
     urun_infor = urun_info[0][2]
-
     #BÖLGE KODU
     bolge_info = yaz.hepsini_oku("kod", "bolge", "ad", bolge)
     bolge_kodu = bolge_info[0][0]
-
-
     #mühürleri birleştir
     if barge_numune_muhur == None:
         muhur = ""
@@ -154,8 +160,8 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
                gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici)
 
     check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno)
-
-    selenyum(gemi_defterno)
+    yol = gemi+" "+tar
+    #selenyum(gemi_defterno, yol)
 
 
 def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
@@ -165,9 +171,11 @@ def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
     gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\irsaliye.xlsx"
-    hedef_dizin = "C:\\viçe\\evraklar\\"
+    hedef_dizin = settings[0][2] + gem
+    os.mkdir(hedef_dizin)
+
     kaynak = ana_dizin + irsaliye_yolu
-    hedef = hedef_dizin + gem + ".xlsx"
+    hedef = hedef_dizin +"\\irsaliye.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
@@ -186,6 +194,7 @@ def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
     sht.range('AB12').value = str(kg).replace(",","", 1)
     sht.range('AB13').value = yer_kodu
     sht.range('AB14').value = bolge
+    sht.range('AB15').value = settings[7][2]
     sht.range('AB16').value = belge_no
     sht.range('AB17').value = veren
     sht.range('AB18').value = alan
@@ -195,16 +204,18 @@ def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
     sht.range('AB22').value = cins
     sht.range('AB23').value = defter_no
     sht.range('AB24').value = muhur
+    sht.range('AB25').value = settings[1][2]
+
 
 def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, actel, mevki, basaat, bisaat,
                yakit, litre, kg, gemici):
-    gemlover = "Opet Ek-1 " + gad.lower() + " " + tar
+    gemlover = gad + " " + tar
     gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\ekbir.xlsx"
-    hedef_dizin = "C:\\viçe\\evraklar\\"
     kaynak = ana_dizin + irsaliye_yolu
-    hedef = hedef_dizin + gem + ".xlsx"
+    hedef_dizin = settings[0][2] + gem
+    hedef = hedef_dizin + "\\Ek-1.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
@@ -226,15 +237,21 @@ def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, ac
     sht.range('M15').value = litre.replace(",", "", 1)
     sht.range('M16').value = kg.replace(",", "", 1)
     sht.range('M17').value = gemici
+    sht.range('M18').value = settings[2][2]
+    sht.range('M19').value = settings[3][2]
+    sht.range('M20').value = settings[4][2]
+    sht.range('M21').value = settings[5][2]
+    sht.range('M22').value = settings[6][2]
+
 
 def check_list_yaz(teslimatci, gemi, defter_no, belge_no):
-    gemlover = "Check List " + gemi
+    gemlover = gemi + " "+ tar
     gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\checklist.xlsx"
-    hedef_dizin = "C:\\viçe\\evraklar\\"
     kaynak = ana_dizin + irsaliye_yolu
-    hedef = hedef_dizin + gem + ".xlsx"
+    hedef_dizin = settings[0][2] + gem
+    hedef = hedef_dizin + "\\Check List.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
