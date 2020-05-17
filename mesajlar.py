@@ -54,7 +54,7 @@ def yerbolsil(gemi):
     dens_box = QMessageBox()
     dens_box.setIcon(QMessageBox.Question)
     dens_box.setWindowTitle('Kayıt Silme Uyarısı !!!')
-    yazi = gemi + ' kaydını veritabanından silmek istediğinize emin misiniz ?'
+    yazi = gemi + ' bölgesini veritabanından silmek istediğinize emin misiniz ?'
     dens_box.setText(yazi)
     dens_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
     buttonY = dens_box.button(QMessageBox.Yes)
@@ -63,11 +63,31 @@ def yerbolsil(gemi):
     buttonN.setText('HAYIR')
     dens_box.exec_()
     if dens_box.clickedButton() == buttonY:
-        mesaj = gemi + " Kaydı Başarı ile silindi"
+        mesaj = " Kayıt Başarı ile silindi"
         uyari(mesaj, "Bilgilendirme")
         return True
     else:
-        mesaj = gemi + " Kaydını silme işlemi iptal edildi"
+        mesaj =" Kayıt silme işlemi iptal edildi"
         uyari(mesaj, "Bilgilendirme")
         return False
 
+def urun_sil(ad):
+    dens_box = QMessageBox()
+    dens_box.setIcon(QMessageBox.Question)
+    dens_box.setWindowTitle('Ürün Silme Uyarısı ?')
+    yazi = ad + ' ürününü veritabanından silmek istediğinize emin misiniz ?'
+    dens_box.setText(yazi)
+    dens_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    buttonY = dens_box.button(QMessageBox.Yes)
+    buttonY.setText('Sil')
+    buttonN = dens_box.button(QMessageBox.No)
+    buttonN.setText('İptal')
+    dens_box.exec_()
+    if dens_box.clickedButton() == buttonY:
+        mesaj = ad + ' kaydı veritabanından başarıyla silinmiştir'
+        uyari(mesaj, "Bilgilendirme")
+        return True
+    else:
+        mesaj = ad + ' kayıt silme işlemi iptal edilmiştir'
+        uyari(mesaj, "Bilgilendirme")
+        return False

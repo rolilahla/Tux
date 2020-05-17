@@ -1060,12 +1060,15 @@ class Ui_BolgeEkle(QtWidgets.QDialog):
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def ekle(self):
-        self.yaz.bolge_ekle(self.lineEdit.text(),self.lineEdit_2.text())
-        mesaj = self.lineEdit_2.text() + " Bölgesi Veritanına eklendi"
-        mes.uyari(mesaj, "Bilgilendirme")
-        self.lineEdit.clear()
-        self.lineEdit_2.clear()
-        self.on_change_value(1)
+        if self.lineEdit.text() =="" or self.lineEdit_2.text() == "":
+            mesaj = " Bilgileri tam olarak giriniz"
+            mes.uyari(mesaj, "Uyarı")
+        else:
+            self.yaz.bolge_ekle(self.lineEdit.text(), self.lineEdit_2.text())
+            mesaj = self.lineEdit_2.text() + " Bölgesi Veritanına eklendi"
+            mes.uyari(mesaj, "Bilgilendirme")
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
@@ -1082,65 +1085,52 @@ class Ui_BolgeYerSil(QtWidgets.QDialog):
         self.setupUi()
 
     def setupUi(self):
-        self.setObjectName("BolgeYerSil")
-        self.resize(632, 316)
+        self.setObjectName("BolgeSil")
+        self.resize(416, 316)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/rolix/docky.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setWindowIcon(icon)
+        self.gridLayout = QtWidgets.QGridLayout(self)
+        self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(self)
-        self.label.setGeometry(QtCore.QRect(10, 10, 91, 61))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(":/rolix/scalable/package-remove.svg"))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.groupBox = QtWidgets.QGroupBox(self)
-        self.groupBox.setGeometry(QtCore.QRect(10, 80, 300, 225))
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.listWidget = QtWidgets.QListWidget(self.groupBox)
         self.listWidget.setObjectName("listWidget")
         self.gridLayout_2.addWidget(self.listWidget, 0, 0, 1, 1)
-        self.groupBox_2 = QtWidgets.QGroupBox(self)
-        self.groupBox_2.setGeometry(QtCore.QRect(320, 80, 300, 225))
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.gridLayout = QtWidgets.QGridLayout(self.groupBox_2)
-        self.gridLayout.setObjectName("gridLayout")
-        self.listWidget_2 = QtWidgets.QListWidget(self.groupBox_2)
-        self.listWidget_2.setObjectName("listWidget_2")
-        self.gridLayout.addWidget(self.listWidget_2, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.groupBox, 1, 0, 1, 2)
         self.label_2 = QtWidgets.QLabel(self)
-        self.label_2.setGeometry(QtCore.QRect(100, 10, 511, 51))
         self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 2, 1, 1, 1)
         self.bilgi_listele()
 
-        self.retranslateUi()
-        self.listWidget.itemDoubleClicked.connect(self.silb)
+        self.retranslateUi(self)
         QtCore.QMetaObject.connectSlotsByName(self)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.sil)
+
+    def retranslateUi(self, BolgeYerSil):
+        _translate = QtCore.QCoreApplication.translate
+        BolgeYerSil.setWindowTitle(_translate("BolgeYerSil", "Bölge Ve Yer Sil"))
+        self.groupBox.setTitle(_translate("BolgeYerSil", "Bölge Listesi"))
+        self.label_2.setText(_translate("BolgeYerSil", "Veritabanından silmek istediğiniz Bölgeye çift tıklayınız."))
 
     def bilgi_listele(self):
         self.listWidget.addItems(self.yaz.coklu_tup_temizle(self.yaz.kolon_oku("ad, kod", "bolge")))
 
-
-    def silb(self):
+    def sil(self):
         if mes.yerbolsil(self.listWidget.currentItem().text()) == True:
-            kay_no = self.yaz.komut("select kod from bolge where ad='{}'".format(self.listWidget.currentItem().text()))
-            self.yaz.isle("delete from yer where kod ='{}'".format(kay_no[0]))
             self.yaz.kayit_sil("bolge", "ad", self.listWidget.currentItem().text())
             self.listWidget.clear()
-            self.listWidget_2.clear()
             self.bilgi_listele()
-            self.on_changed_value(1)
         else:
             pass
-
-
-    def retranslateUi(self):
-        _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("BolgeYerSil", "Bölge Ve Yer Sil"))
-        self.groupBox.setTitle(_translate("BolgeYerSil", "Bölge Listesi"))
-        self.groupBox_2.setTitle(_translate("BolgeYerSil", "Yer Listesi"))
-        self.label_2.setText(_translate("BolgeYerSil", "Veritabanından silmek istediğiniz Bölge veya Yer bilgisinin üzerine çift tıklayınız."))
 
 
 class Ui_PersonelEkle(QtWidgets.QDialog):
@@ -1151,17 +1141,17 @@ class Ui_PersonelEkle(QtWidgets.QDialog):
 
     def setupUi(self):
         self.setObjectName("PersonelEkle")
-        self.resize(399, 148)
+        self.resize(430, 148)
         self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(150, 20, 90, 20))
         self.label.setObjectName("label")
         self.comboBox = QtWidgets.QComboBox(self)
-        self.comboBox.setGeometry(QtCore.QRect(270, 20, 100, 20))
+        self.comboBox.setGeometry(QtCore.QRect(250, 20, 150, 20))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.lineEdit = QtWidgets.QLineEdit(self)
-        self.lineEdit.setGeometry(QtCore.QRect(270, 50, 100, 20))
+        self.lineEdit.setGeometry(QtCore.QRect(250, 50, 150, 20))
         self.lineEdit.setObjectName("lineEdit")
         self.label_2 = QtWidgets.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(150, 50, 90, 20))
@@ -1182,22 +1172,22 @@ class Ui_PersonelEkle(QtWidgets.QDialog):
 
     def persekle(self):
         if self.lineEdit.text() == "":
-            pass # Hata kaydı eklenecek
+            mesaj = "Hayaletler teslimat yapamaz"
+            mes.uyari(mesaj, "Oppss")
         else:
             self.yaz.personel_ekle(self.comboBox.currentIndex(),
                                self.lineEdit.text())
-            mesaj = self.lineEdit.text() + " "  + self.comboBox.currentText() +" çalışanı olarak veritabanına eklendi"
+            mesaj = self.lineEdit.text() + " "  + self.comboBox.currentText() +" olarak veritabanına eklendi"
             mes.uyari(mesaj, "Bilgilendirme")
             self.lineEdit.clear()
-            self.on_changed_value(1)
 
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("PersonelEkle", "Personel Ekle"))
         self.label.setText(_translate("PersonelEkle", "Bağlı Olduğu Yer"))
-        self.comboBox.setItemText(0, _translate("PersonelEkle", "İntertek"))
-        self.comboBox.setItemText(1, _translate("PersonelEkle", "Gemi Adamı"))
+        self.comboBox.setItemText(0, _translate("PersonelEkle", "İntertek çalışanı"))
+        self.comboBox.setItemText(1, _translate("PersonelEkle", "Barge/Terminal çalışanı"))
         self.label_2.setText(_translate("PersonelEkle", "Ad Soyad"))
         self.pushButton.setText(_translate("PersonelEkle", "Ekle"))
 
@@ -1243,7 +1233,6 @@ class Ui_PersonelSil(QtWidgets.QDialog):
             self.yaz.kayit_sil("personel", "ad", self.listWidget.currentItem().text())
             self.listWidget.clear()
             self.personel_bul()
-            self.on_changed_value(1)
         else:
             pass
 
@@ -1287,7 +1276,7 @@ class Ui_UrunEkle(object):
         self.gridLayout.addWidget(self.pushButton, 3, 2, 1, 1)
 
         self.retranslateUi(UrunEkle)
-        self.pushButton.clicked.connect(UrunEkle.close)
+        self.pushButton.clicked.connect(self.ekle)
         QtCore.QMetaObject.connectSlotsByName(UrunEkle)
 
     def retranslateUi(self, UrunEkle):
@@ -1298,8 +1287,24 @@ class Ui_UrunEkle(object):
         self.label_3.setText(_translate("UrunEkle", "Açıklama"))
         self.pushButton.setText(_translate("UrunEkle", "Ekle"))
 
+    def ekle(self):
+        self.yaz = VbagKur()
+        if self.lineEdit.text() == "" or self.lineEdit_2.text() == "":
+            mesaj = "Ürün kodu ve ürün adını tam olarak doldurunuz"
+            mes.uyari(mesaj, "Eksik Bilgi")
+        else:
+            self.yaz.urun_ekle(self.lineEdit_2.text(), self.lineEdit.text(), self.lineEdit_3.text())
+            mesaj = self.lineEdit.text() + " veritabanına kaydedildi"
+            mes.uyari(mesaj, "Veritabanına Ürün Ekleme")
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+
 
 class Ui_UrunSil(object):
+    def __init__(self):
+        self.yaz = VbagKur()
+
     def setupUi(self, UrunSil):
         UrunSil.setObjectName("UrunSil")
         UrunSil.resize(351, 238)
@@ -1314,15 +1319,31 @@ class Ui_UrunSil(object):
         self.label = QtWidgets.QLabel(UrunSil)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
+        self.bul()
+
 
         self.retranslateUi(UrunSil)
-        self.listWidget.doubleClicked['QModelIndex'].connect(self.listWidget.close)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.sil)
         QtCore.QMetaObject.connectSlotsByName(UrunSil)
 
     def retranslateUi(self, UrunSil):
         _translate = QtCore.QCoreApplication.translate
         UrunSil.setWindowTitle(_translate("UrunSil", "Ürün Sil"))
         self.label.setText(_translate("UrunSil", "Silmek istediğiniz ürününe çift tıklayınız"))
+
+    def bul(self):
+        self.listWidget.clear()
+        sorgu = self.yaz.kolon_oku("ad", "urun")
+        for i in range(len(sorgu)):
+            self.listWidget.addItem(sorgu[i][0])
+
+    def sil(self):
+        if mes.urun_sil(self.listWidget.currentItem().text()) == True:
+            self.yaz.kayit_sil("urun", "ad", self.listWidget.currentItem().text())
+            self.listWidget.clear()
+            self.bul()
+        else:
+            pass
 
 
 class Ui_Settings(object):
@@ -1441,21 +1462,33 @@ class Ui_MainWindow(object):
         self.ppp = Ui_BolgeEkle()
         self.ppp.show()
         self.ppp.exec_()
+        self.comboBox_30.clear()
+        self.comboBox_30.addItems(tslmt.bolge_hazirla())
 
     def gui_bolge_sil(self):
         ppp = Ui_BolgeYerSil()
         ppp.show()
         ppp.exec_()
+        self.comboBox_30.clear()
+        self.comboBox_30.addItems(tslmt.bolge_hazirla())
 
     def gui_personel_ekle(self):
         ppp = Ui_PersonelEkle()
         ppp.show()
         ppp.exec_()
+        self.comboBox_10.clear()
+        self.comboBox_10.addItems(tslmt.personel_hazirla("0"))
+        self.comboBox_16.clear()
+        self.comboBox_16.addItems(tslmt.personel_hazirla("1"))
 
     def gui_personel_sil(self):
         ppp = Ui_PersonelSil()
         ppp.show()
         ppp.exec_()
+        self.comboBox_10.clear()
+        self.comboBox_10.addItems(tslmt.personel_hazirla("0"))
+        self.comboBox_16.clear()
+        self.comboBox_16.addItems(tslmt.personel_hazirla("1"))
 
     def gui_urunekle(self):
         UrunEkle = QtWidgets.QDialog()
@@ -1463,6 +1496,8 @@ class Ui_MainWindow(object):
         ui.setupUi(UrunEkle)
         UrunEkle.show()
         UrunEkle.exec_()
+        self.comboBox_4.clear()
+        self.comboBox_4.addItems(tslmt.urun_hazirla())
 
     def gui_urunsil(self):
         UrunSil = QtWidgets.QDialog()
@@ -1470,6 +1505,8 @@ class Ui_MainWindow(object):
         ui.setupUi(UrunSil)
         UrunSil.show()
         UrunSil.exec_()
+        self.comboBox_4.clear()
+        self.comboBox_4.addItems(tslmt.urun_hazirla())
 
     def gui_settings(self):
         Settings = QtWidgets.QDialog()
@@ -1731,7 +1768,7 @@ class Ui_MainWindow(object):
         self.menuB_lgeler.setTitle(_translate("MainWindow", "Bölgeler"))
         self.menuPersonel_Bilgisi.setTitle(_translate("MainWindow", "Personel Bilgisi"))
         self.menuAyarlar.setTitle(_translate("MainWindow", "Ayarlar"))
-        self.menuYak_tlar.setTitle(_translate("MainWindow", "Yakıtlar"))
+        self.menuYak_tlar.setTitle(_translate("MainWindow", "Ürünler"))
         self.menuTeslimat.setTitle(_translate("MainWindow", "Yardım"))
         self.actionYeni_M_teri_Ekle.setText(_translate("MainWindow", "Yeni Müşteri Ekle"))
         self.actionM_teri_D_zenle.setText(_translate("MainWindow", "Müşteri Düzenle"))
@@ -1745,8 +1782,8 @@ class Ui_MainWindow(object):
         self.actionPersonel_Ekle.setText(_translate("MainWindow", "Personel Ekle"))
         self.actionPersonel_Sil.setText(_translate("MainWindow", "Personel Sil"))
         self.actionAyarlar_D_zenle.setText(_translate("MainWindow", "Ayarları Düzenle"))
-        self.actionYak_t_Ekle.setText(_translate("MainWindow", "Yakıt Ekle"))
-        self.actionYak_t_Sil.setText(_translate("MainWindow", "Yakıt Sil"))
+        self.actionYak_t_Ekle.setText(_translate("MainWindow", "Ürün Ekle"))
+        self.actionYak_t_Sil.setText(_translate("MainWindow", "Ürün Sil"))
         self.actionYard_m.setText(_translate("MainWindow", "Tux Yardım"))
         self.actionHakk_nda.setText(_translate("MainWindow", "Tux Hakkında"))
 

@@ -103,7 +103,6 @@ class VbagKur(object):
         self.im.execute("SELECT * FROM {} Where {} == '{}'".format(tablo, yer, deger))
         return self.im.fetchall()
 
-
     def veri_duzenle(self, demet: object) -> object:
         dizi = []
         for i in range(len(demet)):
@@ -118,10 +117,6 @@ class VbagKur(object):
                 dizi.append(a[im])
         return dizi
 
-    
-
-    
-
     """
     Personel Ekle
     
@@ -135,12 +130,9 @@ class VbagKur(object):
         self.im.execute("INSERT INTO personel VALUES(null,'{}', '{}')".format(firma, ad))
         self.vt.commit()
 
-
     def bolge_ekle(self, kod, ad):
         self.im.execute("INSERT INTO bolge VALUES(null,'{}', '{}')".format(kod, ad))
         self.vt.commit()
-
-
 
     def coklu_tup_temizle(self, liste):
         bos_liste = []
@@ -185,6 +177,10 @@ class VbagKur(object):
 
     def isle(self, sql):
         self.im.execute(sql)
+        self.vt.commit()
+
+    def urun_ekle(self, kod, ad, desc):
+        self.im.execute("INSERT INTO urun VALUES('{}', '{}', '{}')".format(kod, ad, desc))
         self.vt.commit()
 
 
