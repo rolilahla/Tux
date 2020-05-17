@@ -1347,29 +1347,100 @@ class Ui_UrunSil(object):
 
 
 class Ui_Settings(object):
+    def __init__(self):
+        self.yaz = VbagKur()
+
     def setupUi(self, Settings):
-        self.db = VbagKur()
         Settings.setObjectName("Settings")
-        Settings.resize(478, 182)
+        Settings.resize(569, 414)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\../../logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Settings.setWindowIcon(icon)
+        self.gridLayout = QtWidgets.QGridLayout(Settings)
+        self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(Settings)
-        self.label.setGeometry(QtCore.QRect(10, 10, 100, 20))
         self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(Settings)
-        self.lineEdit.setGeometry(QtCore.QRect(130, 10, 291, 20))
         self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 2)
         self.pushButton = QtWidgets.QPushButton(Settings)
-        self.pushButton.setGeometry(QtCore.QRect(430, 9, 41, 22))
         self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 0, 3, 1, 1)
+        self.label_2 = QtWidgets.QLabel(Settings)
+        self.label_2.setWhatsThis("")
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_2.setText("")
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 3)
+        self.label_3 = QtWidgets.QLabel(Settings)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 3)
+        self.label_4 = QtWidgets.QLabel(Settings)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout.addWidget(self.lineEdit_4, 3, 1, 1, 3)
+        self.label_5 = QtWidgets.QLabel(Settings)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 3)
+        self.label_6 = QtWidgets.QLabel(Settings)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_6.setText("")
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.gridLayout.addWidget(self.lineEdit_6, 5, 1, 1, 3)
+        self.label_7 = QtWidgets.QLabel(Settings)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 6, 0, 1, 1)
+        self.lineEdit_7 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_7.setText("")
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        self.gridLayout.addWidget(self.lineEdit_7, 6, 1, 1, 3)
+        self.label_8 = QtWidgets.QLabel(Settings)
+        self.label_8.setObjectName("label_8")
+        self.gridLayout.addWidget(self.label_8, 7, 0, 1, 1)
+        self.lineEdit_8 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_8.setText("")
+        self.lineEdit_8.setObjectName("lineEdit_8")
+        self.gridLayout.addWidget(self.lineEdit_8, 7, 1, 1, 3)
+        self.label_9 = QtWidgets.QLabel(Settings)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
+        self.lineEdit_9 = QtWidgets.QLineEdit(Settings)
+        self.lineEdit_9.setText("")
+        self.lineEdit_9.setObjectName("lineEdit_9")
+        self.gridLayout.addWidget(self.lineEdit_9, 8, 1, 1, 3)
+        self.label_10 = QtWidgets.QLabel(Settings)
+        self.label_10.setObjectName("label_10")
+        self.gridLayout.addWidget(self.label_10, 9, 0, 1, 1)
+        self.comboBox = QtWidgets.QComboBox(Settings)
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.gridLayout.addWidget(self.comboBox, 9, 1, 1, 3)
+        spacerItem = QtWidgets.QSpacerItem(325, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 10, 0, 1, 2)
         self.pushButton_2 = QtWidgets.QPushButton(Settings)
-        self.pushButton_2.setGeometry(QtCore.QRect(400, 110, 75, 23))
+        self.pushButton_2.setMinimumSize(QtCore.QSize(75, 23))
+        self.pushButton_2.setMaximumSize(QtCore.QSize(75, 23))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.gridLayout.addWidget(self.pushButton_2, 10, 2, 1, 2)
+        self.bul()
 
         self.retranslateUi(Settings)
         self.pushButton.clicked.connect(self.dosya_kayit_yeri)
-        # self.pushButton_2.clicked.connect(self.bilgi_guncelle)
+        self.pushButton_2.clicked.connect(self.guncelle)
         QtCore.QMetaObject.connectSlotsByName(Settings)
 
     def retranslateUi(self, Settings):
@@ -1377,35 +1448,54 @@ class Ui_Settings(object):
         Settings.setWindowTitle(_translate("Settings", "Ayarlar"))
         self.label.setText(_translate("Settings", "Dosya Kayıt Yeri"))
         self.pushButton.setText(_translate("Settings", "Seç"))
+        self.label_2.setText(_translate("Settings", "Teslimat Yapılan Terminal veya Barge"))
+        self.label_3.setText(_translate("Settings", "Başlangıç transfer miktarı  (LT/Saat)"))
+        self.label_4.setText(_translate("Settings", "Maksimum transfer miktarı  (LT/Saat)"))
+        self.label_5.setText(_translate("Settings", "Tank full dolumu transfer miktarı  (LT/Saat)"))
+        self.label_6.setText(_translate("Settings", "İrtibat kurulacak VHC kanalı"))
+        self.label_7.setText(_translate("Settings", "Terminal veya Barge içi  VHC kanalı"))
+        self.label_8.setText(_translate("Settings", " Dağıtıcı Lisansı"))
+        self.label_9.setText(_translate("Settings", "Defter Sorgu Sayfası"))
+        self.label_10.setText(_translate("Settings", "Sorguyu yapacak olan"))
+        self.comboBox.setItemText(0, _translate("Settings", "Program"))
+        self.comboBox.setItemText(1, _translate("Settings", "Manuel"))
         self.pushButton_2.setText(_translate("Settings", "Kaydet"))
 
-    def veritabani_bilgisi_cek(self):
-        sql_yer = "select * from ayarlar"
-        sonuc = self.db.komut(sql_yer)
-        self.lineEdit.setText(sonuc[0][2])
-        self.lineEdit_2.setText(sonuc[0][0])
-        self.lineEdit_3.setText(sonuc[0][1])
+    def bul(self):
+        sonuc = self.yaz.kolon_oku("deger", "settings")
+        self.lineEdit.setText(sonuc[0][0])
+        self.lineEdit_2.setText(sonuc[1][0])
+        self.lineEdit_3.setText(sonuc[2][0])
+        self.lineEdit_4.setText(sonuc[3][0])
+        self.lineEdit_5.setText(sonuc[4][0])
+        self.lineEdit_6.setText(sonuc[5][0])
+        self.lineEdit_7.setText(sonuc[6][0])
+        self.lineEdit_8.setText(sonuc[7][0])
+        self.lineEdit_9.setText(sonuc[8][0])
+        self.comboBox.setCurrentIndex(int(sonuc[9][0]))
 
     def dosya_kayit_yeri(self):
         directory = QtWidgets.QFileDialog.getExistingDirectory()
         if directory:
+            self.lineEdit.clear()
             self.lineEdit.setText(directory)
 
-    def bilgi_guncelle(self):
-        yer = self.lineEdit.text()
-        ts = self.lineEdit_2.text()
-        us = self.lineEdit_3.text()
-        sql = "update ayarlar set teslim_suresi = '{}'," \
-              "uzatma_suresi = '{}'," \
-              "kayit_yeri = '{}'".format(ts, us, yer)
-        if self.db.yapistir(sql) == True:
-            baslik = "Veritabanı Güncellendi"
-            mesaj = "Yapılan değişiklikler veritabanına başarıyla kaydedildi"
-            mico.bilgilendir(mesaj, baslik)
-        else:
-            baslik = "Veritabanı Bağlantı Hatası"
-            mesaj = "Veritabanı bağlantı sorunu nedeniyle değişiklikler kaydedilemedi."
-            mico.bilgilendir(mesaj, baslik)
+    def guncelle(self):
+        liste = []
+        liste.append(self.lineEdit.text())
+        liste.append(self.lineEdit_2.text())
+        liste.append(self.lineEdit_3.text())
+        liste.append(self.lineEdit_4.text())
+        liste.append(self.lineEdit_5.text())
+        liste.append(self.lineEdit_6.text())
+        liste.append(self.lineEdit_7.text())
+        liste.append(self.lineEdit_8.text())
+        liste.append(self.lineEdit_9.text())
+        liste.append(str(self.comboBox.currentIndex()))
+        self.yaz.set_guncelle(liste)
+        mesaj = "Ayarlar güncellendi"
+        mes.uyari(mesaj, "Veritabanı güncelleme")
+        self.bul()
 
 
 class Ui_MainWindow(object):
@@ -1858,7 +1948,6 @@ class Ui_MainWindow(object):
         self.lineEdit_35.clear()
         self.lineEdit_37.clear()
         self.lineEdit_16.clear()
-
 
     def help(self):
         yol = os.getcwd()

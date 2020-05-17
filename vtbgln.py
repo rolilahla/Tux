@@ -183,6 +183,14 @@ class VbagKur(object):
         self.im.execute("INSERT INTO urun VALUES('{}', '{}', '{}')".format(kod, ad, desc))
         self.vt.commit()
 
+    def set_guncelle(self, liste):
+        sayac = 1
+        for i in range(len(liste)):
+            self.im.execute("""UPDATE settings SET deger='{}' WHERE id = '{}'""".format(liste[i], sayac))
+            self.vt.commit()
+            sayac += 1
+
+
 
     def veritabanini_kapat(self):
         self.vt.close()
