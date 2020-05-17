@@ -1895,13 +1895,21 @@ class Ui_MainWindow(object):
         self.comboBox_2.addItems(tslmt.gemi_listele(self.lineEdit.text()))
 
     def vcf_hesapla(self):
-        sonuc = tslmt.v_c_f(self.lineEdit_2.text(),
-                            self.lineEdit_3.text(),
-                            self.lineEdit_8.text())
-
-        self.lineEdit_5.setText(sonuc[0])
-        self.lineEdit_6.setText(sonuc[1])
-        self.lineEdit_7.setText(sonuc[2])
+        """
+        Density
+        brüt
+        sıcaklık
+        :return:
+        """
+        dnsty = self.lineEdit_2.text().replace(",",".",1)
+        brut = self.lineEdit_3.text().replace(",",".",1)
+        try:
+            sonuc = tslmt.v_c_f(dnsty, brut, self.lineEdit_8.text())
+            self.lineEdit_5.setText(sonuc[0])
+            self.lineEdit_6.setText(sonuc[1])
+            self.lineEdit_7.setText(sonuc[2])
+        except (ValueError):
+            self.lineEdit_8.clear()
 
     def olustur(self):
         """ Artık Veritabanına bilgileri eklemek için değişkenleri almaya başlamamız lazım  """
@@ -1950,14 +1958,12 @@ class Ui_MainWindow(object):
         self.lineEdit_16.clear()
 
     def help(self):
-        yol = os.getcwd()
-        tam_yol = yol + "\lib\help\index.html"
-        chromedir = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
-        webbrowser.get(chromedir).open(tam_yol)
+        dizin = os.getcwd()
+        os.startfile(dizin + "\lib\help\index.html")
 
     def triggerfinger(self):
         self.lineEdit.returnPressed.connect(self.tgemi)
-        self.lineEdit_8.returnPressed.connect(self.vcf_hesapla)
+        self.lineEdit_8.textChanged['QString'].connect(self.vcf_hesapla)
         self.pushButton.clicked.connect(self.olustur)
 
 import ic_rc

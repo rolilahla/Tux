@@ -7,12 +7,15 @@ from shutil import copy2
 import xlwings as xw
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+import webbrowser
+from threading import Thread
 
 yaz = VbagKur()
 t = time.strftime("%d %m %Y")
 tar = t.replace(" ", ".")
 settings = yaz.hepsini_oku(None,"settings")
-"""
+
+""" Settings 
 file_path = settings[0][2]
 op_place = settings[1][2]
 s_rate = settings[2][2]
@@ -20,29 +23,39 @@ m_rate = settings[3][2]
 f_rate = settings[4][2]
 or_vhc = settings[5][2]
 oz_vhc = settings[6][2]
-op_lisans = settings[7][2]"""
+op_lisans = settings[7][2]
+sorgu sayfası = settings[8][2]
+sorguyu kim yapacak = settings[9][2]
+"""
+
 
 def selenyum(defter_no, yol):
-    opts = Options()
-    opts.headless = True
-    driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
-    driver.get('https://atlantis.udhb.gov.tr/OTV2/_public/')
-    no_listesi = defter_no.split("-")
-    driver.find_element_by_id('pfix').send_keys(no_listesi[0])
-    driver.find_element_by_id('region').send_keys(no_listesi[1])
-    driver.find_element_by_id('city').send_keys(no_listesi[2])
-    driver.find_element_by_id('number').send_keys(no_listesi[3])
-    tetikle = driver.find_element_by_name('Submit')
-    tetikle.click()
-    path = settings[0][2] + yol + "\\sorgu.png"
-    print(path)
-    driver.save_screenshot(path)
-    driver.quit()
+    if int(settings[9][2]) == 1:
+        chromedir = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
+        webbrowser.get(chromedir).open(settings[8][2])
+    else:
+        opts = Options()
+        opts.headless = True
+        driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
+        driver.get('{}'.format(settings[8][2]))
+        no_listesi = defter_no.split("-")
+        driver.find_element_by_id('pfix').send_keys(no_listesi[0])
+        driver.find_element_by_id('region').send_keys(no_listesi[1])
+        driver.find_element_by_id('city').send_keys(no_listesi[2])
+        driver.find_element_by_id('number').send_keys(no_listesi[3])
+        tetikle = driver.find_element_by_name('Submit')
+        tetikle.click()
+
+        path = settings[0][2]+"\\" + yol + "\\sorgu.png"
+        driver.save_screenshot('{}'.format(path))
+        os.startfile(path)
+        driver.quit()
 
 def gemi_listele(arg):
     return yaz.veri_duzenle(yaz.hepsini_oku("gad", "gemiler", "kod", arg))
 
 def v_c_f(density, brut, sicaklik):
+
     if len(brut) == 3:
         sonuc_liste = []
         deger = (float(density) * 2000) / 2
@@ -115,6 +128,12 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
 
     """ Müşteri Bilgilerini Getir
     """
+    path = settings[0][2] +"\\"
+    klasor = gemi +" "+ tar
+    yol = klasor.lower()
+    tam_yol = path + yol
+    os.mkdir(tam_yol)
+
     musteri_info = yaz.tek_oku("firmalar", "kod", musteri_kodu)
     musteri_ad = musteri_info[0][2]
     musteri_vergid = musteri_info[0][3]
@@ -129,6 +148,8 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     gemi_kod = gemi_info[0][3]
     gemi_cins = gemi_info[0][4]
     gemi_defterno = gemi_info[0][5]
+    #defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
+    Thread(target=selenyum, args=(gemi_defterno, yol)).start()
     gemi_belgeno = gemi_info[0][6]
     gemi_sicilno = gemi_info[0][7]
     gemi_imo = gemi_info[0][8]
@@ -154,28 +175,21 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     """
     irsaliye_yaz(musteri_kodu, musteri_ad, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
                  urun_infor, yakit_turu, yogunluk, net_litre, kilogram, bolge_kodu, bolge, gemi_belgeno,
-                 teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur)
+                 teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur, tam_yol)
 
     ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_ad, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel, gemi_acenta,
-               gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici)
+               gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol)
 
-    check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno)
-    yol = gemi+" "+tar
-    #selenyum(gemi_defterno, yol)
-
+    check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
 
 def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
                  urun_infor, urun, dens, litre, kg, yer_kodu, bolge, belge_no,
-                 veren, alan, gemi, gemi_kodu, sicil, cins, defter_no, muhur):
-    gemlover = gemi + " " + tar
-    gem = gemlover.lower()
+                 veren, alan, gemi, gemi_kodu, sicil, cins, defter_no, muhur, yol):
+
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\irsaliye.xlsx"
-    hedef_dizin = settings[0][2] + gem
-    os.mkdir(hedef_dizin)
-
     kaynak = ana_dizin + irsaliye_yolu
-    hedef = hedef_dizin +"\\irsaliye.xlsx"
+    hedef = yol +"\\irsaliye.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
@@ -206,16 +220,14 @@ def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
     sht.range('AB24').value = muhur
     sht.range('AB25').value = settings[1][2]
 
-
 def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, actel, mevki, basaat, bisaat,
-               yakit, litre, kg, gemici):
-    gemlover = gad + " " + tar
-    gem = gemlover.lower()
+               yakit, litre, kg, gemici, yol):
+
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\ekbir.xlsx"
     kaynak = ana_dizin + irsaliye_yolu
-    hedef_dizin = settings[0][2] + gem
-    hedef = hedef_dizin + "\\Ek-1.xlsx"
+
+    hedef = yol + "\\Ek-1.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
@@ -243,15 +255,13 @@ def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, ac
     sht.range('M21').value = settings[5][2]
     sht.range('M22').value = settings[6][2]
 
+def check_list_yaz(teslimatci, gemi, defter_no, belge_no, yol):
 
-def check_list_yaz(teslimatci, gemi, defter_no, belge_no):
-    gemlover = gemi + " "+ tar
-    gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\checklist.xlsx"
     kaynak = ana_dizin + irsaliye_yolu
-    hedef_dizin = settings[0][2] + gem
-    hedef = hedef_dizin + "\\Check List.xlsx"
+
+    hedef = yol + "\\Check List.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
