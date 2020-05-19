@@ -11,6 +11,14 @@ def uyari(mesaj, baslik):
     inf.setStandardButtons(QMessageBox.Ok)
     inf.exec_()
 
+def giris_kontrol(mesaj):
+    inf = QMessageBox()
+    inf.setIcon(QMessageBox.Information)
+    inf.setWindowTitle("Eksik Bilgi Girişi")
+    inf.setText(mesaj + " kısmını doldurunuz")
+    inf.setStandardButtons(QMessageBox.Ok)
+    inf.exec_()
+
 def soru(baslik, mesaj, ymesaj, nmesaj):
     dens_box = QMessageBox()
     dens_box.setIcon(QMessageBox.Question)

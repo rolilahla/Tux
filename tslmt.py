@@ -25,14 +25,35 @@ or_vhc = settings[5][2]
 oz_vhc = settings[6][2]
 op_lisans = settings[7][2]
 sorgu sayfası = settings[8][2]
-sorguyu kim yapacak = settings[9][2]
+subis sorgusu yapılsın mı(E/H) ? = settings[9][2]
+"""
+"""
+chromedir = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
+        webbrowser.get(chromedir).open(settings[8][2])
 """
 
 
-def selenyum(defter_no, yol):
-    if int(settings[9][2]) == 1:
-        chromedir = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
-        webbrowser.get(chromedir).open(settings[8][2])
+def defter_sor(defter_no, yol):
+    opts = Options()
+    opts.headless = True
+    driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
+    driver.get('{}'.format(settings[8][2]))
+    no_listesi = defter_no.split("-")
+    driver.find_element_by_id('pfix').send_keys(no_listesi[0])
+    driver.find_element_by_id('region').send_keys(no_listesi[1])
+    driver.find_element_by_id('city').send_keys(no_listesi[2])
+    driver.find_element_by_id('number').send_keys(no_listesi[3])
+    tetikle = driver.find_element_by_name('Submit')
+    tetikle.click()
+
+    path = settings[0][2] + "\\" + yol + "\\sorgu.png"
+    driver.save_screenshot('{}'.format(path))
+    os.startfile(path)
+    driver.quit()
+
+def subis_sor(defter_no, yol):
+    if int(settings[9][2]) == 0:
+        pass
     else:
         opts = Options()
         opts.headless = True
@@ -149,7 +170,7 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     gemi_cins = gemi_info[0][4]
     gemi_defterno = gemi_info[0][5]
     #defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
-    Thread(target=selenyum, args=(gemi_defterno, yol)).start()
+    Thread(target=defter_sor, args=(gemi_defterno, yol)).start()
     gemi_belgeno = gemi_info[0][6]
     gemi_sicilno = gemi_info[0][7]
     gemi_imo = gemi_info[0][8]

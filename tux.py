@@ -1424,6 +1424,7 @@ class Ui_Settings(object):
         self.label_10 = QtWidgets.QLabel(Settings)
         self.label_10.setObjectName("label_10")
         self.gridLayout.addWidget(self.label_10, 9, 0, 1, 1)
+
         self.comboBox = QtWidgets.QComboBox(Settings)
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
@@ -1931,31 +1932,46 @@ class Ui_MainWindow(object):
         bitis_saati = self.lineEdit_33.text()
         barge_numune_muhur = self.lineEdit_35.text()
         gemi_numune_muhur = self.lineEdit_37.text()
+        if musteri_kodu == "":
+            mes.giris_kontrol("Müşteri ")
+        elif gemi == "":
+            mes.giris_kontrol("Gemi")
+        elif yogunluk == "":
+            mes.giris_kontrol("Yakıt türü")
+        elif brut_litre == "":
+            mes.giris_kontrol("Brüt Litre")
+        elif sicaklik == "":
+            mes.giris_kontrol("Sıcaklık")
+        elif yakit_alan_kisi == "":
+            mes.giris_kontrol("Yakıt Alacak Kişi (C/E)")
+        elif baslama_saati == "":
+            mes.giris_kontrol("Operasyon başlama saati")
+        elif bitis_saati == "":
+            mes.giris_kontrol("Operasyon bitiş saati")
+        else:
+            mesaj = gemi + " gemisine ait " + net_litre + \
+                    "  yakıt için teslimat dosyaları oluşturuluyor"
+            mes.uyari(mesaj, "Bilgilendirme")
 
+            tslmt.teslimat_hazirliği_yap(musteri_kodu, gemi, yakit_turu, yogunluk,
+                                         brut_litre, sicaklik, volum_correction, net_litre, kilogram,
+                                         teslimatci, yakit_alan_kisi, gemici,
+                                         bolge, baslama_saati, bitis_saati, barge_numune_muhur, gemi_numune_muhur)
 
-        mesaj = gemi + " gemisine ait " + net_litre + \
-                " litrelik teslimat bilgisi veritabanına eklendi. Teslimat dosyaları oluşturuluyor"
-        mes.uyari(mesaj, "Bilgilendirme")
-
-        tslmt.teslimat_hazirliği_yap(musteri_kodu, gemi, yakit_turu, yogunluk,
-                                     brut_litre, sicaklik, volum_correction, net_litre, kilogram,
-                                     teslimatci, yakit_alan_kisi, gemici,
-                                     bolge, baslama_saati, bitis_saati, barge_numune_muhur, gemi_numune_muhur)
-
-        self.lineEdit.clear()
-        self.comboBox_2.clear()
-        self.comboBox_4.setCurrentIndex(0)
-        self.lineEdit_2.clear()
-        self.lineEdit_3.clear()
-        self.lineEdit_5.clear()
-        self.lineEdit_6.clear()
-        self.lineEdit_7.clear()
-        self.lineEdit_8.clear()
-        self.lineEdit_33.clear()
-        self.lineEdit_34.clear()
-        self.lineEdit_35.clear()
-        self.lineEdit_37.clear()
-        self.lineEdit_16.clear()
+            self.lineEdit.clear()
+            self.comboBox_2.clear()
+            self.comboBox_4.setCurrentIndex(0)
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_5.clear()
+            self.lineEdit_6.clear()
+            self.lineEdit_7.clear()
+            self.lineEdit_8.clear()
+            self.lineEdit_33.clear()
+            self.lineEdit_34.clear()
+            self.lineEdit_35.clear()
+            self.lineEdit_37.clear()
+            self.lineEdit_16.clear()
 
     def help(self):
         dizin = os.getcwd()
