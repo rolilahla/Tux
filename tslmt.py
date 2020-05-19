@@ -46,31 +46,28 @@ def defter_sor(defter_no, yol):
     tetikle = driver.find_element_by_name('Submit')
     tetikle.click()
 
-    path = settings[0][2] + "\\" + yol + "\\sorgu.png"
+    path = settings[0][2] + "\\" + yol + "\\defter-sorgu.png"
     driver.save_screenshot('{}'.format(path))
     os.startfile(path)
     driver.quit()
 
 def subis_sor(defter_no, yol):
-    if int(settings[9][2]) == 0:
-        pass
-    else:
-        opts = Options()
-        opts.headless = True
-        driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
-        driver.get('{}'.format(settings[8][2]))
-        no_listesi = defter_no.split("-")
-        driver.find_element_by_id('pfix').send_keys(no_listesi[0])
-        driver.find_element_by_id('region').send_keys(no_listesi[1])
-        driver.find_element_by_id('city').send_keys(no_listesi[2])
-        driver.find_element_by_id('number').send_keys(no_listesi[3])
-        tetikle = driver.find_element_by_name('Submit')
-        tetikle.click()
+    opts = Options()
+    opts.headless = True
+    driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
+    driver.get('{}'.format(settings[16][2]))
+    no_listesi = defter_no.split("-")
+    driver.find_element_by_id('pfix').send_keys(no_listesi[0])
+    driver.find_element_by_id('region').send_keys(no_listesi[1])
+    driver.find_element_by_id('city').send_keys(no_listesi[2])
+    driver.find_element_by_id('number').send_keys(no_listesi[3])
+    tetikle = driver.find_element_by_name('Submit')
+    tetikle.click()
 
-        path = settings[0][2]+"\\" + yol + "\\sorgu.png"
-        driver.save_screenshot('{}'.format(path))
-        os.startfile(path)
-        driver.quit()
+    path = settings[0][2] + "\\" + yol + "\\subis-sorgu.png"
+    driver.save_screenshot('{}'.format(path))
+    os.startfile(path)
+    driver.quit()
 
 def gemi_listele(arg):
     return yaz.veri_duzenle(yaz.hepsini_oku("gad", "gemiler", "kod", arg))

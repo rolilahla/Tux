@@ -1338,6 +1338,7 @@ class Ui_UrunSil(object):
             self.listWidget.addItem(sorgu[i][0])
 
     def sil(self):
+
         if mes.urun_sil(self.listWidget.currentItem().text()) == True:
             self.yaz.kayit_sil("urun", "ad", self.listWidget.currentItem().text())
             self.listWidget.clear()
@@ -1349,131 +1350,453 @@ class Ui_UrunSil(object):
 class Ui_Settings(object):
     def __init__(self):
         self.yaz = VbagKur()
+        self.irsaliye = None
+        self.ek_1 = None
+        self.kontrol_cizelgesi = None
+        self.defter = None
+        self.subis = None
+        self.numunevrak = None
 
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
-        Settings.resize(569, 414)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Settings.setWindowIcon(icon)
-        self.gridLayout = QtWidgets.QGridLayout(Settings)
-        self.gridLayout.setObjectName("gridLayout")
-        self.label = QtWidgets.QLabel(Settings)
+        Settings.resize(518, 269)
+        self.listWidget = QtWidgets.QListWidget(Settings)
+        self.listWidget.setGeometry(QtCore.QRect(10, 10, 151, 251))
+        self.listWidget.setMovement(QtWidgets.QListView.Static)
+        self.listWidget.setFlow(QtWidgets.QListView.TopToBottom)
+        self.listWidget.setResizeMode(QtWidgets.QListView.Fixed)
+        self.listWidget.setLayoutMode(QtWidgets.QListView.SinglePass)
+        self.listWidget.setObjectName("listWidget")
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        self.stackedWidget = QtWidgets.QStackedWidget(Settings)
+        self.stackedWidget.setGeometry(QtCore.QRect(170, 10, 601, 461))
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.page = QtWidgets.QWidget()
+        self.page.setObjectName("page")
+        self.frame = QtWidgets.QFrame(self.page)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 332, 251))
+        self.frame.setMinimumSize(QtCore.QSize(332, 251))
+        self.frame.setMaximumSize(QtCore.QSize(332, 251))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.lineEdit = QtWidgets.QLineEdit(Settings)
+        self.gridLayout_6.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 2)
-        self.pushButton = QtWidgets.QPushButton(Settings)
+        self.gridLayout_6.addWidget(self.lineEdit, 0, 1, 1, 1)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
         self.pushButton.setObjectName("pushButton")
-        self.gridLayout.addWidget(self.pushButton, 0, 3, 1, 1)
-        self.label_2 = QtWidgets.QLabel(Settings)
-        self.label_2.setWhatsThis("")
-        self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-        self.lineEdit_2 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_2.setText("")
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 3)
-        self.label_3 = QtWidgets.QLabel(Settings)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
-        self.lineEdit_3 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 3)
-        self.label_4 = QtWidgets.QLabel(Settings)
-        self.label_4.setObjectName("label_4")
-        self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
-        self.lineEdit_4 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.gridLayout.addWidget(self.lineEdit_4, 3, 1, 1, 3)
-        self.label_5 = QtWidgets.QLabel(Settings)
-        self.label_5.setObjectName("label_5")
-        self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
-        self.lineEdit_5 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 3)
-        self.label_6 = QtWidgets.QLabel(Settings)
-        self.label_6.setObjectName("label_6")
-        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
-        self.lineEdit_6 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_6.setText("")
-        self.lineEdit_6.setObjectName("lineEdit_6")
-        self.gridLayout.addWidget(self.lineEdit_6, 5, 1, 1, 3)
-        self.label_7 = QtWidgets.QLabel(Settings)
-        self.label_7.setObjectName("label_7")
-        self.gridLayout.addWidget(self.label_7, 6, 0, 1, 1)
-        self.lineEdit_7 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_7.setText("")
-        self.lineEdit_7.setObjectName("lineEdit_7")
-        self.gridLayout.addWidget(self.lineEdit_7, 6, 1, 1, 3)
-        self.label_8 = QtWidgets.QLabel(Settings)
-        self.label_8.setObjectName("label_8")
-        self.gridLayout.addWidget(self.label_8, 7, 0, 1, 1)
-        self.lineEdit_8 = QtWidgets.QLineEdit(Settings)
-        self.lineEdit_8.setText("")
-        self.lineEdit_8.setObjectName("lineEdit_8")
-        self.gridLayout.addWidget(self.lineEdit_8, 7, 1, 1, 3)
-        self.label_9 = QtWidgets.QLabel(Settings)
+        self.gridLayout_6.addWidget(self.pushButton, 0, 2, 1, 1)
+        self.groupBox = QtWidgets.QGroupBox(self.frame)
+        self.groupBox.setObjectName("groupBox")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        self.checkBox_3 = QtWidgets.QCheckBox(self.groupBox)
+        self.checkBox_3.setObjectName("checkBox_3")
+        self.gridLayout_5.addWidget(self.checkBox_3, 1, 0, 1, 1)
+        self.checkBox = QtWidgets.QCheckBox(self.groupBox)
+        self.checkBox.setObjectName("checkBox")
+        self.gridLayout_5.addWidget(self.checkBox, 0, 0, 1, 1)
+        self.checkBox_2 = QtWidgets.QCheckBox(self.groupBox)
+        self.checkBox_2.setObjectName("checkBox_2")
+        self.gridLayout_5.addWidget(self.checkBox_2, 0, 1, 1, 1)
+        self.checkBox_4 = QtWidgets.QCheckBox(self.groupBox)
+        self.checkBox_4.setObjectName("checkBox_4")
+        self.gridLayout_5.addWidget(self.checkBox_4, 1, 1, 1, 1)
+        self.checkBox_5 = QtWidgets.QCheckBox(self.groupBox)
+        self.checkBox_5.setObjectName("checkBox_5")
+        self.gridLayout_5.addWidget(self.checkBox_5, 2, 0, 1, 1)
+        self.checkBox_6 = QtWidgets.QCheckBox(self.groupBox)
+        self.checkBox_6.setObjectName("checkBox_6")
+        self.gridLayout_5.addWidget(self.checkBox_6, 2, 1, 1, 1)
+        self.gridLayout_6.addWidget(self.groupBox, 1, 0, 1, 3)
+        spacerItem = QtWidgets.QSpacerItem(20, 68, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_6.addItem(spacerItem, 2, 2, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(228, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem1, 3, 0, 1, 2)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(75, 25))
+        self.pushButton_2.setMaximumSize(QtCore.QSize(75, 25))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.gridLayout_6.addWidget(self.pushButton_2, 3, 2, 1, 1)
+        self.stackedWidget.addWidget(self.page)
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setObjectName("page_2")
+        self.frame_2 = QtWidgets.QFrame(self.page_2)
+        self.frame_2.setGeometry(QtCore.QRect(0, 0, 332, 251))
+        self.frame_2.setMinimumSize(QtCore.QSize(332, 251))
+        self.frame_2.setMaximumSize(QtCore.QSize(332, 251))
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_2)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.label_9 = QtWidgets.QLabel(self.frame_2)
         self.label_9.setObjectName("label_9")
-        self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
-        self.lineEdit_9 = QtWidgets.QLineEdit(Settings)
+        self.gridLayout_4.addWidget(self.label_9, 0, 0, 1, 1)
+        self.lineEdit_9 = QtWidgets.QLineEdit(self.frame_2)
         self.lineEdit_9.setText("")
         self.lineEdit_9.setObjectName("lineEdit_9")
-        self.gridLayout.addWidget(self.lineEdit_9, 8, 1, 1, 3)
-        self.label_10 = QtWidgets.QLabel(Settings)
-        self.label_10.setObjectName("label_10")
-        self.gridLayout.addWidget(self.label_10, 9, 0, 1, 1)
-
-        self.comboBox = QtWidgets.QComboBox(Settings)
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.gridLayout.addWidget(self.comboBox, 9, 1, 1, 3)
-        spacerItem = QtWidgets.QSpacerItem(325, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 10, 0, 1, 2)
-        self.pushButton_2 = QtWidgets.QPushButton(Settings)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(75, 23))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(75, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout.addWidget(self.pushButton_2, 10, 2, 1, 2)
+        self.gridLayout_4.addWidget(self.lineEdit_9, 0, 1, 1, 2)
+        self.label_11 = QtWidgets.QLabel(self.frame_2)
+        self.label_11.setObjectName("label_11")
+        self.gridLayout_4.addWidget(self.label_11, 1, 0, 1, 1)
+        self.lineEdit_10 = QtWidgets.QLineEdit(self.frame_2)
+        self.lineEdit_10.setText("")
+        self.lineEdit_10.setObjectName("lineEdit_10")
+        self.gridLayout_4.addWidget(self.lineEdit_10, 1, 1, 1, 2)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 121, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_4.addItem(spacerItem2, 3, 2, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(170, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem3, 4, 0, 1, 2)
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame_2)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(75, 25))
+        self.pushButton_3.setMaximumSize(QtCore.QSize(75, 25))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout_4.addWidget(self.pushButton_3, 4, 2, 1, 1)
+        self.stackedWidget.addWidget(self.page_2)
+        self.page_3 = QtWidgets.QWidget()
+        self.page_3.setObjectName("page_3")
+        self.frame_3 = QtWidgets.QFrame(self.page_3)
+        self.frame_3.setGeometry(QtCore.QRect(0, 0, 332, 251))
+        self.frame_3.setMinimumSize(QtCore.QSize(332, 251))
+        self.frame_3.setMaximumSize(QtCore.QSize(332, 251))
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.frame_3)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.label_3 = QtWidgets.QLabel(self.frame_3)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.gridLayout_3.addWidget(self.lineEdit_3, 0, 1, 1, 2)
+        self.label_4 = QtWidgets.QLabel(self.frame_3)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout_3.addWidget(self.label_4, 1, 0, 1, 1)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.gridLayout_3.addWidget(self.lineEdit_4, 1, 1, 1, 2)
+        self.label_5 = QtWidgets.QLabel(self.frame_3)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_3.addWidget(self.label_5, 2, 0, 1, 1)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.gridLayout_3.addWidget(self.lineEdit_5, 2, 1, 1, 2)
+        self.label_6 = QtWidgets.QLabel(self.frame_3)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout_3.addWidget(self.label_6, 3, 0, 1, 1)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_6.setText("")
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.gridLayout_3.addWidget(self.lineEdit_6, 3, 1, 1, 2)
+        self.label_7 = QtWidgets.QLabel(self.frame_3)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout_3.addWidget(self.label_7, 4, 0, 1, 1)
+        self.lineEdit_7 = QtWidgets.QLineEdit(self.frame_3)
+        self.lineEdit_7.setText("")
+        self.lineEdit_7.setObjectName("lineEdit_7")
+        self.gridLayout_3.addWidget(self.lineEdit_7, 4, 1, 1, 2)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 69, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_3.addItem(spacerItem4, 5, 1, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(201, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem5, 6, 0, 1, 1)
+        self.pushButton_4 = QtWidgets.QPushButton(self.frame_3)
+        self.pushButton_4.setMinimumSize(QtCore.QSize(75, 25))
+        self.pushButton_4.setMaximumSize(QtCore.QSize(75, 25))
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.gridLayout_3.addWidget(self.pushButton_4, 6, 2, 1, 1)
+        self.stackedWidget.addWidget(self.page_3)
+        self.page_4 = QtWidgets.QWidget()
+        self.page_4.setObjectName("page_4")
+        self.frame_4 = QtWidgets.QFrame(self.page_4)
+        self.frame_4.setGeometry(QtCore.QRect(0, 0, 332, 251))
+        self.frame_4.setMinimumSize(QtCore.QSize(332, 251))
+        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_4.setObjectName("frame_4")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frame_4)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_8 = QtWidgets.QLabel(self.frame_4)
+        self.label_8.setObjectName("label_8")
+        self.gridLayout_2.addWidget(self.label_8, 0, 0, 1, 1)
+        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame_4)
+        self.lineEdit_8.setText("")
+        self.lineEdit_8.setObjectName("lineEdit_8")
+        self.gridLayout_2.addWidget(self.lineEdit_8, 0, 1, 1, 2)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 173, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem6, 1, 2, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(208, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem7, 2, 0, 1, 2)
+        self.pushButton_5 = QtWidgets.QPushButton(self.frame_4)
+        self.pushButton_5.setMinimumSize(QtCore.QSize(75, 25))
+        self.pushButton_5.setMaximumSize(QtCore.QSize(75, 25))
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.gridLayout_2.addWidget(self.pushButton_5, 2, 2, 1, 1)
+        self.stackedWidget.addWidget(self.page_4)
+        self.page_5 = QtWidgets.QWidget()
+        self.page_5.setObjectName("page_5")
+        self.frame_5 = QtWidgets.QFrame(self.page_5)
+        self.frame_5.setGeometry(QtCore.QRect(0, 0, 329, 253))
+        self.frame_5.setMaximumSize(QtCore.QSize(435, 275))
+        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_5.setObjectName("frame_5")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame_5)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_12 = QtWidgets.QLabel(self.frame_5)
+        self.label_12.setObjectName("label_12")
+        self.gridLayout.addWidget(self.label_12, 0, 0, 1, 1)
+        self.lineEdit_11 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_11.setText("")
+        self.lineEdit_11.setObjectName("lineEdit_11")
+        self.gridLayout.addWidget(self.lineEdit_11, 0, 1, 1, 2)
+        self.label_13 = QtWidgets.QLabel(self.frame_5)
+        self.label_13.setObjectName("label_13")
+        self.gridLayout.addWidget(self.label_13, 1, 0, 1, 1)
+        self.lineEdit_12 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_12.setText("")
+        self.lineEdit_12.setObjectName("lineEdit_12")
+        self.gridLayout.addWidget(self.lineEdit_12, 1, 1, 1, 2)
+        self.label_14 = QtWidgets.QLabel(self.frame_5)
+        self.label_14.setObjectName("label_14")
+        self.gridLayout.addWidget(self.label_14, 2, 0, 1, 1)
+        self.lineEdit_13 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_13.setText("")
+        self.lineEdit_13.setObjectName("lineEdit_13")
+        self.gridLayout.addWidget(self.lineEdit_13, 2, 1, 1, 2)
+        self.label_15 = QtWidgets.QLabel(self.frame_5)
+        self.label_15.setObjectName("label_15")
+        self.gridLayout.addWidget(self.label_15, 3, 0, 1, 1)
+        self.lineEdit_14 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_14.setText("")
+        self.lineEdit_14.setObjectName("lineEdit_14")
+        self.gridLayout.addWidget(self.lineEdit_14, 3, 1, 1, 2)
+        self.label_16 = QtWidgets.QLabel(self.frame_5)
+        self.label_16.setObjectName("label_16")
+        self.gridLayout.addWidget(self.label_16, 4, 0, 1, 1)
+        self.lineEdit_15 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_15.setText("")
+        self.lineEdit_15.setObjectName("lineEdit_15")
+        self.gridLayout.addWidget(self.lineEdit_15, 4, 1, 1, 2)
+        self.label_17 = QtWidgets.QLabel(self.frame_5)
+        self.label_17.setObjectName("label_17")
+        self.gridLayout.addWidget(self.label_17, 5, 0, 1, 1)
+        self.lineEdit_16 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_16.setText("")
+        self.lineEdit_16.setObjectName("lineEdit_16")
+        self.gridLayout.addWidget(self.lineEdit_16, 5, 1, 1, 2)
+        self.label_18 = QtWidgets.QLabel(self.frame_5)
+        self.label_18.setObjectName("label_18")
+        self.gridLayout.addWidget(self.label_18, 6, 0, 1, 1)
+        self.lineEdit_17 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_17.setText("")
+        self.lineEdit_17.setObjectName("lineEdit_17")
+        self.gridLayout.addWidget(self.lineEdit_17, 6, 1, 1, 2)
+        self.label_19 = QtWidgets.QLabel(self.frame_5)
+        self.label_19.setObjectName("label_19")
+        self.gridLayout.addWidget(self.label_19, 7, 0, 1, 1)
+        self.lineEdit_18 = QtWidgets.QLineEdit(self.frame_5)
+        self.lineEdit_18.setText("")
+        self.lineEdit_18.setObjectName("lineEdit_18")
+        self.gridLayout.addWidget(self.lineEdit_18, 7, 1, 1, 2)
+        spacerItem8 = QtWidgets.QSpacerItem(228, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem8, 8, 0, 1, 2)
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame_5)
+        self.pushButton_6.setMinimumSize(QtCore.QSize(75, 25))
+        self.pushButton_6.setMaximumSize(QtCore.QSize(75, 25))
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.gridLayout.addWidget(self.pushButton_6, 8, 2, 1, 1)
+        self.stackedWidget.addWidget(self.page_5)
         self.bul()
 
         self.retranslateUi(Settings)
+        self.listWidget.clicked['QModelIndex'].connect(self.slide)
         self.pushButton.clicked.connect(self.dosya_kayit_yeri)
-        self.pushButton_2.clicked.connect(self.guncelle)
+        self.checkBox.stateChanged.connect(self.checkbox_irsaliye)
+        self.checkBox_2.stateChanged.connect(self.checkbox_ek_1)
+        self.checkBox_3.stateChanged.connect(self.checkbox_kcizelgesi)
+        self.checkBox_4.stateChanged.connect(self.checkbox_defter)
+        self.checkBox_5.stateChanged.connect(self.checkbox_subis)
+        self.checkBox_6.stateChanged.connect(self.checkbox_numune)
+
+        self.pushButton_2.clicked.connect(self.dosya_islemleri_guncelle)
+        self.pushButton_3.clicked.connect(self.sorgu_islemleri_guncelle)
+        self.pushButton_4.clicked.connect(self.rate_vhc_guncelle)
+        self.pushButton_5.clicked.connect(self.lisans_guncelle)
+        self.pushButton_6.clicked.connect(self.ek_1_gemi_bilgisi_guncelle)
         QtCore.QMetaObject.connectSlotsByName(Settings)
 
     def retranslateUi(self, Settings):
         _translate = QtCore.QCoreApplication.translate
         Settings.setWindowTitle(_translate("Settings", "Ayarlar"))
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        item = self.listWidget.item(0)
+        item.setText(_translate("Settings", "Dosya İşlemleri"))
+        item = self.listWidget.item(1)
+        item.setText(_translate("Settings", "Sorgulama"))
+        item = self.listWidget.item(2)
+        item.setText(_translate("Settings", "EK-2 VHC & Rate Bilgileri"))
+        item = self.listWidget.item(3)
+        item.setText(_translate("Settings", "Dağıtıcı"))
+        item = self.listWidget.item(4)
+        item.setText(_translate("Settings", "EK-1 Gemi Bilgileri"))
+        self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label.setText(_translate("Settings", "Dosya Kayıt Yeri"))
         self.pushButton.setText(_translate("Settings", "Seç"))
-        self.label_2.setText(_translate("Settings", "Teslimat Yapılan Terminal veya Barge"))
+        self.groupBox.setTitle(_translate("Settings", "Oluşturulacak Evraklar"))
+        self.checkBox_3.setText(_translate("Settings", "Kontrol Çizelgesi"))
+        self.checkBox.setText(_translate("Settings", "İrsaliye"))
+        self.checkBox_2.setText(_translate("Settings", "EK-1"))
+        self.checkBox_4.setText(_translate("Settings", "Defter Sorgu"))
+        self.checkBox_5.setText(_translate("Settings", "SUBİS Sorgu"))
+        self.checkBox_6.setText(_translate("Settings", "Numune Evrağı"))
+        self.pushButton_2.setText(_translate("Settings", "Güncelle"))
+        self.label_9.setText(_translate("Settings", "Defter Sorgu Sayfası"))
+        self.label_11.setText(_translate("Settings", "SUBİS Sorgu Sayfası"))
+        self.pushButton_3.setText(_translate("Settings", "Güncelle"))
         self.label_3.setText(_translate("Settings", "Başlangıç transfer miktarı  (LT/Saat)"))
         self.label_4.setText(_translate("Settings", "Maksimum transfer miktarı  (LT/Saat)"))
         self.label_5.setText(_translate("Settings", "Tank full dolumu transfer miktarı  (LT/Saat)"))
         self.label_6.setText(_translate("Settings", "İrtibat kurulacak VHC kanalı"))
         self.label_7.setText(_translate("Settings", "Terminal veya Barge içi  VHC kanalı"))
+        self.pushButton_4.setText(_translate("Settings", "Güncelle"))
         self.label_8.setText(_translate("Settings", " Dağıtıcı Lisansı"))
-        self.label_9.setText(_translate("Settings", "Defter Sorgu Sayfası"))
-        self.label_10.setText(_translate("Settings", "Sorguyu yapacak olan"))
-        self.comboBox.setItemText(0, _translate("Settings", "Program"))
-        self.comboBox.setItemText(1, _translate("Settings", "Manuel"))
-        self.pushButton_2.setText(_translate("Settings", "Kaydet"))
+        self.pushButton_5.setText(_translate("Settings", "Güncelle"))
+        self.label_12.setText(_translate("Settings", "Gemi Adı"))
+        self.label_13.setText(_translate("Settings", "Gemi Cinsi"))
+        self.label_14.setText(_translate("Settings", "İMO No / Çağrı  İşareti"))
+        self.label_15.setText(_translate("Settings", "Donatan / İşleten"))
+        self.label_16.setText(_translate("Settings", "Adres"))
+        self.label_17.setText(_translate("Settings", "Tel / Faks"))
+        self.label_18.setText(_translate("Settings", "Acentesi"))
+        self.label_19.setText(_translate("Settings", "Acente Tel/Faks"))
+        self.pushButton_6.setText(_translate("Settings", "Güncelle"))
+
+    def slide(self):
+        liste = ["Dosya İşlemleri", "Sorgulama", "EK-2 VHC & Rate Bilgileri", "Dağıtıcı", "EK-1 Gemi Bilgileri"]
+        a = self.listWidget.currentItem().text()
+        for i in range(len(liste)):
+            if liste[i] == a:
+                self.stackedWidget.setCurrentIndex(i)
+            else:
+                pass
 
     def bul(self):
         sonuc = self.yaz.kolon_oku("deger", "settings")
+        #dosya sayfası
         self.lineEdit.setText(sonuc[0][0])
-        self.lineEdit_2.setText(sonuc[1][0])
+        if sonuc[10][0] == "0":
+            self.checkBox.setChecked(False)
+            self.irsaliye = "0"
+        else:
+            self.checkBox.setChecked(True)
+            self.irsaliye = "1"
+        if sonuc[11][0] == "0":
+            self.checkBox_2.setChecked(False)
+            self.ek_1 = "0"
+        else:
+            self.checkBox_2.setChecked(True)
+            self.ek_1 = "1"
+        if sonuc[12][0] == "0":
+            self.checkBox_3.setChecked(False)
+            self.kontrol_cizelgesi = "0"
+        else:
+            self.checkBox_3.setChecked(True)
+            self.kontrol_cizelgesi = "1"
+        if sonuc[13][0] == "0":
+            self.checkBox_4.setChecked(False)
+            self.defter = "0"
+        else:
+            self.checkBox_4.setChecked(True)
+            self.defter = "1"
+        if sonuc[14][0] == "0":
+            self.checkBox_5.setChecked(False)
+            self.subis = "0"
+        else:
+            self.checkBox_5.setChecked(True)
+            self.subis = "1"
+        if sonuc[15][0] == "0":
+            self.checkBox_6.setChecked(False)
+            self.numunevrak  ="0"
+        else:
+            self.checkBox_6.setChecked(True)
+            self.numunevrak = "1"
+
+        #sorgu sayfası
+        self.lineEdit_9.setText(sonuc[8][0])
+        self.lineEdit_10.setText(sonuc[16][0])
+
+        #rate & Vhc sayfası
         self.lineEdit_3.setText(sonuc[2][0])
         self.lineEdit_4.setText(sonuc[3][0])
         self.lineEdit_5.setText(sonuc[4][0])
         self.lineEdit_6.setText(sonuc[5][0])
         self.lineEdit_7.setText(sonuc[6][0])
+
+        #Dağıtıcı
         self.lineEdit_8.setText(sonuc[7][0])
-        self.lineEdit_9.setText(sonuc[8][0])
-        self.comboBox.setCurrentIndex(int(sonuc[9][0]))
+
+        #Ek-1 Gemi bilgileri
+        self.lineEdit_11.setText(sonuc[17][0])
+        self.lineEdit_12.setText(sonuc[18][0])
+        self.lineEdit_13.setText(sonuc[19][0])
+        self.lineEdit_14.setText(sonuc[20][0])
+        self.lineEdit_15.setText(sonuc[21][0])
+        self.lineEdit_16.setText(sonuc[22][0])
+        self.lineEdit_17.setText(sonuc[23][0])
+        self.lineEdit_18.setText(sonuc[24][0])
+
+    def checkbox_irsaliye(self, state):
+        if state == QtCore.Qt.Checked :
+            self.irsaliye = 1
+        else:
+            self.irsaliye = 0
+
+    def checkbox_ek_1(self, state):
+        if state == QtCore.Qt.Checked :
+            self.ek_1 = 1
+        else:
+            self.ek_1 = 0
+
+    def checkbox_kcizelgesi(self, state):
+        if state == QtCore.Qt.Checked :
+            self.kontrol_cizelgesi = 1
+        else:
+            self.kontrol_cizelgesi = 0
+
+    def checkbox_defter(self, state):
+        if state == QtCore.Qt.Checked :
+            self.defter = 1
+        else:
+            self.defter = 0
+
+    def checkbox_subis(self, state):
+        if state == QtCore.Qt.Checked :
+            self.subis = 1
+        else:
+            self.subis = 0
+
+    def checkbox_numune(self, state):
+        if state == QtCore.Qt.Checked :
+            self.numunevrak = 1
+        else:
+            self.numunevrak = 0
 
     def dosya_kayit_yeri(self):
         directory = QtWidgets.QFileDialog.getExistingDirectory()
@@ -1481,22 +1804,55 @@ class Ui_Settings(object):
             self.lineEdit.clear()
             self.lineEdit.setText(directory)
 
-    def guncelle(self):
+    #Güncelleme İşlemleri
+    def dosya_islemleri_guncelle(self):
+        self.yaz.isle("UPDATE settings SET deger='{}' WHERE id = '{}'".format(self.lineEdit.text(), 1))
+        c_listesi = []
+        c_listesi.append(self.irsaliye)
+        c_listesi.append(self.ek_1)
+        c_listesi.append(self.kontrol_cizelgesi)
+        c_listesi.append(self.defter)
+        c_listesi.append(self.subis)
+        c_listesi.append(self.numunevrak)
+        self.yaz.set_guncelle_coklu(c_listesi, 11)
+        mesaj = "Dosyalama ayarları güncellendi"
+        mes.uyari(mesaj, "Veritabanı Güncelleme")
+
+    def sorgu_islemleri_guncelle(self):
+        self.yaz.isle("UPDATE settings SET deger='{}' WHERE id = '{}'".format(self.lineEdit_9.text(), 9))
+        self.yaz.isle("UPDATE settings SET deger='{}' WHERE id = '{}'".format(self.lineEdit_10.text(), 17))
+        mesaj = "Sorgulama bilgileri güncellendi"
+        mes.uyari(mesaj, "Veritabanı Güncelleme")
+
+    def rate_vhc_guncelle(self):
         liste = []
-        liste.append(self.lineEdit.text())
-        liste.append(self.lineEdit_2.text())
         liste.append(self.lineEdit_3.text())
         liste.append(self.lineEdit_4.text())
         liste.append(self.lineEdit_5.text())
         liste.append(self.lineEdit_6.text())
         liste.append(self.lineEdit_7.text())
-        liste.append(self.lineEdit_8.text())
-        liste.append(self.lineEdit_9.text())
-        liste.append(str(self.comboBox.currentIndex()))
-        self.yaz.set_guncelle(liste)
-        mesaj = "Ayarlar güncellendi"
-        mes.uyari(mesaj, "Veritabanı güncelleme")
-        self.bul()
+        self.yaz.set_guncelle_coklu(liste, 3)
+        mesaj = "Rate & VHC bilgileri güncellendi"
+        mes.uyari(mesaj, "Veritabanı Güncelleme")
+
+    def lisans_guncelle(self):
+        self.yaz.isle("UPDATE settings SET deger='{}' WHERE id = '{}'".format(self.lineEdit_8.text(), 8))
+        mesaj = "Dağıtıcı lisans ayarları güncellendi"
+        mes.uyari(mesaj, "Veritabanı Güncelleme")
+
+    def ek_1_gemi_bilgisi_guncelle(self):
+        liste = []
+        liste.append(self.lineEdit_11.text())
+        liste.append(self.lineEdit_12.text())
+        liste.append(self.lineEdit_13.text())
+        liste.append(self.lineEdit_14.text())
+        liste.append(self.lineEdit_15.text())
+        liste.append(self.lineEdit_16.text())
+        liste.append(self.lineEdit_17.text())
+        liste.append(self.lineEdit_18.text())
+        self.yaz.set_guncelle_coklu(liste, 18)
+        mesaj = "İkmal gemisi bilgileri güncellendi"
+        mes.uyari(mesaj, "Veritabanı Güncelleme")
 
 
 class Ui_MainWindow(object):

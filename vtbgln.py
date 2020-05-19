@@ -190,6 +190,13 @@ class VbagKur(object):
             self.vt.commit()
             sayac += 1
 
+    def set_guncelle_coklu(self, liste, say):
+        sayac = say
+        for i in range(len(liste)):
+            self.im.execute("""UPDATE settings SET deger='{}' WHERE id = '{}'""".format(liste[i], sayac))
+            self.vt.commit()
+            sayac += 1
+
 
 
     def veritabanini_kapat(self):
