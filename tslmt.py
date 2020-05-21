@@ -139,7 +139,7 @@ def tek_sonuc_cek(ad, firmalar, kod, deger):
 def personel_hazirla(firma):
     return yaz.veri_duzenle(yaz.hepsini_oku("ad", "personel", "firma", firma))
 
-def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
+def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
 				   brut_litre, sicaklik , volum_correction, net_litre, kilogram,
 				   teslimatci, yakit_alan_kisi, gemici,
 				   bolge, baslama_saati, bitis_saati, barge_numune_muhur, gemi_numune_muhur):
@@ -152,8 +152,8 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     tam_yol = path + yol
     os.mkdir(tam_yol)
 
-    musteri_info = yaz.tek_oku("firmalar", "kod", musteri_kodu)
-    musteri_ad = musteri_info[0][2]
+    musteri_info = yaz.tek_oku("firmalar", "ad", musteri_adi)
+    musteri_kod = musteri_info[0][1]
     musteri_vergid = musteri_info[0][3]
     musteri_vergin = musteri_info[0][4]
     musteri_tel = musteri_info[0][5]
@@ -168,6 +168,12 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     gemi_defterno = gemi_info[0][5]
     #defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
     Thread(target=defter_sor, args=(gemi_defterno, yol)).start()
+    if settings[14][0]  == 1 and gemi_cins == "BALIK AVLAMA":
+        Thread(target=subis_sor, args=(gemi_defterno, yol)).start()
+    else:
+        pass
+
+
     gemi_belgeno = gemi_info[0][6]
     gemi_sicilno = gemi_info[0][7]
     gemi_imo = gemi_info[0][8]
@@ -191,11 +197,11 @@ def teslimat_hazirliği_yap(musteri_kodu ,gemi, yakit_turu, yogunluk,
     yaz.satis_ekle(tar, musteri_kodu, musteri_ad, gemi, gemi_cins, yakit_turu, yogunluk,
                    net_litre, kilogram, teslimatci)
     """
-    irsaliye_yaz(musteri_kodu, musteri_ad, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
+    irsaliye_yaz(musteri_kod, musteri_adi, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
                  urun_infor, yakit_turu, yogunluk, net_litre, kilogram, bolge_kodu, bolge, gemi_belgeno,
                  teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur, tam_yol)
 
-    ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_ad, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel, gemi_acenta,
+    ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_adi, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel, gemi_acenta,
                gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol)
 
     check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
