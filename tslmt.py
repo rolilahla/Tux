@@ -52,19 +52,27 @@ def defter_sor(defter_no, yol):
     driver.quit()
 
 def subis_sor(defter_no, yol):
+    print("subis sorgusu başladı")
     opts = Options()
     opts.headless = True
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
     driver.get('{}'.format(settings[16][2]))
+    print("bağlantı kuruldu")
+    print("defter bilgisi alınıyor")
     no_listesi = defter_no.split("-")
-    driver.find_element_by_id('pfix').send_keys(no_listesi[0])
-    driver.find_element_by_id('region').send_keys(no_listesi[1])
-    driver.find_element_by_id('city').send_keys(no_listesi[2])
-    driver.find_element_by_id('number').send_keys(no_listesi[3])
-    tetikle = driver.find_element_by_name('Submit')
-    tetikle.click()
+    for i in range(len(no_listesi)):
+        print("defter bilgisi ; " + no_listesi[i])
 
-    path = settings[0][2] + "\\" + yol + "\\subis-sorgu.png"
+    driver.find_element_by_id('txtNote1').send_keys(no_listesi[0])
+    driver.find_element_by_id('txtNote2').send_keys(no_listesi[1])
+    driver.find_element_by_id('txtNote3').send_keys(no_listesi[2])
+    driver.find_element_by_id('txtNote4').send_keys(no_listesi[3])
+    tetikle = driver.find_element_by_id('btnLogin')
+    tetikle.click()
+    body = driver.find_element_by_css_selector('body')
+    body.send_keys(Keys.PAGE_DOWN)
+    body.send_keys(Keys.PAGE_DOWN)
+    body.send_keys(Keys.PAGE_DOWN)
     driver.save_screenshot('{}'.format(path))
     os.startfile(path)
     driver.quit()
@@ -205,6 +213,64 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol)
 
     check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
+
+def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, yer, plaka, ce):
+    #Tanker teslimatında irsaliye ek-1 gibi evraklar olmadığı için sadece
+    #defter -subis sorguları ve istenirse numune evraklarını yapıcaz
+    # bu sebeble firma bilgilerine gerek yok
+    #gemi defter no bilgisi sorguları yapmak için yeterli
+
+    path = settings[0][2] + "\\"
+    klasor = gemi + " " + tar
+    yol = klasor.lower()
+    tam_yol = path + yol
+    os.mkdir(tam_yol)
+
+    gemi_info = yaz.tek_oku("gemiler", "gad", gemi)
+    gemi_id = gemi_info[0][0]
+    gemi_kod = gemi_info[0][3]
+    gemi_cins = gemi_info[0][4]
+    gemi_defterno = gemi_info[0][5]
+    gemi_belgeno = gemi_info[0][6]
+    gemi_sicilno = gemi_info[0][7]
+    # defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
+    Thread(target=defter_sor, args=(gemi_defterno, yol)).start()
+    if settings[14][2] == "1" and gemi_cins == "BALIK AVLAMA":
+        Thread(target=subis_sor, args=(gemi_defterno, yol)).start()
+        print("Thread işlemi subis sorgusu için başlatıldı")
+    else:
+        print("thread başlatamadı")
+        print(settings[14][2])
+        print(type(settings[14][2]))
+        print(gemi_cins)
+
+
+    #Thread işlemi ile defter sorgusu varsayılan olarak
+    #Subis sorgusu ise veritabanı ayarlarından sorgu seçilmişse ve gemi cinsi "BALIK AVLAMA" ise yapılacak
+
+    #burada son olarak veritabanında numune evrakını seçicez
+    #eğer hazırlanmak istenirse onu da yapacaz
+    if settings[15][0] == 0:
+        pass
+    else:
+        ana_dizin = os.getcwd()
+        irsaliye_yolu = "\\lib\\usefile\\numune.xlsx"
+        kaynak = ana_dizin + irsaliye_yolu
+        hedef = tam_yol + "\\numune.xlsx"
+        copy2(kaynak, hedef)
+
+        wb = xw.Book(hedef)
+        sht = wb.sheets['Sayfa1']
+        sht.range('L1').value =yer
+        sht.range('L2').value =yakit
+        sht.range('L3').value =gemi
+        sht.range('L4').value = plaka
+        sht.range('L5').value = muhurler[-1]
+        sht.range('L6').value = muhurler[0]
+        sht.range('L7').value = muhurler[1]
+        sht.range('L8').value = ce
+        sht.range('L9').value = teslimatci
+
 
 def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
                  urun_infor, urun, dens, litre, kg, yer_kodu, bolge, belge_no,
