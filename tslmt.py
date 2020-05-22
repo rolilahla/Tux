@@ -1,39 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+
 from vtbgln import VbagKur
 import math, time, os
 from shutil import copy2
 import xlwings as xw
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
 import webbrowser
 from threading import Thread
 
 yaz = VbagKur()
 t = time.strftime("%d %m %Y")
 tar = t.replace(" ", ".")
-settings = yaz.hepsini_oku(None,"settings")
 
-""" Settings 
-file_path = settings[0][2]
-op_place = settings[1][2]
-s_rate = settings[2][2]
-m_rate = settings[3][2]
-f_rate = settings[4][2]
-or_vhc = settings[5][2]
-oz_vhc = settings[6][2]
-op_lisans = settings[7][2]
-sorgu sayfası = settings[8][2]
-subis sorgusu yapılsın mı(E/H) ? = settings[9][2]
-"""
-"""
-chromedir = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
-        webbrowser.get(chromedir).open(settings[8][2])
-"""
-
-
-def defter_sor(defter_no, yol):
+def defter_sor(defter_no, yol, settings):
     opts = Options()
     opts.headless = True
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
@@ -51,14 +33,11 @@ def defter_sor(defter_no, yol):
     os.startfile(path)
     driver.quit()
 
-def subis_sor(defter_no, yol):
-    print("subis sorgusu başladı")
+def subis_sor(defter_no, yol, settings):
     opts = Options()
     opts.headless = True
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
     driver.get('{}'.format(settings[16][2]))
-    print("bağlantı kuruldu")
-    print("defter bilgisi alınıyor")
     no_listesi = defter_no.split("-")
     for i in range(len(no_listesi)):
         print("defter bilgisi ; " + no_listesi[i])
@@ -73,6 +52,8 @@ def subis_sor(defter_no, yol):
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
+
+    path = settings[0][2] + "\\" + yol + "\\subis-sorgu.png"
     driver.save_screenshot('{}'.format(path))
     os.startfile(path)
     driver.quit()
@@ -151,6 +132,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
 				   brut_litre, sicaklik , volum_correction, net_litre, kilogram,
 				   teslimatci, yakit_alan_kisi, gemici,
 				   bolge, baslama_saati, bitis_saati, barge_numune_muhur, gemi_numune_muhur):
+    settings = yaz.hepsini_oku(None, "settings")
 
     """ Müşteri Bilgilerini Getir
     """
@@ -175,9 +157,9 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
     gemi_cins = gemi_info[0][4]
     gemi_defterno = gemi_info[0][5]
     #defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
-    Thread(target=defter_sor, args=(gemi_defterno, yol)).start()
+    Thread(target=defter_sor, args=(gemi_defterno, yol, settings)).start()
     if settings[14][0]  == 1 and gemi_cins == "BALIK AVLAMA":
-        Thread(target=subis_sor, args=(gemi_defterno, yol)).start()
+        Thread(target=subis_sor, args=(gemi_defterno, yol, settings)).start()
     else:
         pass
 
@@ -207,10 +189,10 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
     """
     irsaliye_yaz(musteri_kod, musteri_adi, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
                  urun_infor, yakit_turu, yogunluk, net_litre, kilogram, bolge_kodu, bolge, gemi_belgeno,
-                 teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur, tam_yol)
+                 teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur, tam_yol, settings)
 
     ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_adi, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel, gemi_acenta,
-               gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol)
+               gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol, settings)
 
     check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
 
@@ -219,6 +201,7 @@ def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, y
     #defter -subis sorguları ve istenirse numune evraklarını yapıcaz
     # bu sebeble firma bilgilerine gerek yok
     #gemi defter no bilgisi sorguları yapmak için yeterli
+    settings = yaz.hepsini_oku(None, "settings")
 
     path = settings[0][2] + "\\"
     klasor = gemi + " " + tar
@@ -234,15 +217,11 @@ def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, y
     gemi_belgeno = gemi_info[0][6]
     gemi_sicilno = gemi_info[0][7]
     # defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
-    Thread(target=defter_sor, args=(gemi_defterno, yol)).start()
+    Thread(target=defter_sor, args=(gemi_defterno, yol, settings)).start()
     if settings[14][2] == "1" and gemi_cins == "BALIK AVLAMA":
-        Thread(target=subis_sor, args=(gemi_defterno, yol)).start()
-        print("Thread işlemi subis sorgusu için başlatıldı")
+        Thread(target=subis_sor, args=(gemi_defterno, yol, settings)).start()
     else:
-        print("thread başlatamadı")
-        print(settings[14][2])
-        print(type(settings[14][2]))
-        print(gemi_cins)
+        pass
 
 
     #Thread işlemi ile defter sorgusu varsayılan olarak
@@ -250,7 +229,7 @@ def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, y
 
     #burada son olarak veritabanında numune evrakını seçicez
     #eğer hazırlanmak istenirse onu da yapacaz
-    if settings[15][0] == 0:
+    if settings[15][2] == "0":
         pass
     else:
         ana_dizin = os.getcwd()
@@ -274,7 +253,7 @@ def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, y
 
 def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
                  urun_infor, urun, dens, litre, kg, yer_kodu, bolge, belge_no,
-                 veren, alan, gemi, gemi_kodu, sicil, cins, defter_no, muhur, yol):
+                 veren, alan, gemi, gemi_kodu, sicil, cins, defter_no, muhur, yol, settings):
 
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\irsaliye.xlsx"
@@ -311,7 +290,8 @@ def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
     sht.range('AB25').value = settings[1][2]
 
 def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, actel, mevki, basaat, bisaat,
-               yakit, litre, kg, gemici, yol):
+               yakit, litre, kg, gemici, yol, settings):
+
 
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\ekbir.xlsx"
@@ -346,6 +326,7 @@ def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, ac
     sht.range('M22').value = settings[6][2]
 
 def check_list_yaz(teslimatci, gemi, defter_no, belge_no, yol):
+
 
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\checklist.xlsx"

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\tux.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.2
+# Form implementation generated from reading ui file '\lib\gui\tux.ui'
 #
 # Author : Mehmet Eroğlu
+#
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from vtbgln import VbagKur
@@ -20,6 +19,9 @@ class Ui_Dialog(object):
         Dialog.resize(417, 341)
         Dialog.setMinimumSize(QtCore.QSize(417, 341))
         Dialog.setMaximumSize(QtCore.QSize(417, 341))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Dialog.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(115, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -58,11 +60,7 @@ class Ui_Dialog(object):
                                                    "Tux faydalı olacağı umut edilerek dağıtılmaktadır, fakat HİÇBİR GARANTİSİ YOKTUR; hatta ÜRÜN DEĞERİ ya da BİR AMACA UYGUNLUK gibi garantiler de vermez. Lütfen daha çok ayrıntı için GNU Genel Kamu Lisansı\'nı inceleyin. \n"
                                                    "\n"
                                                    "Tux ile beraber GNU Genel Kamu Lisansını da almış olmalısınız; eğer almadıysanız, https://www.gnu.org/licenses/ adresine bakın."
-                                                   "\n"
-                                                   "\n"
-                                                   "\n"
-                                                   "\n"
-                                                   "Tux kaynak kodlarını https://github.com/rolilahla/Tux adresinde bulabilirsiniz."
+
                                                    ))
 
 
@@ -73,6 +71,9 @@ class Ui_Firmaolustur(VbagKur):
     def setupUi(self, Firmaolustur):
         Firmaolustur.setObjectName("Firmaolustur")
         Firmaolustur.resize(400, 318)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Firmaolustur.setWindowIcon(icon)
         self.label = QtWidgets.QLabel(Firmaolustur)
         self.label.setGeometry(QtCore.QRect(16, 10, 68, 20))
         self.label.setObjectName("label")
@@ -160,6 +161,9 @@ class Ui_Firmaguncelle(VbagKur):
         self.yaz = VbagKur()
         Firmaguncelle.setObjectName("Firmaguncelle")
         Firmaguncelle.resize(683, 457)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Firmaguncelle.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(Firmaguncelle)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.label_7 = QtWidgets.QLabel(Firmaguncelle)
@@ -331,6 +335,9 @@ class Ui_Firmasil(VbagKur):
     def setupUi(self, Firmasil):
         Firmasil.setObjectName("Firmasil")
         Firmasil.resize(639, 419)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Firmasil.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(Firmasil)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.label_7 = QtWidgets.QLabel(Firmasil)
@@ -478,6 +485,9 @@ class Ui_GemiEkle(VbagKur):
     def setupUi(self, GemiEkle):
         GemiEkle.setObjectName("GemiEkle")
         GemiEkle.resize(617, 369)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        GemiEkle.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(GemiEkle)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.label_11 = QtWidgets.QLabel(GemiEkle)
@@ -663,6 +673,9 @@ class Ui_Fg(VbagKur):
     def setupUi(self, Fg):
         Fg.setObjectName("Fg")
         Fg.resize(455, 399)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Fg.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(Fg)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.label = QtWidgets.QLabel(Fg)
@@ -874,6 +887,9 @@ class Ui_GemiSil(VbagKur):
     def setupUi(self, GemiSil):
         GemiSil.setObjectName("GemiSil")
         GemiSil.resize(456, 399)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        GemiSil.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(GemiSil)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.label = QtWidgets.QLabel(GemiSil)
@@ -1148,6 +1164,9 @@ class Ui_PersonelEkle(QtWidgets.QDialog):
     def setupUi(self):
         self.setObjectName("PersonelEkle")
         self.resize(430, 148)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
         self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(150, 20, 90, 20))
         self.label.setObjectName("label")
@@ -1251,6 +1270,9 @@ class Ui_UrunEkle(object):
     def setupUi(self, UrunEkle):
         UrunEkle.setObjectName("UrunEkle")
         UrunEkle.resize(260, 160)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        UrunEkle.setWindowIcon(icon)
         UrunEkle.setMinimumSize(QtCore.QSize(260, 160))
         UrunEkle.setMaximumSize(QtCore.QSize(260, 160))
         self.gridLayout = QtWidgets.QGridLayout(UrunEkle)
@@ -1313,7 +1335,7 @@ class Ui_UrunSil(object):
         UrunSil.setObjectName("UrunSil")
         UrunSil.resize(351, 238)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\../../logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         UrunSil.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(UrunSil)
         self.gridLayout.setObjectName("gridLayout")
@@ -1363,6 +1385,9 @@ class Ui_Settings(object):
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
         Settings.resize(518, 269)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Settings.setWindowIcon(icon)
         self.listWidget = QtWidgets.QListWidget(Settings)
         self.listWidget.setGeometry(QtCore.QRect(10, 10, 151, 251))
         self.listWidget.setMovement(QtWidgets.QListView.Static)
@@ -1867,6 +1892,9 @@ class Ui_FirmaBul(object):
     def setupUi(self, FirmaBul):
         FirmaBul.setObjectName("FirmaBul")
         FirmaBul.resize(572, 220)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        FirmaBul.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(FirmaBul)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.frame = QtWidgets.QFrame(FirmaBul)
@@ -2043,7 +2071,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(458, 586))
         MainWindow.setMaximumSize(QtCore.QSize(458, 586))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\../../logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -2628,6 +2656,7 @@ class Ui_MainWindow(object):
     def triggerfinger(self):
         self.lineEdit_8.textChanged['QString'].connect(self.vcf_hesapla)
         self.pushButton.clicked.connect(self.olustur)
+
 
     import ic_rc
 
