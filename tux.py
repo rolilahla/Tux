@@ -11,6 +11,7 @@ import mesajlar as mes
 import os
 import webbrowser
 import tslmt
+from turekle import Ui_CinsEkle
 
 
 class Ui_Dialog(object):
@@ -476,15 +477,23 @@ class Ui_Firmasil(VbagKur):
         self.bul()
 
 
-class Ui_GemiEkle(VbagKur):
+class Ui_GemiEkle(object):
     def __init__(self):
         self.yaz = VbagKur()
         self.firma_ad = ""
         self.firma_kod = 0
 
+    def gui_cins(self):
+        Cins = QtWidgets.QDialog()
+        cins_ui = Ui_CinsEkle()
+        cins_ui.setupUi(Cins)
+        Cins.show()
+        Cins.exec_()
+        self.gemi_tur()
+
     def setupUi(self, GemiEkle):
         GemiEkle.setObjectName("GemiEkle")
-        GemiEkle.resize(617, 369)
+        GemiEkle.resize(563, 369)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         GemiEkle.setWindowIcon(icon)
@@ -494,7 +503,11 @@ class Ui_GemiEkle(VbagKur):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.gridLayout_2.addWidget(self.label_11, 0, 0, 1, 1)
+        self.lineEdit_11 = QtWidgets.QLineEdit(GemiEkle)
+        self.lineEdit_11.setObjectName("lineEdit_11")
+        self.gridLayout_2.addWidget(self.lineEdit_11, 0, 1, 1, 2)
         self.listWidget = QtWidgets.QListWidget(GemiEkle)
+        self.listWidget.setMaximumSize(QtCore.QSize(221, 321))
         self.listWidget.setObjectName("listWidget")
         self.gridLayout_2.addWidget(self.listWidget, 1, 0, 1, 2)
         self.frame = QtWidgets.QFrame(GemiEkle)
@@ -508,86 +521,89 @@ class Ui_GemiEkle(VbagKur):
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 3)
         self.label_2 = QtWidgets.QLabel(self.frame)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 3)
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
         self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_3.setObjectName("lineEdit_3")
-        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 3)
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
-        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.gridLayout.addWidget(self.lineEdit_4, 3, 1, 1, 2)
+        self.comboBox = QtWidgets.QComboBox(self.frame)
+        self.comboBox.setObjectName("comboBox")
+        self.gridLayout.addWidget(self.comboBox, 3, 1, 1, 2)
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout.addWidget(self.pushButton_3, 3, 3, 1, 1)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
         self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_5.setObjectName("lineEdit_5")
-        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_5, 4, 1, 1, 3)
         self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setObjectName("label_6")
         self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
         self.lineEdit_6 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_6.setObjectName("lineEdit_6")
-        self.gridLayout.addWidget(self.lineEdit_6, 5, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_6, 5, 1, 1, 3)
         self.label_7 = QtWidgets.QLabel(self.frame)
         self.label_7.setObjectName("label_7")
         self.gridLayout.addWidget(self.label_7, 6, 0, 1, 1)
         self.lineEdit_7 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_7.setObjectName("lineEdit_7")
-        self.gridLayout.addWidget(self.lineEdit_7, 6, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_7, 6, 1, 1, 3)
         self.label_8 = QtWidgets.QLabel(self.frame)
         self.label_8.setObjectName("label_8")
         self.gridLayout.addWidget(self.label_8, 7, 0, 1, 1)
         self.lineEdit_8 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_8.setObjectName("lineEdit_8")
-        self.gridLayout.addWidget(self.lineEdit_8, 7, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_8, 7, 1, 1, 3)
         self.label_9 = QtWidgets.QLabel(self.frame)
         self.label_9.setObjectName("label_9")
         self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
         self.lineEdit_9 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_9.setObjectName("lineEdit_9")
-        self.gridLayout.addWidget(self.lineEdit_9, 8, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_9, 8, 1, 1, 3)
         self.label_10 = QtWidgets.QLabel(self.frame)
         self.label_10.setObjectName("label_10")
         self.gridLayout.addWidget(self.label_10, 9, 0, 1, 1)
         self.lineEdit_10 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_10.setObjectName("lineEdit_10")
-        self.gridLayout.addWidget(self.lineEdit_10, 9, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit_10, 9, 1, 1, 3)
         spacerItem = QtWidgets.QSpacerItem(178, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 10, 0, 1, 2)
         self.pushButton = QtWidgets.QPushButton(self.frame)
         self.pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton.setObjectName("pushButton")
-        self.gridLayout.addWidget(self.pushButton, 10, 2, 1, 1)
+        self.gridLayout.addWidget(self.pushButton, 10, 2, 1, 2)
         self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
-        self.lineEdit_11 = QtWidgets.QLineEdit(GemiEkle)
-        self.lineEdit_11.setObjectName("lineEdit_11")
-        self.gridLayout_2.addWidget(self.lineEdit_11, 0, 1, 1, 1)
+        self.gemi_tur()
 
         self.retranslateUi(GemiEkle)
         QtCore.QMetaObject.connectSlotsByName(GemiEkle)
         self.lineEdit_11.textChanged['QString'].connect(self.bul)
         self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
         self.pushButton.clicked.connect(self.ekle)
+        self.pushButton_3.clicked.connect(self.gui_cins)
 
     def retranslateUi(self, GemiEkle):
         _translate = QtCore.QCoreApplication.translate
         GemiEkle.setWindowTitle(_translate("GemiEkle", "Gemi Ekle"))
         self.label_11.setText(_translate("GemiEkle", "Firma Bul"))
-        self.label.setText(_translate("GemiEkle", "Müşteri Kodu"))
+        self.label.setText(_translate("GemiEkle", "Müşteri Adı"))
         self.label_2.setText(_translate("GemiEkle", "Gemi Adı"))
         self.label_3.setText(_translate("GemiEkle", "Gemi Kodu"))
         self.label_4.setText(_translate("GemiEkle", "Gemi Cinsi"))
+        self.pushButton_3.setText(_translate("GemiEkle", "Ekle"))
         self.label_5.setText(_translate("GemiEkle", "Defter No"))
         self.label_6.setText(_translate("GemiEkle", "Belge No"))
         self.label_7.setText(_translate("GemiEkle", "Sicil No"))
@@ -595,6 +611,13 @@ class Ui_GemiEkle(VbagKur):
         self.label_9.setText(_translate("GemiEkle", "Acenta"))
         self.label_10.setText(_translate("GemiEkle", "Acenta Tel"))
         self.pushButton.setText(_translate("GemiEkle", "Gemi Ekle"))
+
+    def gemi_tur(self):
+        self.comboBox.clear()
+        sonuc = self.yaz.kolon_oku("tur", "gemitur")
+        for i in range(len(sonuc)):
+            self.comboBox.addItem(sonuc[i][0])
+
 
     def bul(self):
         self.listWidget.clear()
@@ -609,7 +632,7 @@ class Ui_GemiEkle(VbagKur):
                 self.firma_kod = sonuc[i][1]
 
     def doldur(self):
-        self.lineEdit.setText(self.firma_kod)
+        self.lineEdit.setText(self.firma_ad)
 
     def ekle(self):
         if self.lineEdit.text() == "":
@@ -620,9 +643,6 @@ class Ui_GemiEkle(VbagKur):
             mes.uyari(mesaj, "Uyarı")
         elif self.lineEdit_3.text() == "":
             mesaj = "Lütfen gemi kod bilgisini doldurun"
-            mes.uyari(mesaj, "Uyarı")
-        elif self.lineEdit_4.text() == "":
-            mesaj = "Lütfen gemi cins bilgisini doldurun"
             mes.uyari(mesaj, "Uyarı")
         elif self.lineEdit_5.text() == "":
             mesaj = "Lütfen gemi defter no bilgisini doldurun"
@@ -638,10 +658,10 @@ class Ui_GemiEkle(VbagKur):
             mes.uyari(mesaj, "Uyarı")
         else:
             liste = []
-            liste.append(self.lineEdit.text())
+            liste.append(self.firma_kod)
             liste.append(self.lineEdit_2.text())
             liste.append(self.lineEdit_3.text())
-            liste.append(self.lineEdit_4.text())
+            liste.append(self.comboBox.currentText())
             liste.append(self.lineEdit_5.text())
             liste.append(self.lineEdit_6.text())
             liste.append(self.lineEdit_7.text())
@@ -654,7 +674,7 @@ class Ui_GemiEkle(VbagKur):
             mes.uyari(mesaj, "Bilgilendirme")
             self.lineEdit_2.clear()
             self.lineEdit_3.clear()
-            self.lineEdit_4.clear()
+            self.comboBox.setCurrentIndex(0)
             self.lineEdit_5.clear()
             self.lineEdit_6.clear()
             self.lineEdit_7.clear()
@@ -663,22 +683,45 @@ class Ui_GemiEkle(VbagKur):
             self.lineEdit_10.clear()
 
 
-class Ui_Fg(VbagKur):
+class Ui_Fg(object):
     def __init__(self):
         self.yaz = VbagKur()
+        self.yeni_firma = Ui_FirmaBul()
+
         self.gemi_id = 0
         self.firma_ad = ""
         self.firma_kod = 0
 
+        self.yeni_firma_ad = ""
+        self.yeni_firma_kod = 0
+
+    def gupgui(self):
+        GFirmaBul = QtWidgets.QDialog()
+        ggui = Ui_FirmaBul()
+        ggui.setupUi(GFirmaBul)
+        GFirmaBul.show()
+        GFirmaBul.exec_()
+        self.yenikodlar(ggui.firma, ggui.kod)
+
+    def gui_cins(self):
+        Cins = QtWidgets.QDialog()
+        cins_ui = Ui_CinsEkle()
+        cins_ui.setupUi(Cins)
+        Cins.show()
+        Cins.exec_()
+        self.gemi_tur()
+
+
     def setupUi(self, Fg):
         Fg.setObjectName("Fg")
-        Fg.resize(455, 399)
+        Fg.resize(528, 371)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Fg.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(Fg)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.label = QtWidgets.QLabel(Fg)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(Fg)
@@ -698,82 +741,99 @@ class Ui_Fg(VbagKur):
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout.addWidget(self.lineEdit_2, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_2, 0, 1, 1, 2)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setMinimumSize(QtCore.QSize(41, 23))
+        self.pushButton.setMaximumSize(QtCore.QSize(41, 23))
+        self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 0, 3, 1, 1)
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 1, 0, 1, 1)
         self.lineEdit_3 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_3.setObjectName("lineEdit_3")
-        self.gridLayout.addWidget(self.lineEdit_3, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_3, 1, 1, 1, 3)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
         self.lineEdit_4 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_4.setObjectName("lineEdit_4")
-        self.gridLayout.addWidget(self.lineEdit_4, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_4, 2, 1, 1, 3)
         self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setObjectName("label_6")
         self.gridLayout.addWidget(self.label_6, 3, 0, 1, 1)
-        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.gridLayout.addWidget(self.lineEdit_5, 3, 1, 1, 1)
+        self.comboBox = QtWidgets.QComboBox(self.frame)
+        self.comboBox.setObjectName("comboBox")
+        self.gridLayout.addWidget(self.comboBox, 3, 1, 1, 2)
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(41, 23))
+        self.pushButton_3.setMaximumSize(QtCore.QSize(41, 23))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout.addWidget(self.pushButton_3, 3, 3, 1, 1)
         self.label_7 = QtWidgets.QLabel(self.frame)
         self.label_7.setObjectName("label_7")
         self.gridLayout.addWidget(self.label_7, 4, 0, 1, 1)
         self.lineEdit_6 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_6.setObjectName("lineEdit_6")
-        self.gridLayout.addWidget(self.lineEdit_6, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_6, 4, 1, 1, 3)
         self.label_8 = QtWidgets.QLabel(self.frame)
         self.label_8.setObjectName("label_8")
         self.gridLayout.addWidget(self.label_8, 5, 0, 1, 1)
         self.lineEdit_7 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_7.setObjectName("lineEdit_7")
-        self.gridLayout.addWidget(self.lineEdit_7, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_7, 5, 1, 1, 3)
         self.label_9 = QtWidgets.QLabel(self.frame)
         self.label_9.setObjectName("label_9")
         self.gridLayout.addWidget(self.label_9, 6, 0, 1, 1)
         self.lineEdit_8 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_8.setObjectName("lineEdit_8")
-        self.gridLayout.addWidget(self.lineEdit_8, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_8, 6, 1, 1, 3)
         self.label_10 = QtWidgets.QLabel(self.frame)
         self.label_10.setObjectName("label_10")
         self.gridLayout.addWidget(self.label_10, 7, 0, 1, 1)
         self.lineEdit_9 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_9.setObjectName("lineEdit_9")
-        self.gridLayout.addWidget(self.lineEdit_9, 7, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_9, 7, 1, 1, 3)
         self.label_12 = QtWidgets.QLabel(self.frame)
         self.label_12.setObjectName("label_12")
         self.gridLayout.addWidget(self.label_12, 8, 0, 1, 1)
         self.lineEdit_10 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_10.setObjectName("lineEdit_10")
-        self.gridLayout.addWidget(self.lineEdit_10, 8, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_10, 8, 1, 1, 3)
         self.label_13 = QtWidgets.QLabel(self.frame)
         self.label_13.setObjectName("label_13")
         self.gridLayout.addWidget(self.label_13, 9, 0, 1, 1)
         self.lineEdit_11 = QtWidgets.QLineEdit(self.frame)
         self.lineEdit_11.setObjectName("lineEdit_11")
-        self.gridLayout.addWidget(self.lineEdit_11, 9, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_11, 9, 1, 1, 3)
         spacerItem = QtWidgets.QSpacerItem(53, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 10, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem, 10, 0, 1, 2)
         self.pushButton_2 = QtWidgets.QPushButton(self.frame)
         self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout.addWidget(self.pushButton_2, 10, 1, 1, 1)
+        self.gridLayout.addWidget(self.pushButton_2, 10, 2, 1, 2)
         self.gridLayout_2.addWidget(self.frame, 1, 2, 1, 1)
+        self.gemi_tur()
 
         self.retranslateUi(Fg)
         self.lineEdit.textChanged['QString'].connect(self.bul)
         self.listWidget.doubleClicked['QModelIndex'].connect(self.doldur)
         self.pushButton_2.clicked.connect(self.guncelle)
+        #
+
+        self.pushButton.clicked.connect(self.gupgui)
+        self.pushButton_3.clicked.connect(self.gui_cins)
         QtCore.QMetaObject.connectSlotsByName(Fg)
 
     def retranslateUi(self, Fg):
         _translate = QtCore.QCoreApplication.translate
         Fg.setWindowTitle(_translate("Fg", "Gemi Bilgisi Düzenle"))
         self.label.setText(_translate("Fg", "Gemi Adı"))
-        self.label_3.setText(_translate("Fg", "Müşteri Kod"))
+        self.label_3.setText(_translate("Fg", "Müşteri Adı"))
+        self.pushButton.setText(_translate("Fg", "Bul"))
         self.label_4.setText(_translate("Fg", "Gemi Adı"))
         self.label_5.setText(_translate("Fg", "Gemi No"))
         self.label_6.setText(_translate("Fg", "Gemi Cinsi"))
+        self.pushButton_3.setText(_translate("Fg", "Ekle"))
         self.label_7.setText(_translate("Fg", "Defter No"))
         self.label_8.setText(_translate("Fg", "Belge No"))
         self.label_9.setText(_translate("Fg", "Sicil No"))
@@ -781,6 +841,18 @@ class Ui_Fg(VbagKur):
         self.label_12.setText(_translate("Fg", "Acenta "))
         self.label_13.setText(_translate("Fg", "Acenta Tel"))
         self.pushButton_2.setText(_translate("Fg", "Güncelle"))
+
+    def yenikodlar(self, ad, kod):
+        self.yeni_firma_ad = ad
+        self.yeni_firma_kod = kod
+        self.lineEdit_2.setText(self.yeni_firma_ad)
+
+    def gemi_tur(self):
+        self.comboBox.clear()
+        sonuc = self.yaz.kolon_oku("tur", "gemitur")
+        for i in range(len(sonuc)):
+            self.comboBox.addItem(sonuc[i][0])
+
 
     def bul(self):
         self.listWidget.clear()
@@ -793,10 +865,14 @@ class Ui_Fg(VbagKur):
 
     def doldur(self):
         soru = self.yaz.tek_oku("gemiler", "gad", self.listWidget.currentItem().text())
-        self.lineEdit_2.setText(str(soru[0][1]))
+        self.firma_kod = soru[0][1]
+        fad = self.yaz.komut("select ad from firmalar where kod='{}'".format(self.firma_kod))
+        self.firma_ad = fad[0]
+
+        self.lineEdit_2.setText(self.firma_ad)
         self.lineEdit_3.setText(soru[0][2])
         self.lineEdit_4.setText(soru[0][3])
-        self.lineEdit_5.setText(soru[0][4])
+        self.comboBox.setCurrentText(soru[0][4])
         self.lineEdit_6.setText(soru[0][5])
         self.lineEdit_7.setText(soru[0][6])
         self.lineEdit_8.setText(soru[0][7])
@@ -805,58 +881,46 @@ class Ui_Fg(VbagKur):
         self.lineEdit_11.setText(soru[0][10])
         self.gemi_id = soru[0][0]
 
-        self.firma_kod = soru[0][1]
-        fad = self.yaz.komut("select ad from firmalar where kod='{}'".format(self.firma_kod))
-        self.firma_ad = fad[0]
 
     def guncelle(self):
-        if self.firma_kod != int(self.lineEdit_2.text()):
-            mesaj = """Geminin müşteri kodunu değiştirdiniz.
-            Devam ederseniz geminin {} ile olan bağlantısı kesilip yeni müşteri koduna göre ilişkilendirilecektir""".format(
-                self.firma_ad)
+        if self.firma_ad != self.lineEdit_2.text():
+            mesaj = """Geminin bağlı olduğu Müşteriyi değiştirdiniz.
+            Devam ederseniz geminin {} firması ile olan bağlantısı kesilip {} göre ilişkilendirilecektir""".format(
+                self.firma_ad, self.yeni_firma_ad)
             sor = mes.soru("Müşteri Kodunu Değiştirdiniz !!", mesaj,
                            "Gemi yeni müşterinin  koduna ilişkilendiriliyor",
                            "Müşteri kod değişimi iptal edildi")
             if sor == True:
-                kontrol = self.yaz.komut("select kod from firmalar where kod='{}'".format(self.lineEdit_2.text()))
-                if kontrol == None:
-                    mesaj = "Yazdığınız koda sahip bir müşteri bulunamadı.Gemiyi bir müşteriyle ilişkilendirebilmek için" \
-                            "öncelikle müşteri eklemesi yapmanız gerekir.Müşteri kodunu kontrol de edebilirsiniz "
-                    mes.uyari(mesaj, "Bilgilendirme")
-                    return
-                else:
-                    self.yaz.gemi_guncelle(self.lineEdit_2.text(),
-                                           self.lineEdit_3.text(),
-                                           self.lineEdit_4.text(),
-                                           self.lineEdit_5.text(),
-                                           self.lineEdit_6.text(),
-                                           self.lineEdit_7.text(),
-                                           self.lineEdit_8.text(),
-                                           self.lineEdit_9.text(),
-                                           self.lineEdit_10.text(),
-                                           self.lineEdit_11.text(),
-                                           self.gemi_id
-                                           )
-                    mesaj = self.lineEdit_3.text() + " Gemisinin Kaydı Başarıyla Değiştirildi"
-                    mes.uyari(mesaj, "Bilgilendirme")
-                    self.lineEdit_2.clear()
-                    self.lineEdit_3.clear()
-                    self.lineEdit_4.clear()
-                    self.lineEdit_5.clear()
-                    self.lineEdit_6.clear()
-                    self.lineEdit_7.clear()
-                    self.lineEdit_8.clear()
-                    self.lineEdit_9.clear()
-                    self.lineEdit_10.clear()
-                    self.lineEdit_11.clear()
-                    self.bul()
-            else:
-                pass
+                self.yaz.gemi_guncelle(self.yeni_firma_kod,
+                                       self.lineEdit_3.text(),
+                                       self.lineEdit_4.text(),
+                                       self.comboBox.currentText(),
+                                       self.lineEdit_6.text(),
+                                       self.lineEdit_7.text(),
+                                       self.lineEdit_8.text(),
+                                       self.lineEdit_9.text(),
+                                       self.lineEdit_10.text(),
+                                       self.lineEdit_11.text(),
+                                       self.gemi_id
+                                       )
+                mesaj = self.lineEdit_3.text() + " Gemisinin Kaydı Başarıyla Değiştirildi"
+                mes.uyari(mesaj, "Bilgilendirme")
+                self.lineEdit_2.clear()
+                self.lineEdit_3.clear()
+                self.lineEdit_4.clear()
+                self.comboBox.setCurrentIndex(0)
+                self.lineEdit_6.clear()
+                self.lineEdit_7.clear()
+                self.lineEdit_8.clear()
+                self.lineEdit_9.clear()
+                self.lineEdit_10.clear()
+                self.lineEdit_11.clear()
+                self.bul()
         else:
-            self.yaz.gemi_guncelle(self.lineEdit_2.text(),
+            self.yaz.gemi_guncelle(self.firma_kod,
                                    self.lineEdit_3.text(),
                                    self.lineEdit_4.text(),
-                                   self.lineEdit_5.text(),
+                                   self.comboBox.currentText(),
                                    self.lineEdit_6.text(),
                                    self.lineEdit_7.text(),
                                    self.lineEdit_8.text(),
@@ -870,13 +934,14 @@ class Ui_Fg(VbagKur):
             self.lineEdit_2.clear()
             self.lineEdit_3.clear()
             self.lineEdit_4.clear()
-            self.lineEdit_5.clear()
+            self.comboBox.setCurrentIndex(0)
             self.lineEdit_6.clear()
             self.lineEdit_7.clear()
             self.lineEdit_8.clear()
             self.lineEdit_9.clear()
             self.lineEdit_10.clear()
             self.lineEdit_11.clear()
+            self.bul()
 
 
 class Ui_GemiSil(VbagKur):
@@ -1950,6 +2015,102 @@ class Ui_FirmaBul(object):
         self.kod = sonuc[0]
 
 
+class Ui_GemiTurleri(object):
+    def __init__(self):
+        self.yaz = VbagKur()
+
+    def setupUi(self, GemiTurleri):
+        GemiTurleri.setObjectName("GemiTurleri")
+        GemiTurleri.resize(394, 262)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        GemiTurleri.setWindowIcon(icon)
+        self.gridLayout_2 = QtWidgets.QGridLayout(GemiTurleri)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.frame = QtWidgets.QFrame(GemiTurleri)
+        self.frame.setMinimumSize(QtCore.QSize(381, 43))
+        self.frame.setMaximumSize(QtCore.QSize(381, 43))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setObjectName("pushButton")
+        self.gridLayout.addWidget(self.pushButton, 0, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.frame, 0, 0, 1, 1)
+        self.frame_2 = QtWidgets.QFrame(GemiTurleri)
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.listWidget = QtWidgets.QListWidget(self.frame_2)
+        self.listWidget.setGeometry(QtCore.QRect(10, 40, 361, 151))
+        self.listWidget.setObjectName("listWidget")
+        self.label_2 = QtWidgets.QLabel(self.frame_2)
+        self.label_2.setGeometry(QtCore.QRect(10, 10, 351, 20))
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_2.addWidget(self.frame_2, 1, 0, 1, 1)
+        self.bul()
+
+        self.retranslateUi(GemiTurleri)
+        self.pushButton.clicked.connect(self.cins_yaz)
+        self.listWidget.doubleClicked['QModelIndex'].connect(self.sil)
+        QtCore.QMetaObject.connectSlotsByName(GemiTurleri)
+
+    def retranslateUi(self, GemiTurleri):
+        _translate = QtCore.QCoreApplication.translate
+        GemiTurleri.setWindowTitle(_translate("GemiTurleri", "Gemi Cins Ekle & Sil"))
+        self.label.setText(_translate("GemiTurleri", "Gemi Türü"))
+        self.pushButton.setText(_translate("GemiTurleri", "Ekle"))
+        self.label_2.setText(_translate("GemiTurleri", "Veritabanında Kayıtlı Gemi Türleri(silmek için çift tıklayın)"))
+
+    def bul(self):
+        self.listWidget.clear()
+        self.yaz = VbagKur()
+        sonuc = self.yaz.kolon_oku("tur", "gemitur")
+        for i in range(len(sonuc)):
+            self.listWidget.addItem(sonuc[i][0])
+
+    def cins_yaz(self):
+        ad = self.lineEdit.text()
+        if ad =="":
+            mesaj = "Lütfen bir gemi türü giriniz !!"
+            mes.uyari(mesaj, "Bilgi Giriş Hatası")
+        else:
+            self.yaz.isle("INSERT INTO gemitur VALUES(NULL, '{}')".format(ad))
+            mesaj = ad + " türü veritabanına eklendi"
+            mes.uyari(mesaj, "Kayıt Eklendi")
+            self.lineEdit.clear()
+            self.bul()
+
+    def sil(self):
+        if mes.tur_sil(self.listWidget.currentItem().text()) == True:
+            conn = self.yaz.komut("SELECT Count(*) FROM gemitur where tur='{}'".format(self.listWidget.currentItem().text()))
+            if conn[0] != 0:
+                mesaj = """ İlişkilendirilmiş bir gemi türünü silmeye çalışıyorsunuz.Veritabanında bu gemi türü ile ilişkilendirilmiş {} adet kayıt bulundu.Eğer bu kaydı silerseniz, bu kayıt ile bağlantılı gemiler veritabanındaki ilk Gemi Cins kaydına aktarılacak  """.format(conn[0])
+                sor = mes.soru("İlişkilendirilmiş Gemi Türü !!", mesaj,
+                               "Gemi Türü siliniyor",
+                               "Silme İşlemi İptal EDildi")
+                if sor == True:
+                    self.yaz.kayit_sil("gemitur", "tur", self.listWidget.currentItem().text())
+                    self.listWidget.clear()
+                    self.bul()
+                else:
+                    pass
+            else:
+                self.yaz.kayit_sil("gemitur", "tur", self.listWidget.currentItem().text())
+                self.listWidget.clear()
+                self.bul()
+        else:
+            pass
+
+
 class Ui_MainWindow(object):
     def lisans_gui(self):
         Dialog = QtWidgets.QDialog()
@@ -2064,6 +2225,13 @@ class Ui_MainWindow(object):
         Firmaara.show()
         Firmaara.exec_()
         self.firma_ara_yaz(ui.firma, ui.kod)
+
+    def gui_gemi_tur_olustur(self):
+        Turekle = QtWidgets.QDialog()
+        ui = Ui_GemiTurleri()
+        ui.setupUi(Turekle)
+        Turekle.show()
+        Turekle.exec_()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -2360,8 +2528,14 @@ class Ui_MainWindow(object):
         self.actionGemi_Ekle.setObjectName("actionGemi_Ekle")
         self.actionGemi_Bilgii_D_zenle = QtWidgets.QAction(MainWindow)
         self.actionGemi_Bilgii_D_zenle.setObjectName("actionGemi_Bilgii_D_zenle")
+
         self.actionGemi_Sil = QtWidgets.QAction(MainWindow)
         self.actionGemi_Sil.setObjectName("actionGemi_Sil")
+
+        self.actionGemi_Cins_Ekle = QtWidgets.QAction(MainWindow)
+        self.actionGemi_Cins_Ekle.setObjectName("actionGemi_Cins_Ekle")
+
+
         self.actionB_lge_Ekle = QtWidgets.QAction(MainWindow)
         self.actionB_lge_Ekle.setObjectName("actionB_lge_Ekle")
         self.actionYer_Ekle = QtWidgets.QAction(MainWindow)
@@ -2388,6 +2562,8 @@ class Ui_MainWindow(object):
         self.menuGemiler.addAction(self.actionGemi_Ekle)
         self.menuGemiler.addAction(self.actionGemi_Bilgii_D_zenle)
         self.menuGemiler.addAction(self.actionGemi_Sil)
+        self.menuGemiler.addSeparator()
+        self.menuGemiler.addAction(self.actionGemi_Cins_Ekle)
         self.menuB_lgeler.addAction(self.actionB_lge_Ekle)
         self.menuB_lgeler.addAction(self.actionB_lge_Yer_Sil)
         self.menuPersonel_Bilgisi.addAction(self.actionPersonel_Ekle)
@@ -2414,6 +2590,7 @@ class Ui_MainWindow(object):
         self.actionGemi_Ekle.triggered.connect(self.Gekle)
         self.actionGemi_Bilgii_D_zenle.triggered.connect(self.Gduz)
         self.actionGemi_Sil.triggered.connect(self.Gsil)
+        self.actionGemi_Cins_Ekle.triggered.connect(self.gui_gemi_tur_olustur)
         self.actionB_lge_Ekle.triggered.connect(self.gui_bolge_ekle)
         self.actionB_lge_Yer_Sil.triggered.connect(self.gui_bolge_sil)
         self.actionPersonel_Ekle.triggered.connect(self.gui_personel_ekle)
@@ -2482,6 +2659,8 @@ class Ui_MainWindow(object):
         self.actionGemi_Ekle.setText(_translate("MainWindow", "Gemi Ekle"))
         self.actionGemi_Bilgii_D_zenle.setText(_translate("MainWindow", "Gemi Bilgisi Düzenle"))
         self.actionGemi_Sil.setText(_translate("MainWindow", "Gemi Sil"))
+        self.actionGemi_Cins_Ekle.setText(_translate("MainWindow", "Gemi Türleri"))
+
         self.actionB_lge_Ekle.setText(_translate("MainWindow", "Bölge Ekle"))
         self.actionYer_Ekle.setText(_translate("MainWindow", "Yer Ekle"))
         self.actionB_lge_Yer_Sil.setText(_translate("MainWindow", "Bölge  Sil"))

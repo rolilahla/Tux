@@ -99,3 +99,24 @@ def urun_sil(ad):
         mesaj = ad + ' kayıt silme işlemi iptal edilmiştir'
         uyari(mesaj, "Bilgilendirme")
         return False
+
+def tur_sil(ad):
+    dens_box = QMessageBox()
+    dens_box.setIcon(QMessageBox.Question)
+    dens_box.setWindowTitle('Gemi Tür Silme ?')
+    yazi = ad + ' türündeki gemi bilgisini veritabanından silmek istediğinize emin misiniz ?'
+    dens_box.setText(yazi)
+    dens_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    buttonY = dens_box.button(QMessageBox.Yes)
+    buttonY.setText('Sil')
+    buttonN = dens_box.button(QMessageBox.No)
+    buttonN.setText('İptal')
+    dens_box.exec_()
+    if dens_box.clickedButton() == buttonY:
+        mesaj = ad + ' kaydı veritabanından başarıyla silinmiştir'
+        uyari(mesaj, "Bilgilendirme")
+        return True
+    else:
+        mesaj = ad + '  kayıt silme işlemi iptal edilmiştir'
+        uyari(mesaj, "Bilgilendirme")
+        return False
