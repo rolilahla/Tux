@@ -156,14 +156,15 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
     gemi_kod = gemi_info[0][3]
     gemi_cins = gemi_info[0][4]
     gemi_defterno = gemi_info[0][5]
-    #defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
-    Thread(target=defter_sor, args=(gemi_defterno, yol, settings)).start()
-    if settings[14][0]  == 1 and gemi_cins == "BALIK AVLAMA":
+    if settings[13][0] == 1:
+        # defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
+        Thread(target=defter_sor, args=(gemi_defterno, yol, settings)).start()
+    else:
+        pass
+    if settings[14][0] == 1 and gemi_cins == "BALIK AVLAMA":
         Thread(target=subis_sor, args=(gemi_defterno, yol, settings)).start()
     else:
         pass
-
-
     gemi_belgeno = gemi_info[0][6]
     gemi_sicilno = gemi_info[0][7]
     gemi_imo = gemi_info[0][8]
@@ -187,14 +188,27 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
     yaz.satis_ekle(tar, musteri_kodu, musteri_ad, gemi, gemi_cins, yakit_turu, yogunluk,
                    net_litre, kilogram, teslimatci)
     """
-    irsaliye_yaz(musteri_kod, musteri_adi, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
-                 urun_infor, yakit_turu, yogunluk, net_litre, kilogram, bolge_kodu, bolge, gemi_belgeno,
-                 teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur, tam_yol, settings)
 
-    ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_adi, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel, gemi_acenta,
-               gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol, settings)
+    if settings[10][0] == 0:
+        pass
+    else:
+        irsaliye_yaz(musteri_kod, musteri_adi, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
+                     urun_infor, yakit_turu, yogunluk, net_litre, kilogram, bolge_kodu, bolge, gemi_belgeno,
+                     teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur,
+                     tam_yol, settings)
 
-    check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
+    if settings[11][0] == 0:
+        pass
+    else:
+        ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_adi, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel,
+                   gemi_acenta,
+                   gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol,
+                   settings)
+
+    if settings[12][0] == 0:
+        pass
+    else:
+        check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
 
 def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, yer, plaka, ce):
     #Tanker teslimatında irsaliye ek-1 gibi evraklar olmadığı için sadece
