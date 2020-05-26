@@ -39,8 +39,6 @@ def subis_sor(defter_no, yol, settings):
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
     driver.get('{}'.format(settings[16][2]))
     no_listesi = defter_no.split("-")
-    for i in range(len(no_listesi)):
-        print("defter bilgisi ; " + no_listesi[i])
 
     driver.find_element_by_id('txtNote1').send_keys(no_listesi[0])
     driver.find_element_by_id('txtNote2').send_keys(no_listesi[1])
@@ -156,12 +154,12 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
     gemi_kod = gemi_info[0][3]
     gemi_cins = gemi_info[0][4]
     gemi_defterno = gemi_info[0][5]
-    if settings[13][0] == 1:
+    if settings[13][2] == "1":
         # defter no'sunu alınca işlemi hızlandırmak için direkt Threading'e başlıyoruz
         Thread(target=defter_sor, args=(gemi_defterno, yol, settings)).start()
     else:
         pass
-    if settings[14][0] == 1 and gemi_cins == "BALIK AVLAMA":
+    if settings[14][2] == "1" and gemi_cins == "BALIK AVLAMA":
         Thread(target=subis_sor, args=(gemi_defterno, yol, settings)).start()
     else:
         pass
@@ -189,7 +187,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                    net_litre, kilogram, teslimatci)
     """
 
-    if settings[10][0] == 0:
+    if settings[10][2] == 0:
         pass
     else:
         irsaliye_yaz(musteri_kod, musteri_adi, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
@@ -197,7 +195,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                      teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur,
                      tam_yol, settings)
 
-    if settings[11][0] == 0:
+    if settings[11][2] == 0:
         pass
     else:
         ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_adi, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel,
@@ -205,7 +203,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                    gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol,
                    settings)
 
-    if settings[12][0] == 0:
+    if settings[12][2] == 0:
         pass
     else:
         check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
