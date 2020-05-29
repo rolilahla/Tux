@@ -50,6 +50,7 @@ def subis_sor(defter_no, yol, settings):
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
+    body.send_keys(Keys.PAGE_DOWN)
 
     path = settings[0][2] + "\\" + yol + "\\subis-sorgu.png"
     driver.save_screenshot('{}'.format(path))
@@ -187,7 +188,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                    net_litre, kilogram, teslimatci)
     """
 
-    if settings[10][2] == 0:
+    if settings[10][2] == "0":
         pass
     else:
         irsaliye_yaz(musteri_kod, musteri_adi, musteri_adres, musteri_vergid, musteri_vergin, tar, urun_kod,
@@ -195,7 +196,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                      teslimatci, yakit_alan_kisi, gemi, gemi_kod, gemi_sicilno, gemi_cins, gemi_defterno, muhur,
                      tam_yol, settings)
 
-    if settings[11][2] == 0:
+    if settings[11][2] == "0":
         pass
     else:
         ek_bir_yaz(gemi, gemi_cins, gemi_imo, musteri_adi, yakit_alan_kisi, teslimatci, musteri_adres, musteri_tel,
@@ -203,7 +204,7 @@ def teslimat_hazirliği_yap(musteri_adi ,gemi, yakit_turu, yogunluk,
                    gemi_acentatel, bolge, baslama_saati, bitis_saati, yakit_turu, net_litre, kilogram, gemici, tam_yol,
                    settings)
 
-    if settings[12][2] == 0:
+    if settings[12][2] == "0":
         pass
     else:
         check_list_yaz(teslimatci, gemi, gemi_defterno, gemi_belgeno, tam_yol)
@@ -214,6 +215,7 @@ def tanker_teslimat_hazirliği_yap(musteri, gemi, teslimatci, muhurler, yakit, y
     # bu sebeble firma bilgilerine gerek yok
     #gemi defter no bilgisi sorguları yapmak için yeterli
     settings = yaz.hepsini_oku(None, "settings")
+    # Settings dönen değer [0][2] türünde erişilip str olarak işlem görecek
 
     path = settings[0][2] + "\\"
     klasor = gemi + " " + tar
