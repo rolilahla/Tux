@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import webbrowser
 from threading import Thread
+import time
 
 yaz = VbagKur()
 t = time.strftime("%d %m %Y")
@@ -21,12 +22,55 @@ def defter_sor(defter_no, yol, settings):
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
     driver.get('{}'.format(settings[8][2]))
     no_listesi = defter_no.split("-")
-    driver.find_element_by_id('pfix').send_keys(no_listesi[0])
-    driver.find_element_by_id('region').send_keys(no_listesi[1])
-    driver.find_element_by_id('city').send_keys(no_listesi[2])
-    driver.find_element_by_id('number').send_keys(no_listesi[3])
-    tetikle = driver.find_element_by_name('Submit')
+    defter_parametreleri = settings[25][2]
+    defter_secicileri = settings[26][2]
+
+    def_par = defter_parametreleri.split("-")
+    def_sec = defter_secicileri.split("-")
+    if def_sec[0] == "0":
+        driver.find_element_by_id(def_par[0]).send_keys(no_listesi[0])
+    elif def_sec[0] == "1":
+        driver.find_element_by_class_name(def_par[0]).send_keys(no_listesi[0])
+    elif def_sec[0] == "2":
+        driver.find_element_by_name(def_par[0]).send_keys(no_listesi[0])
+    else:
+        pass
+    if def_sec[1] == "0":
+        driver.find_element_by_id(def_par[1]).send_keys(no_listesi[1])
+    elif def_sec[1] == "1":
+        driver.find_element_by_class_name(def_par[1]).send_keys(no_listesi[1])
+    elif def_sec[1] == "2":
+        driver.find_element_by_name(def_par[1]).send_keys(no_listesi[1])
+    else:
+        pass
+
+    if def_sec[2] == "0":
+        driver.find_element_by_id(def_par[2]).send_keys(no_listesi[2])
+    elif def_sec[2] == "1":
+        driver.find_element_by_class_name(def_par[2]).send_keys(no_listesi[2])
+    elif def_sec[2] == "2":
+        driver.find_element_by_name(def_par[2]).send_keys(no_listesi[2])
+    else:
+        pass
+    if def_sec[3] == "0":
+        driver.find_element_by_id(def_par[3]).send_keys(no_listesi[3])
+    elif def_sec[3] == "1":
+        driver.find_element_by_class_name(def_par[3]).send_keys(no_listesi[3])
+    elif def_sec[3] == "2":
+        driver.find_element_by_name(def_par[3]).send_keys(no_listesi[3])
+    else:
+        pass
+
+    if def_sec[4] == "0":
+        tetikle = driver.find_element_by_id(def_par[4])
+    elif def_sec[4] == "1":
+        tetikle = driver.find_element_by_class_name(def_par[4])
+    elif def_sec[4] =="2":
+        tetikle = driver.find_element_by_name(def_par[4])
+    else:
+        pass
     tetikle.click()
+    time.sleep(2)
 
     path = settings[0][2] + "\\" + yol + "\\defter-sorgu.png"
     driver.save_screenshot('{}'.format(path))
@@ -39,18 +83,60 @@ def subis_sor(defter_no, yol, settings):
     driver = Chrome(options=opts, executable_path='lib\geckodriver\chromedriver.exe')
     driver.get('{}'.format(settings[16][2]))
     no_listesi = defter_no.split("-")
+    sub_parametreler = settings[27][2]
+    sub_seciciler = settings[28][2]
 
-    driver.find_element_by_id('txtNote1').send_keys(no_listesi[0])
-    driver.find_element_by_id('txtNote2').send_keys(no_listesi[1])
-    driver.find_element_by_id('txtNote3').send_keys(no_listesi[2])
-    driver.find_element_by_id('txtNote4').send_keys(no_listesi[3])
-    tetikle = driver.find_element_by_id('btnLogin')
+    sub_par = sub_parametreler.split("-")
+    sub_sec = sub_seciciler.split("-")
+    if sub_sec[0] == "0":
+        driver.find_element_by_id(sub_par[0]).send_keys(no_listesi[0])
+    elif sub_sec[0] == "1":
+        driver.find_element_by_class_name(sub_par[0]).send_keys(no_listesi[0])
+    elif sub_sec[0] == "2":
+        driver.find_element_by_name(sub_par[0]).send_keys(no_listesi[0])
+    else:
+        pass
+    if sub_sec[1] == "0":
+        driver.find_element_by_id(sub_par[1]).send_keys(no_listesi[1])
+    elif sub_sec[1] == "1":
+        driver.find_element_by_class_name(sub_par[1]).send_keys(no_listesi[1])
+    elif sub_sec[1] == "2":
+        driver.find_element_by_name(sub_par[1]).send_keys(no_listesi[1])
+    else:
+        pass
+    if sub_sec[2] == "0":
+        driver.find_element_by_id(sub_par[2]).send_keys(no_listesi[2])
+    elif sub_sec[2] == "1":
+        driver.find_element_by_class_name(sub_par[2]).send_keys(no_listesi[2])
+    elif sub_sec[2] == "2":
+        driver.find_element_by_name(sub_par[2]).send_keys(no_listesi[2])
+    else:
+        pass
+    if sub_sec[3] == "0":
+        driver.find_element_by_id(sub_par[3]).send_keys(no_listesi[3])
+    elif sub_sec[3] == "1":
+        driver.find_element_by_class_name(sub_par[3]).send_keys(no_listesi[3])
+    elif sub_sec[3] == "2":
+        driver.find_element_by_name(sub_par[3]).send_keys(no_listesi[3])
+    else:
+        pass
+
+    if sub_sec[4] == "0":
+        tetikle = driver.find_element_by_id(sub_par[4])
+    elif sub_sec[4] == "1":
+        tetikle = driver.find_element_by_class_name(sub_par[4])
+    elif sub_sec[4] =="1":
+        tetikle = driver.find_element_by_name(sub_par[4])
+    else:
+        pass
+
     tetikle.click()
     body = driver.find_element_by_css_selector('body')
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
     body.send_keys(Keys.PAGE_DOWN)
+    time.sleep(2)
 
     path = settings[0][2] + "\\" + yol + "\\subis-sorgu.png"
     driver.save_screenshot('{}'.format(path))
