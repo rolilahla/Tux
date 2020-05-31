@@ -2225,7 +2225,6 @@ class Ui_FirmaBul(object):
         self.firma = self.listWidget.currentItem().text()
         sonuc = self.yaz.komut("SELECT kod FROM firmalar WHERE ad='{}'".format(self.firma))
         self.kod = sonuc[0]
-        self.pushButton.setChecked(True)
 
 
 class Ui_GemiTurleri(object):
