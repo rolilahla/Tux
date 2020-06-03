@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 # -*- coding:cp1254 -*-
-# sys.path.append(r'/home/istihza/programlar') komutu ile bu modülü python yoluna ekleyebilirsin
+#  import os
+#path = os.getcwd()
+# sys.path.append(r 'path') komutu ile bu modülü python yoluna ekleyebilirsin
 
 import sqlite3
 import os
